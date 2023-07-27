@@ -6,24 +6,25 @@ import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
 import ProductCategorySwiper from "./ProductCategorySwiper";
 import { filterProductsByCategory } from "./ProductFilter";
 
-const BabyCare = () => {
+const FiverAndPain = () => {
   const { data } = useGetCoursesQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
   const products = data?.data;
+
   const petMedicineProducts = filterProductsByCategory(
     products,
-    "Baby Medicine"
+    "Fever & Pain"
   );
 
   return (
     <ProductCategorySwiper
-    SectionTitle="Baby Products & Medicine"
-      category= "Baby Medicine"
+      category="Fever & Pain"
+      SectionTitle="Fever & Pain"
       products={petMedicineProducts}
     />
   );
 };
 
-export default BabyCare;
+export default FiverAndPain;

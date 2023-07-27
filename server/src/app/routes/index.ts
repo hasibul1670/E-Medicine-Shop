@@ -1,11 +1,10 @@
 import express from 'express';
 
-import { CourseRoutes } from '../modules/course/course.routes';
-
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { CartRoutes } from '../modules/cart/cart.routes';
-import { InstructorRoutes } from '../modules/instructor/instructor.route';
+
+import { ProductRoutes } from '../modules/product/product.routes';
 import { StudentRoutes } from '../modules/student/student.route';
 
 const router = express.Router();
@@ -16,16 +15,12 @@ const moduleRoutes = [
     route: AdminRoutes,
   },
   {
-    path: '/courses',
-    route: CourseRoutes,
+    path: '/products',
+    route: ProductRoutes,
   },
   {
     path: '/students',
     route: StudentRoutes,
-  },
-  {
-    path: '/instructors',
-    route: InstructorRoutes,
   },
   {
     path: '/auth',

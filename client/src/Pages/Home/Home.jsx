@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import FAQ from "./FAQ";
 
-import Banner from "./Banner";
-import Covid19 from "./Covid19";
 import BabyCare from "./BabyCare";
+import Banner from "./Banner";
+import FiverAndPain from "./FiverAndPain";
+import PetMedicine from "./PetMedicine";
 
 const Home = () => {
   return (
@@ -11,11 +11,13 @@ const Home = () => {
       <Helmet>
         <title> Sunlight Academy | Home</title>
       </Helmet>
-<Banner/>
-<Covid19/>
-<BabyCare/>
-      <FAQ />
-      
+      <Banner />
+      <p className="text-xl font-bold flex justify-center mt-5 mb-5">
+        Our Products{" "}
+      </p>
+      <FiverAndPain />
+      <BabyCare />
+      <PetMedicine />
     </div>
   );
 };

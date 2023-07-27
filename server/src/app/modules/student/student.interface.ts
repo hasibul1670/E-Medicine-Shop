@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
-import { ICourse } from '../course/course.interface';
+import { ICourse } from '../product/course.interface';
 
 export type UserName = {
   firstName: string;
@@ -13,7 +13,7 @@ export type IStudent = {
   password: string;
   email: string;
   name: UserName;
-  gender:'male' | 'female';
+  gender: 'male' | 'female';
   enrolledCourses?: Types.ObjectId | ICourse;
   completedCourses?: Types.ObjectId | ICourse;
   dateOfBirth?: string;

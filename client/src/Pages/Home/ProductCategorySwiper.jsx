@@ -1,24 +1,24 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
+import { Link } from "react-router-dom";
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Pagination } from "swiper";
-import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
 import HomePageCard from "../products/HomePageCard";
 
-const Covid19 = () => {
-  const { data } = useGetCoursesQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
-
-  const products = data?.data;
-
+const ProductCategorySwiper = ({ category, products, SectionTitle }) => {
   return (
-    <div className="container px-5 mb-10">
+    <div className="container px-10 mb-5">
       <div className="flex justify-between mb-5">
-        <p className="text-xl  font-semibold text-red-500">Covide 19 kits</p>
-        <button className="btn btn-primary ">See more</button>
+        <p className="text-xl font-semibold text-red-500">{SectionTitle}</p>
+
+        <Link to="products/category">
+          {" "}
+          <button className="btn btn-primary">See more</button>
+        </Link>
       </div>
 
       <Swiper
@@ -30,7 +30,6 @@ const Covid19 = () => {
       >
         {products?.slice(0, 5).map((product) => (
           <SwiperSlide key={product?._id}>
-            {" "}
             <HomePageCard key={product?._id} product={product} />
           </SwiperSlide>
         ))}
@@ -39,4 +38,4 @@ const Covid19 = () => {
   );
 };
 
-export default Covid19;
+export default ProductCategorySwiper;

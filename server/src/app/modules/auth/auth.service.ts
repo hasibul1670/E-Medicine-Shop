@@ -8,13 +8,11 @@ import { JwtPayload } from 'jsonwebtoken';
 import { ApiError } from '../../../handlingError/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { Admin } from '../admin/admin.model';
-import { Instructor } from '../instructor/instructor.model';
 import { Student } from '../student/student.model';
 import {
   IChangePassword,
   ILoginUser,
   ILoginUserResponse,
-  IRefreshTokenResponse,
 } from './auth.interface';
 
 const loginStudent = async (
@@ -28,8 +26,7 @@ const loginStudent = async (
   // Check if a user with the provided email exists in the Admin collection
   const admin = await Admin.isAdminExist(email);
 
-  // Check if a user with the provided email exists in the Instructor collection
-  const instructor = await Instructor.isInstructorExist(email);
+
 
   // Determine the user collection where the user was found
   let userCollection;
@@ -41,10 +38,8 @@ const loginStudent = async (
   } else if (admin) {
     userCollection = 'Admin';
     userRole = admin.role;
-  } else if (instructor) {
-    userCollection = 'Instructor';
-    userRole = instructor.role;
-  } else {
+  }
+ else {
     throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');
   }
 
@@ -65,14 +60,6 @@ const loginStudent = async (
         isPasswordMatched = await Admin.isPasswordMatched(
           password,
           admin.password
-        );
-      }
-      break;
-    case 'Instructor':
-      if (instructor) {
-        isPasswordMatched = await Instructor.isPasswordMatched(
-          password,
-          instructor.password
         );
       }
       break;
@@ -105,51 +92,7 @@ const loginStudent = async (
 };
 
 
-const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
-  let verifiedToken = null;
-  let role: string; // Declare the role variable
-  try {
-    verifiedToken = jwtHelpers.verifyToken(
-      token,
-      config.jwt.refresh_secret as Secret
-    );
-  } catch (err) {
-    throw new ApiError(StatusCodes.FORBIDDEN, 'Invalid Refresh Token');
-  }
-  const { email } = verifiedToken;
 
-  // Check if the user is an Admin, Instructor, or Student
-  const admin = await Admin.findOne({ email });
-  if (admin) {
-    role = 'admin';
-  } else {
-    const instructor = await Instructor.findOne({ email });
-    if (instructor) {
-      role = 'instructor';
-    } else {
-      const student = await Student.findOne({ email });
-      if (student) {
-        role = 'student';
-      } else {
-        throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');
-      }
-    }
-  }
-
-  const newAccessToken = jwtHelpers.createToken(
-    {
-      email,
-      role,
-    },
-    config.jwt.secret as Secret,
-    config.jwt.expires_in as string
-  );
-
-  return {
-    role,
-    accessToken: newAccessToken,
-  };
-};
 
 const changePassword = async (
   user: JwtPayload | null,
@@ -166,9 +109,6 @@ const changePassword = async (
       break;
     case 'student':
       isUserExist = await Student.isStudentExist(user?.email);
-      break;
-    case 'instructor':
-      isUserExist = await Instructor.isInstructorExist(user?.email);
       break;
   }
 
@@ -205,9 +145,6 @@ const changePassword = async (
     case 'student':
       await Student.findOneAndUpdate(query, updatedData);
       break;
-    case 'instructor':
-      await Instructor.findOneAndUpdate(query, updatedData);
-      break;
     default:
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Invalid user type');
   }
@@ -215,6 +152,5 @@ const changePassword = async (
 
 export const AuthService = {
   loginStudent,
-  refreshToken,
   changePassword
 };

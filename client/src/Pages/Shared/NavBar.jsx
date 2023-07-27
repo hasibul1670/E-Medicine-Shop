@@ -65,7 +65,7 @@ const NavBar = () => {
     <div className="navbar fixed z-20 px-20 max-w-screen-2xl bg-gray-600	 ">
       <div className="flex-1 text-white font-bold ">
        <span className="text-2xl"><AiOutlineMenuFold/> </span> 
-        <a className="btn btn-ghost normal-case ">E-Medicine</a>
+        <Link to="/" className="btn btn-ghost normal-case ">E-Medicine</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control  ">

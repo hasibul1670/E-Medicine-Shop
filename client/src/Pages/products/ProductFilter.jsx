@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-
-const BookFilter = ({
+const ProductFilter = ({
   priceRange,
   setSelectedGenre,
   setSearchText,
@@ -12,22 +12,22 @@ const BookFilter = ({
 }) => {
   return (
     <div className="p-5">
-      <h1 className="text-2xl uppercase">Price Range</h1>
+      <p className="text-xl font-semibold  text-cyan-700">Price Range</p>
       <input
         type="range"
         defaultValue={50}
-        max={1600}
+        max={500}
         min={0}
         step={1}
         onChange={handleRangeChange}
         className="range range-info"
       />
-      <h1 className="font-bold mb-2 text-red-500 ">From 0$ To {value}$</h1>
+      <h1 className="font-bold mb-2 text-red-500 ">From 0tk To {value}tk</h1>
 
       <input
         type="text"
         className="input input-bordered input-primary w-full max-w-xs mb-3"
-        placeholder="Search by title, author, or genre"
+        placeholder="Search by name,category,brand"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
@@ -38,20 +38,21 @@ const BookFilter = ({
         onChange={(e) => setSelectedGenre(e.target.value)}
       >
         <option value="">All Category</option>
-        <option value="phone">Phone</option>
-        <option value="watch">Watch</option>
-        <option value="camera">Camera</option>
-        <option value="laptop">Laptop</option>
-        <option value="gaming">Gaming</option>
-        <option value="headphones">Headphones</option>
-        
+        <option value="Baby Medicine">Baby Medicine</option>
+        <option value="Pet Medicine">Pet Medicine</option>
+        <option value="Pet Food">Pet Food</option>
+        <option value="Vitamins & Supplements">Vitamins & Supplements</option>
+        <option value="Fever & Pain">Fever & Pain</option>
+        <option value="Diabetes">Diabetes</option>
+        <option value="Blood Pressure & Heart Disease">
+          Blood Pressure & Heart Disease
+        </option>
+        <option value="Digestive Health">Digestive Health</option>
+        <option value="Skin & Hair Condition">Skin & Hair Condition</option>
+        <option value="Allergy & Asthma">Allergy & Asthma</option>
       </select>
-
-
-
-
     </div>
   );
 };
 
-export default BookFilter;
+export default ProductFilter;
