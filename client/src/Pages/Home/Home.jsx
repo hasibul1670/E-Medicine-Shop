@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className="">
       <Helmet>
-        <title> Sunlight Academy | Home</title>
+        <title> E-Medicine | Home</title>
       </Helmet>
       <Banner />
       <p className="text-xl font-bold flex justify-center mt-5 mb-5">
