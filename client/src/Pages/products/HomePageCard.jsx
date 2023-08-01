@@ -6,7 +6,7 @@ const HomePageCard = ({ product }) => {
   return (
     <div className="card w-64 h-72 p-1 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl">
       <figure className=" pt-2">
-        <img alt="example" src={product?.image_url || defaultImage } height={200} width={200} />
+        <img alt="example" src={product?.url || defaultImage } height={200} width={200} />
    
       </figure>
       <div className="card-body items-center text-center py-3">

@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
       <figure className="px-6 pt-2">
         <img
           alt="example"
-          src={product?.image_url || defaultImage}
+          src={product?.url || defaultImage}
           height={200}
           width={200}
         />
