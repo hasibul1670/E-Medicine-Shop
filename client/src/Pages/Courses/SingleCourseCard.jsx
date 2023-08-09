@@ -2,12 +2,14 @@
 
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-hot-toast";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import defaultImage from "../../assets/coursephoto/p1.jpg";
 import { useSingleProductQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 import { useState } from "react";
 import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useAppDispatch } from "./../../redux/hook";
 
 const SingleCourseCard = () => {
@@ -42,19 +44,8 @@ const SingleCourseCard = () => {
   const email = localStorage.getItem("email");
 
   const handleAddToCart = async (course) => {
-    try {
-      const options = {
-        data: { course: course, email: email },
-      };
-      const result = await createCart(options).unwrap();
-      if (result.statusCode === 200) {
-        setAddedToCart(true);
-        toast.success("Course is Added to Cart Successfully!");
-      }
-    } catch (error) {
-      toast.error("THis Course is Already Added to Cart ");
-      setAddedToCart(true);
-    }
+    dispatch(addToCart(course));
+    toast.success("Product Added to Cart Successfully!");
   };
 
   if (isLoading) {
@@ -70,7 +61,7 @@ const SingleCourseCard = () => {
           <figure className="px-6 pt-2 relative group overflow-hidden hover:scale-105 transition-transform duration-300">
             <img
               alt="example"
-              src={courseData?.url}
+              src={courseData?.url || defaultImage}
               height={300}
               width={300}
               className="group-hover:scale-125 transform origin-center"
@@ -106,22 +97,12 @@ const SingleCourseCard = () => {
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
-            {addedToCart ? (
-              <Link
-                to="/dashboard"
-                className="btn btn-primary btn-sm mx-2     
-      "
-              >
-                Go to Cart
-              </Link>
-            ) : (
-              <button
-                onClick={() => handleAddToCart(courseData)}
-                className="btn btn-primary btn-sm mx-2"
-              >
-                Add to Cart
-              </button>
-            )}
+            <button
+              onClick={() => handleAddToCart(courseData)}
+              className="btn btn-primary btn-sm mx-2"
+            >
+              Add to Cart
+            </button>
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           </div>

@@ -1,67 +1,77 @@
 /* eslint-disable react/prop-types */
 
-import { AiFillDelete, AiOutlineClose } from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiOutlineClose,
+  AiOutlineMinusCircle,
+  AiOutlinePlusSquare,
+} from "react-icons/ai";
 
 import { toast } from "react-hot-toast";
-import { useGetcartQuery } from "../../redux/features/cart/cartApi";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { addToCart, removeFromCart, removeOne } from "../../redux/features/cart/cartSlice";
+
+
 
 const CartSlider = ({ onClose }) => {
   const handleClose = () => {
     onClose();
   };
 
+  const { book, total } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const cartData = book;
 
-
-
-  const email = localStorage.getItem("email");
-  const { data } = useGetcartQuery(email, {
-    refetchOnMountOrArgChange: true,
-    pollingInterval:6000
-  });
-  let totalPrice = 0;
-  const cartData = data?.data;
-  if (cartData?.length > 0) {
-    cartData.forEach((f) => {
-      totalPrice += f?.course.price;
+  const totalQuantity = () => {
+    let totalQuantity = 0;
+    cartData.forEach((book) => {
+      totalQuantity += book.quantity;
     });
-  }
 
-  const handleCartItemDelete = (id) => {
-    fetch(`https://summer-camp-school-server-sigma.vercel.app/api/v1/cart/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.statusCode === 200) {
-          toast.success("Successfully  Deleted !");
-        }
-      });
+    return totalQuantity;
   };
 
+  const handleRemoveBookFromCart = (book) => {
+    dispatch(removeFromCart(book));
+    toast.success("Book Delete From Cart!!");
+  };
 
   return (
     <div className="p-2 shadow-xl">
       <button onClick={handleClose} className="text-xl btn-outline">
         <AiOutlineClose />
       </button>
-      <h2 className="text-red-500 text-sm">
-        Total Courses: {cartData?.length}
-      </h2>
+      <h2 className="text-red-500 text-sm">Total Items: {totalQuantity()}</h2>
       <div className=" mt-4 gap-5">
-        <h1 className="font-bold text-cyan-700">
-          Total: {totalPrice?.toFixed(2)}
-        </h1>
+        <h1 className="font-bold text-cyan-700">Total: {total?.toFixed(2)}</h1>
         {cartData &&
           cartData?.map((cart) => (
             <div key={cart._id} className="border-b-2 border-sky-500 p-5">
               <div className="border-r pr-20 shrink-0">
-                <img src={cart?.course.bookImage} alt="" className="h-full" />
+                <img src={cart?.url} alt="" className="h-full" />
               </div>
-              <p className="text-cyan-700 font-bold "> {cart.course?.title}</p>
-              <p className=" font-bold "> price: {cart?.course?.price} $</p>
-              
+              <p className="text-cyan-700 font-bold "> {cart?.name}</p>
+              <p className=" font-bold text-xs">
+                {" "}
+                price: {(cart.price * cart.quantity).toFixed(2)}$
+              </p>
+              <p>Quantity: {cart.quantity}</p>
               <button
-                onClick={() => handleCartItemDelete(cart?._id)}
+                onClick={() => dispatch(addToCart(cart))}
+                className="text-2xl btn-outline mr-5"
+              >
+                <AiOutlinePlusSquare />
+              </button>
+
+              <button
+                onClick={() => dispatch(removeOne(cart))}
+                className="text-2xl btn-outline ml-5"
+              >
+                <AiOutlineMinusCircle />
+              </button>
+
+              <button
+                onClick={() => handleRemoveBookFromCart(cart)}
                 className="text-2xl btn-outline ml-10"
               >
                 <AiFillDelete />

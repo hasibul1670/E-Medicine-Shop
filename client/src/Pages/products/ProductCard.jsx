@@ -36,13 +36,13 @@ const ProductCard = ({ product }) => {
           {" "}
           <Link href={`/products/${product?._id}`}>
             <button className="btn  capitalize	 btn-primary mr-4 btn-sm">
-              Add to Cart
+               Cart
             </button>
           </Link>
 
           <Link to={`/products/${product?._id}`}>
             <button className="btn  capitalize  btn-primary  btn-sm">
-              Show Details
+               Details
             </button>
           </Link>{" "}
         </div>

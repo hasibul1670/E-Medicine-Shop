@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
+import { AiOutlineMenuFold } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { AiOutlineMenuFold } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import { useGetcartQuery } from "../../redux/features/cart/cartApi";
@@ -29,6 +29,17 @@ const NavBar = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
+  };
+
+  const { book } = useAppSelector((state) => state.cart);
+
+  const totalQuantity = () => {
+    let totalQuantity = 0;
+    book.forEach((book) => {
+      totalQuantity += book.quantity;
+    });
+
+    return totalQuantity;
   };
 
   const { user, logOut } = useContext(AuthContext);
@@ -59,13 +70,20 @@ const NavBar = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  const cartData = data?.data;
+
+
+
+
 
   return (
     <div className="navbar fixed z-20 px-20 max-w-screen-2xl bg-gray-600	 ">
       <div className="flex-1 text-white font-bold ">
-       <span className="text-2xl"><AiOutlineMenuFold/> </span> 
-        <Link to="/" className="btn btn-ghost normal-case ">E-Medicine</Link>
+        <span className="text-2xl">
+          <AiOutlineMenuFold />{" "}
+        </span>
+        <Link to="/" className="btn btn-ghost normal-case ">
+          E-Medicine
+        </Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control  ">
@@ -119,7 +137,7 @@ const NavBar = () => {
                     <span className="text-xl">
                       <FaShoppingCart></FaShoppingCart>
                     </span>
-                    <span>{cartData?.length || 0}</span>
+                    <span> {totalQuantity()}</span>
                   </div>
                 </label>
               </div>
