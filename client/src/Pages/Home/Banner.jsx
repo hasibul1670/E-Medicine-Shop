@@ -20,12 +20,12 @@ const Banner = () => {
   const imageUrls = [img1, img3, img4];
 
   return (
-    <div className="py-10">
+    <div className="py-20 bg-base-300">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -62,55 +62,54 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide className="relative  w-full">
-          <LazyLoadImage src={img4} className="rounded-xl" alt="Image 1" />
+          <LazyLoadImage src={img3} className="rounded-xl" alt="Image 1" />
           <div className="absolute h-full flex rounded-xl md:p-0  py-16 items-center  left-0 top-0  bg-gradient-to-r from-[#000000] to-[rgba(21,21,21,0)]">
             <div className="text-white md:space-y-7 md:w-2/3 w-full pl-12">
-              <h2 className="md:text-4xl text-xl md:mt-0  font-bold">
+              <p className="md:text-4xl text-xl md:mt-0  font-bold">
                 {" "}
                 <br className="md:flex hidden" />
-                <span className="text-yellow-400">
+             
+                <span className="text-pink-600">
                 <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
-                <br />
-                <span className="text-xl">
-                Unlock the Power of E-Medicine: Your Health, Just a Click Away!
-                </span>
-          
-              </h2>
 
-              <p className="font-bold md:text-sm text-xl text-cyan-400">
-                Experience the ultimate summer school camp adventure at Sunlight
-                Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration.
+                <br />
+                <span className="text-xl">  Delivary All Over  <span className="text-blue-400">Bangladesh</span> </span>
+             
               </p>
+
+              <h6 className="font-bold md:text-sm text-xs text-gray-300">
+              "Embrace a Healthy Summer Adventure at E-Medicine Shop! Discover Wellness, Explore Knowledge, and Elevate Your Health!"
+              </h6>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className="relative  w-full">
-          <LazyLoadImage src={img3} className="rounded-xl" alt="Image 1" />
+          <LazyLoadImage src={img4} className="rounded-xl" alt="Image 1" />
           <div className="absolute h-full flex rounded-xl md:p-0  py-16 items-center  left-0 top-0  bg-gradient-to-r from-[#000000] to-[rgba(21,21,21,0)]">
             <div className="text-white md:space-y-7 md:w-2/3 w-full pl-12">
-              <h2 className="md:text-4xl text-xl md:mt-0  font-bold">
+              <p className="md:text-4xl text-xl md:mt-0  font-bold">
                 {" "}
                 <br className="md:flex hidden" />
-                <span className="text-green-500">
+             
+                <span className="text-pink-600">
                 <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
-                <br />
-                <span className="text-xl">
-                24/7 Open!
-                </span>
-     
-              </h2>
 
-              <p className="font-bold md:text-sm text-xl text-cyan-400">
-                Experience the ultimate summer school camp adventure at Sunlight
-                Academy! Join us for an enriching and exciting summer filled
-                with learning, exploration.
+                <br />
+                <span className="text-xl">  Delivary All Over  <span className="text-blue-400">Bangladesh</span> </span>
+             
               </p>
+
+              <h6 className="font-bold md:text-sm text-xs text-gray-300">
+              "Embrace a Healthy Summer Adventure at E-Medicine Shop! Discover Wellness, Explore Knowledge, and Elevate Your Health!"
+              </h6>
             </div>
           </div>
         </SwiperSlide>
+
+      
+
       </Swiper>
     </div>
   );
