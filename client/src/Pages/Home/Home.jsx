@@ -12,7 +12,7 @@ const Home = () => {
         <title> E-Medicine | Home</title>
       </Helmet>
       <Banner />
-      <p className="text-xl font-bold flex justify-center mt-5 mb-5">
+      <p className="text-xl font-bold underline flex justify-center mt-5 mb-5">
         Our Products{" "}
       </p>
       <FiverAndPain />

@@ -46,7 +46,7 @@ const Banner = () => {
                 {" "}
                 <br className="md:flex hidden" />
              
-                <span className="text-pink-600">
+                <span className="text-teal-400">
                 <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
 
@@ -92,7 +92,7 @@ const Banner = () => {
                 {" "}
                 <br className="md:flex hidden" />
              
-                <span className="text-pink-600">
+                <span className="text-yellow-400">
                 <span className="text-white">SignUp</span> E-Medicine Online Shop
                 </span>{" "}
 

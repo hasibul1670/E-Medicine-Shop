@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SideBar = ({ activeMenu, onMenuClick }) => {
@@ -13,6 +13,11 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
     onMenuClick(menu);
     setDrawerOpen(false);
   };
+
+  const menuItemClasses = (menu) =>
+    `block py-2 px-4 rounded hover:bg-cyan-500 hover:text-white ${
+      activeMenu === menu ? "bg-cyan-700 text-white" : ""
+    }`;
 
   return (
     <div className="w-full">
@@ -33,75 +38,54 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
       <div
         className={`${
           isDrawerOpen ? "block" : "hidden"
-        } bg-gray-700 font-bold text-cyan-500 min-h-screen w-full lg:w-auto lg:block lg:relative`}
+        } bg-gray-700 font-bold text-cyan-500 min-h-screen w-full lg:w-auto lg:block lg:relative flex lg:flex-col`}
       >
         <nav className="p-4">
           <ul className="space-y-2">
             <li>
               <Link
-                className={`block py-2 px-4  rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myOrder" ? "bg-cyan-700 text-white" : ""
-                }`}
+                className={menuItemClasses("myOrder")}
                 onClick={() => handleMenuItemClick("myOrder")}
               >
                 <small className="">My Order</small>
               </Link>
             </li>
-
             <li>
               <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myAddress" ? "bg-cyan-700 text-white" : ""
-                }`}
+                className={menuItemClasses("myAddress")}
                 onClick={() => handleMenuItemClick("myAddress")}
               >
                 <small className="">My Address</small>
               </Link>
             </li>
-
             <li>
               <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "productRequest"
-                    ? "bg-cyan-700 text-white"
-                    : ""
-                }`}
+                className={menuItemClasses("productRequest")}
                 onClick={() => handleMenuItemClick("productRequest")}
               >
                 <small className="">Product Request</small>
               </Link>
             </li>
-
             <li>
               <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "requestedProduct"
-                    ? "bg-cyan-700 text-white"
-                    : ""
-                }`}
+                className={menuItemClasses("requestedProduct")}
                 onClick={() => handleMenuItemClick("requestedProduct")}
               >
                 <small className="">Requested Product</small>
               </Link>
             </li>
-
             <li>
               <Link
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myProfile" ? "bg-cyan-700 text-white" : ""
-                }`}
+                className={menuItemClasses("myProfile")}
                 onClick={() => handleMenuItemClick("myProfile")}
               >
                 <small className="">My Profile</small>
               </Link>
             </li>
-
             <li>
               <Link
                 to="/products/category"
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white 
-                
-                `}
+                className="block py-2 px-4 rounded hover:bg-cyan-500 hover:text-white"
               >
                 <small className="">Back to Shopping</small>
               </Link>

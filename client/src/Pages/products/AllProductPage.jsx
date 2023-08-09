@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useGetProductsQuery } from "../../redux/features/course/courseApi";
 import { setPriceRange } from "../../redux/features/product/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import BookFilter from "./ProductFilter";
 
@@ -76,13 +77,13 @@ const AllProductPage = () => {
   }
 
   if (isLoading) {
-    return <p className="py-20">Loading..........</p>;
+    return <LoadingSpinner />;
   }
 
   return (
     <>
       <div className="flex static   py-24  ">
-        <div className="w-1/4 z-0  py-24 bg-base-200 fixed top-0 right-0 bottom-0 ">
+        <div className="w-1/2 sm:w-1/4 z-0  py-24 bg-base-200 fixed top-0 right-0 bottom-0 ">
           {" "}
           <div className="">
             <BookFilter
@@ -98,7 +99,7 @@ const AllProductPage = () => {
             />
           </div>
         </div>
-        <div className="w-3/4 flex justify-end">
+        <div className="w-1/2 sm:w-3/4 flex justify-end">
           <div className="flex justify-end mx-auto px-4">
             <div className="flex justify-end px-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
