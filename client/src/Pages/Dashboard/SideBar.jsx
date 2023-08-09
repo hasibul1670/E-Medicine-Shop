@@ -16,14 +16,13 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
 
   return (
     <div className="w-full">
-     
       <label
         htmlFor="drawer-toggle"
         className="block lg:hidden bg-blue-800 text-white px-4 py-2 cursor-pointer"
       >
         Open Dashboard
       </label>
-    
+
       <input
         type="checkbox"
         id="drawer-toggle"
@@ -41,7 +40,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
             <li>
               <Link
                 className={`block py-2 px-4  rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myOrder" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "myOrder" ? "bg-cyan-700 text-white" : ""
                 }`}
                 onClick={() => handleMenuItemClick("myOrder")}
               >
@@ -52,7 +51,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myAddress" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "myAddress" ? "bg-cyan-700 text-white" : ""
                 }`}
                 onClick={() => handleMenuItemClick("myAddress")}
               >
@@ -60,41 +59,51 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
               </Link>
             </li>
 
-
-
-     
-
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "peoductRequest" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "productRequest"
+                    ? "bg-cyan-700 text-white"
+                    : ""
                 }`}
-                onClick={() => handleMenuItemClick("peoductRequest")}
+                onClick={() => handleMenuItemClick("productRequest")}
               >
                 <small className="">Product Request</small>
               </Link>
             </li>
-            
+
             <li>
               <Link
                 className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
-                  activeMenu === "myProfile" ? "bg-cyan-700 text-white"  : ""
+                  activeMenu === "requestedProduct"
+                    ? "bg-cyan-700 text-white"
+                    : ""
                 }`}
-                onClick={() => handleMenuItemClick("myProfile")}
+                onClick={() => handleMenuItemClick("requestedProduct")}
               >
-                <small className="">Update Profile</small>
+                <small className="">Requested Product</small>
               </Link>
             </li>
 
             <li>
               <Link
-                to=""
-                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white ${
-                  activeMenu === "settings" ? "bg-cyan-700 text-white" : ""
+                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white  ${
+                  activeMenu === "myProfile" ? "bg-cyan-700 text-white" : ""
                 }`}
-                onClick={() => handleMenuItemClick("settings")}
+                onClick={() => handleMenuItemClick("myProfile")}
               >
-                    <small className="">Log Out</small>
+                <small className="">My Profile</small>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/products/category"
+                className={`block py-2 px-4 rounded hover:bg-cyan-500  hover:text-white 
+                
+                `}
+              >
+                <small className="">Back to Shopping</small>
               </Link>
             </li>
           </ul>

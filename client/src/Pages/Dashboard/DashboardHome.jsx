@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-import SideBar from "./SideBar";
-import MyOrder from "./MyOrder";
 import MyAddress from "./MyAddress";
+import MyOrder from "./MyOrder";
 import ProductRequest from "./ProductRequest";
-import Profile from './Profile';
+import Profile from "./Profile";
+import RequestedProduct from "./RequestedProduct";
+import SideBar from "./SideBar";
 
 const DashboardHome = () => {
-  const [activeMenu, setActiveMenu] = useState("selectedCourses");
+  const [activeMenu, setActiveMenu] = useState("myOrder");
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
@@ -20,25 +21,27 @@ const DashboardHome = () => {
     mainContent = <MyOrder />;
     headerContent = "My Order";
   } else if (activeMenu === "myAddress") {
-    mainContent = <MyAddress/>;
+    mainContent = <MyAddress />;
     headerContent = "My Address";
-  } else if (activeMenu === "peoductRequest") {
+  } else if (activeMenu === "productRequest") {
     mainContent = <ProductRequest />;
     headerContent = "Product Request";
   } else if (activeMenu === "myProfile") {
     mainContent = <Profile />;
     headerContent = "My Profile";
+  } else if (activeMenu === "requestedProduct") {
+    mainContent = <RequestedProduct />;
+    headerContent = "My Requested Product";
   }
 
   return (
-    <div className="flex py-20 flex-col lg:flex-row">
+    <div className="flex py-20 flex-col lg:flex-row bg-base-300">
       <div className="h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
-        {/* Sidebar content goes here */}
         <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
       </div>
 
-      <div className="bg-gray-200 flex-grow ">
-        <header className="bg-blue-200 shadow-md p-4">
+      <div className="bg-base-300 flex-grow ">
+        <header className="shadow-lg p-4">
           <h1 className="text-blue-800 font-bold text-xl">{headerContent}</h1>
         </header>
 

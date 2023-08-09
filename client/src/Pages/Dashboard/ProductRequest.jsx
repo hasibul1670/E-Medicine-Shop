@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 
 const ProductRequest = () => {
@@ -15,7 +15,7 @@ const ProductRequest = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className=" items-center justify-center h-screen ">
       <div className="border-dashed border-2 border-sky-500 p-3 text-center">
         <p className="text-xl font-bold text-pink-800">Product Request</p>
         <p className="text-sm font-semibold text-teal-700">
@@ -23,7 +23,7 @@ const ProductRequest = () => {
           are looking for and we will try our best to bring it in.
         </p>
         <div className=" flex justify-center ">
-          <form className="form-control w-96" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form-control w-1/2" onSubmit={handleSubmit(onSubmit)}>
             <textarea
               placeholder="Product Description"
               className="textarea textarea-bordered  textarea-primary my-2 textarea-lg w-full  max-w-xs"
@@ -48,8 +48,8 @@ const ProductRequest = () => {
               </small>
             )}
 
-            <button type="submit" className="btn w-32 btn-primary mt-2">
-              Submit
+            <button type="submit" className="btn w-48 capitalize btn-primary mt-2">
+              Product Request
             </button>
           </form>
         </div>

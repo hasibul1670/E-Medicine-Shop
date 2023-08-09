@@ -8,7 +8,6 @@ import LifeSkill from "../Pages/Courses/LifeSkill";
 import SingleCourseCard from "../Pages/Courses/SingleCourseCard";
 import Specialized from "../Pages/Courses/Specialized";
 import SportFitness from "../Pages/Courses/SportFitness";
-import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import AboutUs from "../Pages/FooterComponents/AboutUs";
 import Blogs from "../Pages/FooterComponents/Blogs";
 import ContactUs from "../Pages/FooterComponents/ContactUs";
@@ -20,8 +19,8 @@ import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProductPage from "../Pages/products/AllProductPage";
+import Prp from "../Pages/products/PRP";
 import Home from "./../Pages/Home/Home";
-import ProductRequest from "../Pages/Dashboard/ProductRequest";
 
 export const router = createBrowserRouter([
   {
@@ -41,9 +40,10 @@ export const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "/product-request",
-        element: <ProductRequest/>,
+        path: "product-request",
+        element: <Prp />,
       },
+
       {
         path: "courses",
         element: <CategoryCard></CategoryCard>,
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
         path: "products/:id",
         element: <SingleCourseCard />,
       },
-   
+
       {
         path: "/instructors/:id",
         element: <InstructorDetails />,
@@ -111,15 +111,11 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
-    children: [
-      {
-        path: "dashboardhome",
-        element: <DashboardHome></DashboardHome>,
-      },
-    ],
+    children: [],
   },
   {
     path: "*", // Match any unrecognized path

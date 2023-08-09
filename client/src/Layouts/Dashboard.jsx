@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
 import Footer from "../Pages/Shared/Footer";
 import NavBar from "../Pages/Shared/NavBar";
@@ -9,7 +8,7 @@ const Dashboard = () => {
       <div>
         <NavBar></NavBar>
         <DashboardHome />
-        <Outlet></Outlet>
+
         <Footer></Footer>
       </div>
     </div>

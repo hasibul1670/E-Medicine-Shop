@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { useGetcartQuery } from "../../redux/features/cart/cartApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
-
 
 const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -27,10 +26,6 @@ const NavBar = () => {
     document.body.classList.remove("drawer-open");
   };
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
   const { book } = useAppSelector((state) => state.cart);
 
   const totalQuantity = () => {
@@ -44,22 +39,6 @@ const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
   const [loggInUser] = useContext(userDataContext);
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
-  );
-  const [isDarkMode, setDarkMode] = useState(false);
-
-  const name2 = loggInUser?.name?.firstName;
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
-
-  const toggleDarkMode = (checked) => {
-    setDarkMode(checked);
-  };
 
   const handleLogOut = () => {
     logOut();
@@ -71,7 +50,7 @@ const NavBar = () => {
   });
 
   return (
-    <div className="navbar fixed z-20 sm:px-20 px-10 max-w-screen-2xl bg-gray-600	 ">
+    <div className="navbar fixed z-20 sm:px-20 px-8  max-w-screen-2xl  bg-gray-700	h-4 ">
       <div className="navbar-start ">
         <div className="dropdown ">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -95,22 +74,19 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 rounded-box w-52"
           >
             <li>
-              <Link className="text-white font-semibold">My Order </Link>
+              <Link to="/dashboard" className="text-white font-semibold">
+                My Order{" "}
+              </Link>
             </li>
 
             <li>
-              <Link className="text-white font-semibold"> My Profile </Link>
-            </li>
-
-            <Link to="/login">
-              <button
-                onClick={handleLogOut}
-                className="btn btn-sm  capitalize btn-primary"
+              <Link
+                to="/product-request"
+                className="btn btn-sm mt-1  capitalize btn-accent"
               >
                 Product Request
-              </button>
-            </Link>
-
+              </Link>
+            </li>
           </ul>
         </div>
         <Link
@@ -124,20 +100,19 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal ">
           <li>
-            <Link className="text-white font-semibold">My Order </Link>
+            <Link to="/dashboard" className="text-white font-semibold">
+              My Order{" "}
+            </Link>
           </li>
 
           <li>
-            <Link className="text-white font-semibold"> My Profile </Link>
+            <Link
+              to="/product-request"
+              className="btn btn-sm mt-1  capitalize btn-accent"
+            >
+              Product Request
+            </Link>
           </li>
-
-          <li >
-              <Link to="product-request"
-                className="btn btn-sm mt-1  capitalize btn-accent"
-              >
-                Product Request
-              </Link>
-            </li>
         </ul>
       </div>
 
