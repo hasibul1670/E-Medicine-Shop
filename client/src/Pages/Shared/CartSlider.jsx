@@ -43,7 +43,12 @@ const CartSlider = ({ onClose }) => {
       </button>
       <h2 className="text-red-500 text-sm">Total Items: {totalQuantity()}</h2>
       <div className=" mt-4 gap-5">
+        <div className="flex justify-between">
         <h1 className="font-bold text-cyan-700">Total: {total?.toFixed(2)}</h1>
+        <button className="font-bold text-white btn btn-sm btn-neutral capitalize ">Place Order</button>
+        </div>
+    
+
         {cartData &&
           cartData?.map((cart) => (
             <div key={cart._id} className="border-b-2 border-sky-500 p-5">

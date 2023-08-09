@@ -27,7 +27,6 @@ const Login = () => {
   const mutation = useMutation((userData) => loginUser(userData), {
     onSuccess: (data) => {
       reset();
-
       const token = data.data.accessToken;
       const email = data.data.email;
       localStorage.setItem("token", token);
@@ -41,7 +40,6 @@ const Login = () => {
         timer: 1500,
       });
       setUser({ token, email });
-
       navigate(from, { replace: true });
     },
     onError: (error) => {
@@ -62,7 +60,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main-container p-4 py-5 md:hero min-h-screen   justify-items-center">
+    <div className="main-container px-20 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
         <title> E-Medicine | Login 😍</title>
       </Helmet>
@@ -142,7 +140,17 @@ const Login = () => {
                 </label>
 
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
+
+
+                {mutation.isLoading ? (
+        <span className="loading loading-spinner loading-lg"></span>
+      ) : (
+        <button type="submit" className="btn btn-primary mt-2">
+          Login
+        </button>
+      )}
+
+
                   <p className="text-sm font-bold mt-4">
                     Don't you have any Account ?{" "}
                     <Link to="/signup" className="text-blue-500 ">
@@ -155,6 +163,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+
     </div>
   );
 };

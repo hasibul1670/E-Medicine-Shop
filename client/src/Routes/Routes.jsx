@@ -21,6 +21,7 @@ import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProductPage from "../Pages/products/AllProductPage";
 import Home from "./../Pages/Home/Home";
+import ProductRequest from "../Pages/Dashboard/ProductRequest";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "/product-request",
+        element: <ProductRequest/>,
       },
       {
         path: "courses",
@@ -73,6 +78,7 @@ export const router = createBrowserRouter([
         path: "products/:id",
         element: <SingleCourseCard />,
       },
+   
       {
         path: "/instructors/:id",
         element: <InstructorDetails />,

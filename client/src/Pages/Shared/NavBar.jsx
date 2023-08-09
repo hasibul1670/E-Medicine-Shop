@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
-import { AiOutlineMenuFold } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -9,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useGetcartQuery } from "../../redux/features/cart/cartApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
+
 
 const NavBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -70,94 +70,124 @@ const NavBar = () => {
     refetchOnMountOrArgChange: true,
   });
 
-
-
-
-
-
   return (
-    <div className="navbar fixed z-20 px-20 max-w-screen-2xl bg-gray-600	 ">
-      <div className="flex-1 text-white font-bold ">
-        <span className="text-2xl">
-          <AiOutlineMenuFold />{" "}
-        </span>
-        <Link to="/" className="btn btn-ghost normal-case ">
+    <div className="navbar fixed z-20 sm:px-20 px-10 max-w-screen-2xl bg-gray-600	 ">
+      <div className="navbar-start ">
+        <div className="dropdown ">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 rounded-box w-52"
+          >
+            <li>
+              <Link className="text-white font-semibold">My Order </Link>
+            </li>
+
+            <li>
+              <Link className="text-white font-semibold"> My Profile </Link>
+            </li>
+
+            <Link to="/login">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-sm  capitalize btn-primary"
+              >
+                Product Request
+              </button>
+            </Link>
+
+          </ul>
+        </div>
+        <Link
+          to="/"
+          className="btn  text-white font-bold text-xl btn-ghost normal-case "
+        >
           E-Medicine
         </Link>
       </div>
-      <div className="flex-none gap-2">
-        <div className="form-control  ">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
 
-        {user?.email ? (
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal ">
+          <li>
+            <Link className="text-white font-semibold">My Order </Link>
+          </li>
+
+          <li>
+            <Link className="text-white font-semibold"> My Profile </Link>
+          </li>
+
+          <li >
+              <Link to="product-request"
+                className="btn btn-sm mt-1  capitalize btn-accent"
+              >
+                Product Request
+              </Link>
+            </li>
+        </ul>
+      </div>
+
+      <div className="drawer flex navbar-end drawer-end mr-5">
+        <input
+          id="my-drawer-4"
+          type="checkbox"
+          className="drawer-toggle"
+          checked={isDrawerOpen}
+          onChange={handleDrawerToggle}
+        />
+
+        {user ? (
           <>
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src="https://i.ibb.co/xCLffBL/ip.jpg" />
+            <div className="drawer-content">
+              <label htmlFor="my-drawer-4">
+                <div className="badge badge-outline mr-2 badge-primary">
+                  <span className="text-xl">
+                    <FaShoppingCart></FaShoppingCart>
+                  </span>
+                  <span> {totalQuantity()}</span>
                 </div>
               </label>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            </div>
+
+            <div className="drawer-side ">
+              <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+
+              <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
+                <ul className="cart-slider-list">
+                  <CartSlider onClose={handleCartSliderClose} />
+                </ul>
+              </div>
+            </div>
+
+            <Link to="/login">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-sm  capitalize btn-primary"
               >
-                <li>
-                  <a>My Order</a>
-                </li>
-                <li>
-                  <a>My Address</a>
-                </li>
-
-                <li>
-                  <button
-                    onClick={handleLogOut}
-                    className="btn btn-sm btn-primary "
-                  >
-                    <span className="text-white text-xs">logout</span>
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <div className="drawer navbar-end drawer-end mr-5">
-              <input
-                id="my-drawer-4"
-                type="checkbox"
-                className="drawer-toggle"
-                checked={isDrawerOpen}
-                onChange={handleDrawerToggle}
-              />
-              <div className="drawer-content">
-                <label htmlFor="my-drawer-4">
-                  <div className="badge badge-outline badge-primary">
-                    <span className="text-xl">
-                      <FaShoppingCart></FaShoppingCart>
-                    </span>
-                    <span> {totalQuantity()}</span>
-                  </div>
-                </label>
-              </div>
-
-              <div className="drawer-side ">
-                <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-
-                <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
-                  <ul className="cart-slider-list">
-                    <CartSlider onClose={handleCartSliderClose} />
-                  </ul>
-                </div>
-              </div>
-            </div>
+                Log Out
+              </button>
+            </Link>
           </>
         ) : (
           <>
             <Link to="/login">
-              {" "}
-              <button className="btn btn-sm btn-primary">Sign In</button>
+              <button className="btn btn-sm  capitalize btn-primary">
+                Sign In
+              </button>
             </Link>
           </>
         )}
@@ -167,52 +197,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-// {user?.email ? (
-//   <>
-//     <div className="drawer navbar-end drawer-end mr-5">
-//       <input
-//         id="my-drawer-4"
-//         type="checkbox"
-//         className="drawer-toggle"
-//         checked={isDrawerOpen}
-//         onChange={handleDrawerToggle}
-//       />
-//       <div className="drawer-content">
-//         <label htmlFor="my-drawer-4">
-//           <div className="badge badge-outline badge-primary">
-//             <span>
-//               <FaShoppingCart></FaShoppingCart>
-//             </span>
-//             <span>{cartData?.length || 0}</span>
-//           </div>
-//         </label>
-//       </div>
-
-//       <div className="drawer-side ">
-//         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-
-//         <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
-//           <ul className="cart-slider-list">
-//             <CartSlider onClose={handleCartSliderClose} />
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-
-//     <Link to="/" className=" font-bold text-sm text-white  mr-2 ">
-//       {name2 || "null"}
-//     </Link>
-
-//     <button onClick={handleLogOut} className="btn btn-sm btn-outline ">
-//       <span className="text-white text-xs">logout</span>
-//     </button>
-//   </>
-// ) : (
-//   <>
-//     <Link to="/login">
-//       {" "}
-//       <button className="btn btn-sm btn-primary">Sign In</button>
-//     </Link>
-//   </>
-// )}
