@@ -4,12 +4,12 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Pagination } from "swiper";
-import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useGetProductsQuery } from "../../redux/features/course/courseApi";
 import HomePageCard from "../products/HomePageCard";
 import { filterProductsByCategory } from "./ProductFilter";
 
 const EyeEar = () => {
-  const { data } = useGetCoursesQuery(undefined, {
+  const { data } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 

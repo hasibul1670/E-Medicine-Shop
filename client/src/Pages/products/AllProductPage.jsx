@@ -1,13 +1,13 @@
 import Fuse from "fuse.js";
 import { useState } from "react";
-import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useGetProductsQuery } from "../../redux/features/course/courseApi";
 import { setPriceRange } from "../../redux/features/product/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import ProductCard from "./ProductCard";
 import BookFilter from "./ProductFilter";
 
 const AllProductPage = () => {
-  const { data, isLoading } = useGetCoursesQuery(undefined, {
+  const { data, isLoading } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 

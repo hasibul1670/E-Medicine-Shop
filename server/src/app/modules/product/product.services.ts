@@ -12,11 +12,7 @@ const getAllProducts = async () => {
 };
 
 const getSingleProduct = async (id: string) => {
-  const result = await Product.find({ id: id })
-    .populate('instructor')
-    .populate('review')
-    .populate('lessons');
-
+  const result = await Product.findById({ _id: id })
   return result;
 };
 

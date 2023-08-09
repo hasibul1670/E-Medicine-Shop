@@ -5,15 +5,21 @@ import defaultImage from "../../assets/coursephoto/p1.jpg";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="card w-58 h-72 p-1 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
-      <figure className="px-6 pt-2">
-        <img
-          alt="example"
-          src={product?.url || defaultImage}
-          height={200}
-          width={200}
-        />
-      </figure>
+
+    <div className="card w-58 h-72 p-1 border-solid border-2 border-sky-500 shadow-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-50">
+
+<figure className="px-6 pt-2 relative group overflow-hidden hover:scale-105 transition-transform duration-300">
+  <img
+    alt="example"
+    src={product?.url || defaultImage}
+    height={200}
+    width={200}
+    className="group-hover:scale-125 transform origin-center"
+  />
+</figure>
+
+
+
       <div className="card-body items-center text-center py-3">
         <h6 className="font-bold text-cyan-700 ">
           {product?.name}{" "} <br />
@@ -33,7 +39,8 @@ const ProductCard = ({ product }) => {
               Add to Cart
             </button>
           </Link>
-          <Link href={`/products/${product?._id}`}>
+
+          <Link to={`/products/${product?._id}`}>
             <button className="btn  capitalize  btn-primary  btn-sm">
               Show Details
             </button>

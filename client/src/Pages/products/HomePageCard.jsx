@@ -20,7 +20,7 @@ const HomePageCard = ({ product }) => {
           {product?.price}
         </h6>
 
-        <Link href={`/products/${product?._id}`}>
+        <Link to={`/products/${product?._id}`}>
           <button className="btn  btn-primary  btn-sm">Add to Cart</button>
         </Link>
       </div>

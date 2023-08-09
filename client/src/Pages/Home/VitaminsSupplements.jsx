@@ -4,18 +4,21 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Pagination } from "swiper";
-import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useGetProductsQuery } from "../../redux/features/course/courseApi";
 import HomePageCard from "../products/HomePageCard";
 import { filterProductsByCategory } from "./ProductFilter";
 
 const VitaminsSupplements = () => {
-  const { data } = useGetCoursesQuery(undefined, {
+  const { data } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
   const products = data?.data;
 
-  const babyCareProducts = filterProductsByCategory(products, "Vitamins & Supplements");
+  const babyCareProducts = filterProductsByCategory(
+    products,
+    "Vitamins & Supplements"
+  );
 
   return (
     <div className="container px-5">
@@ -31,7 +34,7 @@ const VitaminsSupplements = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-       {babyCareProducts?.slice(0,5).map((product) => (
+        {babyCareProducts?.slice(0, 5).map((product) => (
           <SwiperSlide key={product?._id}>
             {" "}
             <HomePageCard key={product?._id} product={product} />

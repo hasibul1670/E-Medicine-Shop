@@ -44,7 +44,7 @@ const productApi = api.injectEndpoints({
 });
 
 export const {
-  useGetCoursesQuery,
+  useGetProductsQuery,
   useEditCourseMutation,
   usePostReviewMutation,
   usePostCourseMutation,

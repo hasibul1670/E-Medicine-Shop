@@ -4,12 +4,12 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Pagination } from "swiper";
-import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useGetProductsQuery } from "../../redux/features/course/courseApi";
 import HomePageCard from "../products/HomePageCard";
 import { filterProductsByCategory } from "./ProductFilter";
 
 const Diabetes = () => {
-  const { data } = useGetCoursesQuery(undefined, {
+  const { data } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
@@ -20,7 +20,7 @@ const Diabetes = () => {
   return (
     <div className="container px-5">
       <div className="flex justify-between mb-5">
-        <p className="text-xl font-semibold text-red-500">Baby Care Products</p>
+        <p className="text-xl font-semibold text-red-500">Diabetes Products</p>
         <button className="btn btn-primary ">See more</button>
       </div>
 

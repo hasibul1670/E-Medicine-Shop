@@ -44,10 +44,6 @@ export const router = createBrowserRouter([
         element: <CategoryCard></CategoryCard>,
       },
       {
-        path: "courses/:id",
-        element: <SingleCourseCard />,
-      },
-      {
         path: "/courses/lifeskills",
         element: <LifeSkill></LifeSkill>,
       },
@@ -71,6 +67,11 @@ export const router = createBrowserRouter([
       {
         path: "/products/category",
         element: <AllProductPage />,
+      },
+
+      {
+        path: "products/:id",
+        element: <SingleCourseCard />,
       },
       {
         path: "/instructors/:id",

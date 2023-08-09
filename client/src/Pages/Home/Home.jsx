@@ -4,6 +4,7 @@ import BabyCare from "./BabyCare";
 import Banner from "./Banner";
 import FiverAndPain from "./FiverAndPain";
 import PetMedicine from "./PetMedicine";
+import Diabetes from "./Diabetes";
 
 const Home = () => {
   return (
@@ -18,6 +19,8 @@ const Home = () => {
       <FiverAndPain />
       <BabyCare />
       <PetMedicine />
+      <Diabetes/>
+
     </div>
   );
 };
