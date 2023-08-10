@@ -33,7 +33,7 @@ const createProductRequest = catchAsync(async (req: Request, res: Response) => {
 
 const getAllProductRequests = catchAsync(
   async (req: Request, res: Response) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const result = await ProductRequestService.getAllProductRequests(id);
     sendProductRequestResponse(
       res,
@@ -54,7 +54,7 @@ const deleteProductRequest = catchAsync(async (req: Request, res: Response) => {
 });
 const getSingleProductRequest = catchAsync(
   async (req: Request, res: Response) => {
-    const id = req.params.id;
+    const {id} = req.params;
     const result = await ProductRequestService.getSingleProductRequest(id);
     sendProductRequestResponse(
       res,

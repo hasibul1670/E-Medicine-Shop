@@ -35,17 +35,23 @@ const DashboardHome = () => {
   }
 
   return (
-    <div className="flex py-20 flex-col lg:flex-row bg-base-300">
-      <div className="h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
+    <div className=" py-20 flex-col lg:flex-row bg-base-300">
+      <div className="z-20 fixed h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
         <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
       </div>
 
-      <div className="bg-base-300 flex-grow ">
-        <header className="shadow-lg p-4">
-          <h1 className="text-blue-800 font-bold text-xl">{headerContent}</h1>
-        </header>
+      <div className="flex justify-end">
+        <div className="w-1/6">/</div>
 
-        <main className="p-4">{mainContent}</main>
+        <div className="  bg-base-300 w-5/6  ">
+          <header className="shadow-lg p-4">
+            <h1 className="text-blue-800 font-bold text-xl ">
+              {headerContent}
+            </h1>
+          </header>
+
+          <main className="p-4">{mainContent}</main>
+        </div>
       </div>
     </div>
   );

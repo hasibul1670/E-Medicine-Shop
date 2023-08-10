@@ -2,11 +2,11 @@ import express from 'express';
 
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
-import { CartRoutes } from '../modules/cart/cart.routes';
 
+import { OrderRoutes } from '../modules/cart/order.routes';
 import { ProductRoutes } from '../modules/product/product.routes';
-import { StudentRoutes } from '../modules/student/student.route';
 import { ProductRequestRoutes } from '../modules/productRequest/productRequest.routes';
+import { StudentRoutes } from '../modules/student/student.route';
 
 const router = express.Router();
 
@@ -28,8 +28,8 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
   {
-    path: '/cart',
-    route: CartRoutes,
+    path: '/order',
+    route: OrderRoutes,
   },
   {
     path: '/productRequest',

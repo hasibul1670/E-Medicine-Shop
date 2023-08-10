@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import Dashboard from "../Layouts/Dashboard";
 import Main from "../Layouts/Main";
 import AcademicEnrichment from "../Pages/Courses/AcademicEnrichment";
@@ -20,11 +21,16 @@ import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProductPage from "../Pages/products/AllProductPage";
 
+import PlaceOrder from "../Pages/Home/PlaceOrder";
 import Home from "./../Pages/Home/Home";
 import Prp from "./../Pages/products/Prp";
-import PlaceOrder from "../Pages/Dashboard/PlaceOrder";
 
 export const router = createBrowserRouter([
+  {
+    path: "place-order",
+    element: <PlaceOrder />,
+  },
+
   {
     path: "/",
     element: <Main></Main>,
@@ -50,10 +56,7 @@ export const router = createBrowserRouter([
         path: "courses",
         element: <CategoryCard></CategoryCard>,
       },
-      {
-        path: "place-order",
-        element: <PlaceOrder></PlaceOrder>,
-      },
+
       {
         path: "/courses/lifeskills",
         element: <LifeSkill></LifeSkill>,
@@ -123,6 +126,7 @@ export const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [],
   },
+
   {
     path: "*", // Match any unrecognized path
     element: <NotFound></NotFound>, // Replace "NotFound" with your own component

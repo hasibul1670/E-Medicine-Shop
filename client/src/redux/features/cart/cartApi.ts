@@ -3,19 +3,19 @@ import { api } from "../../api/apiSlice";
 
 const cartApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getcart: builder.query({
+    getAllOrder: builder.query({
       query: (email) => `/cart/${email}`,
     }),
 
-    createCart: builder.mutation({
+    createOrder: builder.mutation({
       query: ({ data }) => ({
-        url: `/cart/create-cart`,
+        url: `/order/create-order`,
         method: "POST",
         body: data,
       }),
     }),
 
-    deleteWish: builder.mutation({
+    deleteOrder: builder.mutation({
       query: ({ email, cartItemId }) => ({
         url: "/cart",
         method: "DELETE",
@@ -24,7 +24,7 @@ const cartApi = api.injectEndpoints({
     }),
 
     updateCart: builder.mutation({
-      query: ({ email,enrolled }) => ({
+      query: ({ email, enrolled }) => ({
         url: `/cart/update`,
         method: "PATCH",
         body: {
@@ -36,10 +36,9 @@ const cartApi = api.injectEndpoints({
   }),
 });
 
-
 export const {
-  useCreateCartMutation,
-  useDeleteWishMutation,
-  useGetcartQuery,
+  useCreateOrderMutation,
+  useDeleteOrderMutation,
+  useGetAllOrderQuery,
   useUpdateCartMutation,
 } = cartApi;

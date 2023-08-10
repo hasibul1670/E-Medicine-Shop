@@ -1,5 +1,4 @@
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
-import Footer from "../Pages/Shared/Footer";
 import NavBar from "../Pages/Shared/NavBar";
 
 const Dashboard = () => {
@@ -8,8 +7,6 @@ const Dashboard = () => {
       <div>
         <NavBar></NavBar>
         <DashboardHome />
-
-        <Footer></Footer>
       </div>
     </div>
   );

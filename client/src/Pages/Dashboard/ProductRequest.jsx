@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
+import { usePostProductRequestMutation } from "../../redux/features/user/userApi";
+import { toast } from "react-hot-toast";
+import { Swal } from "sweetalert2";
 
 const ProductRequest = () => {
+
+   
+  const [postProductRequest] = usePostProductRequestMutation();
   const {
     register,
     handleSubmit,
@@ -9,9 +15,40 @@ const ProductRequest = () => {
     formState: { errors },
   } = useForm();
 
-  const email = localStorage.getItem("email");
-  const onSubmit = (data) => {
-    console.log(data, email);
+  const _id = localStorage.getItem("_id");
+  const onSubmit =async(data) => {
+    const options = {
+      data: {
+        quantity: data.quantity,
+        productDescription: data.productDescription,
+        requestedId: _id,
+        
+      },
+    }
+      try {
+        const result = await postProductRequest(options).unwrap();
+        const { statusCode, status } = result;
+        if (statusCode === 200) {
+          toast.success("Product is Requested SuccessFully");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product is Requested  SuccessFully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          reset();
+        }
+        if (status === 409) {
+          toast.error("This Book is Already Exist");
+        }
+      } catch (error) {
+        if (error.status === 409) {
+          toast.error("This Book is Already Exist");
+        }
+      }
+  
+      reset();
   };
 
   return (

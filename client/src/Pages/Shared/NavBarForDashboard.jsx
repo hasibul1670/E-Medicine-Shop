@@ -3,12 +3,18 @@ import { useContext, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
+
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../redux/hook";
+import { useGetcartQuery } from "../../redux/features/cart/cartApi";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
 
-const NavBar = () => {
+const NavBarForDashboard = () => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { course, total } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -39,9 +45,12 @@ const NavBar = () => {
   };
 
   const email = localStorage.getItem("email");
+  const { data } = useGetcartQuery(email, {
+    refetchOnMountOrArgChange: true,
+  });
 
   return (
-    <div className="navbar fixed z-20 sm:px-20 px-8  max-w-screen-2xl  bg-gray-700	h-4 ">
+    <div className="navbar  z-20 sm:px-20 px-8  max-w-screen-2xl  bg-gray-700	h-4 ">
       <div className="navbar-start ">
         <div className="dropdown ">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -162,4 +171,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBarForDashboard;

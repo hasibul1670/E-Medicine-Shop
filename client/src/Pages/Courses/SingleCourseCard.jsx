@@ -7,20 +7,13 @@ import defaultImage from "../../assets/coursephoto/p1.jpg";
 import { useSingleProductQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
-import { useState } from "react";
-import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useAppDispatch } from "./../../redux/hook";
 
 const SingleCourseCard = () => {
   const { id } = useParams();
-  const [createCart] = useCreateCartMutation();
-  const [addedToCart, setAddedToCart] = useState(false);
-
   let courseData;
-
   const dispatch = useAppDispatch();
-
   const { data: product, isLoading } = useSingleProductQuery(id, {
     refetchOnMountOrArgChange: true,
   });

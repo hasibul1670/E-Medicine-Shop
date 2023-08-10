@@ -8,7 +8,12 @@ const productApi = api.injectEndpoints({
 
     singleUser: builder.query({
       query: (id) => `/students/${id}`,
-      providesTags: ['address','phone'],
+      providesTags: ["address", "phone"],
+    }),
+
+    getRequestedProduct: builder.query({
+      query: (id) => `/productRequest/${id}`,
+      providesTags: ["data", "quantity", "productDescription"],
     }),
 
     postUser: builder.mutation({
@@ -27,11 +32,12 @@ const productApi = api.injectEndpoints({
       }),
     }),
 
-    deleteUser: builder.mutation({
+    deleteRequestedProduct: builder.mutation({
       query: (id) => ({
-        url: `/students/${id}`,
+        url: `/productRequest/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["data", "quantity", "productDescription"],
     }),
 
     editUser: builder.mutation({
@@ -40,15 +46,16 @@ const productApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ['address', 'phone'],
+      invalidatesTags: ["address", "phone"],
     }),
   }),
 });
 
 export const {
   useEditUserMutation,
-  usePostReviewMutation,
+  useGetRequestedProductQuery,
+  usePostProductRequestMutation,
   usePostUserMutation,
-  useDeleteUserMutation,
+  useDeleteRequestedProductMutation,
   useSingleUserQuery,
 } = productApi;
