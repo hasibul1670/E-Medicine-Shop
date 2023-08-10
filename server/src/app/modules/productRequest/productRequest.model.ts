@@ -22,6 +22,7 @@ const ProductRequestSchema = new Schema<IProductRequest>(
     },
     status: {
       type: String,
+      default: 'pending',
     },
   },
   {

@@ -7,14 +7,17 @@ const createProductRequest = async (
 ): Promise<IProductRequest> => {
   const date = new Date();
   const formattedDate = customDateFormat(date);
-  const productRequestPayload = { ...payload, date: formattedDate };
+  const productRequestPayload = { ...payload, requestedTime: formattedDate };
   const result = await ProductRequest.create(productRequestPayload);
   return result;
 };
 
-const getAllProductRequests = async () => {
-  const result = await ProductRequest.find();
-  return result;
+const getAllProductRequests = async (id: string) => {
+  const allRequest = await ProductRequest.find({}).lean();
+  const filteredNotes = allRequest.filter(
+    pr => pr.requestedId && pr.requestedId === id
+  );
+  return filteredNotes;
 };
 
 const getSingleProductRequest = async (id: string) => {
@@ -23,7 +26,7 @@ const getSingleProductRequest = async (id: string) => {
 };
 
 const deleteProductRequest = async (id: string) => {
-  const result = await ProductRequest.findOneAndDelete({ id: id });
+  const result = await ProductRequest.findByIdAndDelete({_id: id });
   return result;
 };
 
