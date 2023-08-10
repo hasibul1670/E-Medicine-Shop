@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import { Controller, useForm } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import signup from "../../assets/animation/118046-lf20-oahmox5rjson.json";
@@ -17,6 +17,8 @@ const SignUp = () => {
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,6 +39,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate("/login");
     },
     onError: (error) => {
       Swal.fire({

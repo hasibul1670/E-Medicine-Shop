@@ -1,4 +1,5 @@
 import { ENUM_USER_ROLE } from '../../../enums/user';
+import { IStudent } from '../student/student.interface';
 
 export type ILoginUser = {
   email: string;
@@ -9,6 +10,7 @@ export type ILoginUserResponse = {
   accessToken: string;
   refreshToken?: string;
   logInUserRole?: string;
+  student?: IStudent;
   email?: string;
   name?: string | undefined;
 };

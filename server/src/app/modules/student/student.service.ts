@@ -48,7 +48,7 @@ const getAllStudents = async (
 };
 
 const getSingleStudent = async (id: string): Promise<IStudent | null> => {
-  const result = await Student.findById(id);
+  const result = await Student.findById({_id:id});
   return result;
 };
 
@@ -63,6 +63,10 @@ const updateStudent = async (
 };
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
+  const result = await Student.findByIdAndDelete(id);
+  return result;
+};
+const getUserName = async (id: string): Promise<IStudent | null> => {
   const result = await Student.findByIdAndDelete(id);
   return result;
 };
@@ -91,6 +95,7 @@ const createStudent = async (payload: IStudent) => {
 export const StudentService = {
   getAllStudents,
   createStudent,
+  getUserName,
   getSingleStudent,
   updateStudent,
   deleteStudent,

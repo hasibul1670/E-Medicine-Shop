@@ -8,10 +8,13 @@ import {
 } from "react-icons/ai";
 
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import {
+  addToCart,
+  removeFromCart,
+  removeOne,
+} from "../../redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { addToCart, removeFromCart, removeOne } from "../../redux/features/cart/cartSlice";
-
-
 
 const CartSlider = ({ onClose }) => {
   const handleClose = () => {
@@ -44,10 +47,17 @@ const CartSlider = ({ onClose }) => {
       <h2 className="text-red-500 text-sm">Total Items: {totalQuantity()}</h2>
       <div className=" mt-4 gap-5">
         <div className="flex justify-between">
-        <h1 className="font-bold text-cyan-700">Total: {total?.toFixed(2)}</h1>
-        <button className="font-bold text-white btn btn-sm btn-neutral capitalize ">Place Order</button>
+          <h1 className="font-bold text-cyan-700">
+            Total: {total?.toFixed(2)}
+          </h1>
+          <Link
+            onClick={handleClose}
+            to="/place-order"
+            className="font-bold text-white btn  btn-sm btn-neutral capitalize "
+          >
+            Place Order
+          </Link>
         </div>
-    
 
         {cartData &&
           cartData?.map((cart) => (

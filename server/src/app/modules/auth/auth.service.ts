@@ -1,10 +1,9 @@
 /* eslint-disable no-undef */
 
-import { StatusCodes } from 'http-status-codes';
-import { Secret } from 'jsonwebtoken';
-import config from '../../../config';
 import bcrypt from 'bcrypt';
-import { JwtPayload } from 'jsonwebtoken';
+import { StatusCodes } from 'http-status-codes';
+import { JwtPayload, Secret } from 'jsonwebtoken';
+import config from '../../../config';
 import { ApiError } from '../../../handlingError/ApiError';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { Admin } from '../admin/admin.model';
@@ -20,49 +19,20 @@ const loginStudent = async (
 ): Promise<ILoginUserResponse> => {
   const { email, password } = payload;
 
-  // Check if a user with the provided email exists in the Student collection
-  const student = await Student.isStudentExist(email);
+  const student = await Student.findOne({ email: email }).lean();
 
-  // Check if a user with the provided email exists in the Admin collection
-  const admin = await Admin.isAdminExist(email);
+  console.log('Hellossss', student);
 
-
-
-  // Determine the user collection where the user was found
-  let userCollection;
-  let userRole;
-
-  if (student) {
-    userCollection = 'Student';
-    userRole = student.role;
-  } else if (admin) {
-    userCollection = 'Admin';
-    userRole = admin.role;
-  }
- else {
+  if (!student) {
     throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');
   }
 
-
-
   let isPasswordMatched = false;
-  switch (userCollection) {
-    case 'Student':
-      if (student) {
-        isPasswordMatched = await Student.isPasswordMatched(
-          password,
-          student.password
-        );
-      }
-      break;
-    case 'Admin':
-      if (admin) {
-        isPasswordMatched = await Admin.isPasswordMatched(
-          password,
-          admin.password
-        );
-      }
-      break;
+  if (student) {
+    isPasswordMatched = await Student.isPasswordMatched(
+      password,
+      student.password
+    );
   }
 
   if (!isPasswordMatched) {
@@ -71,35 +41,30 @@ const loginStudent = async (
 
   // Generate an access token
   const accessToken = jwtHelpers.createToken(
-    { email, userRole },
+    { email },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
   const refreshToken = jwtHelpers.createToken(
-    { email, userRole },
+    { email },
     config.jwt.refresh_secret as Secret,
     config.jwt.refresh_expires_in as string
   );
 
-
-  // Return the response object
   return {
-    logInUserRole: userRole,
     email,
+    student,
     accessToken,
     refreshToken,
   };
 };
-
-
-
 
 const changePassword = async (
   user: JwtPayload | null,
   payload: IChangePassword
 ): Promise<void> => {
   const { oldPassword, newPassword } = payload;
-  const userType = user?.userRole; 
+  const userType = user?.userRole;
 
   let isUserExist;
 
@@ -132,7 +97,6 @@ const changePassword = async (
 
   const updatedData = {
     password: newHashPass,
-
   };
 
   const query = { email: user?.email };
@@ -146,11 +110,14 @@ const changePassword = async (
       await Student.findOneAndUpdate(query, updatedData);
       break;
     default:
-      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Invalid user type');
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Invalid user type'
+      );
   }
 };
 
 export const AuthService = {
   loginStudent,
-  changePassword
+  changePassword,
 };

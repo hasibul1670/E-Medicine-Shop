@@ -29,8 +29,10 @@ const Login = () => {
       reset();
       const token = data.data.accessToken;
       const email = data.data.email;
+      const id = data.data.student._id;
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
+      localStorage.setItem("_id", id);
 
       Swal.fire({
         position: "top-center",

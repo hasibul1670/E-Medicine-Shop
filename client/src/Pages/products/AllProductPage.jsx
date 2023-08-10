@@ -76,7 +76,7 @@ const AllProductPage = () => {
     }
   }
 
-  if (isLoading) {
+  if (isLoading ) {
     return <LoadingSpinner />;
   }
 

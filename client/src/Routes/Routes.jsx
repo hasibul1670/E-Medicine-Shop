@@ -19,8 +19,10 @@ import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProductPage from "../Pages/products/AllProductPage";
-import Prp from "../Pages/products/PRP";
+
 import Home from "./../Pages/Home/Home";
+import Prp from "./../Pages/products/Prp";
+import PlaceOrder from "../Pages/Dashboard/PlaceOrder";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "courses",
         element: <CategoryCard></CategoryCard>,
+      },
+      {
+        path: "place-order",
+        element: <PlaceOrder></PlaceOrder>,
       },
       {
         path: "/courses/lifeskills",

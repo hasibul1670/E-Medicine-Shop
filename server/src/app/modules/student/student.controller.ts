@@ -59,6 +59,7 @@ const deleteStudent = catchAsync(async (req: Request, res: Response) => {
   const result = await StudentService.deleteStudent(id);
   sendStudentResponse(res, 'Student deleted successfully !', result);
 });
+
 const getUserName = catchAsync(async (req: Request, res: Response) => {
   const email = req.params.email;
   const result = await StudentService.getUserName(email);

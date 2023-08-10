@@ -10,12 +10,11 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
   {
     id: {
       type: String,
-      required: true,
-      unique: true,
+     
     },
     role: {
       type: String,
-      required: true,
+    
     },
     email: {
       type: String,
@@ -45,7 +44,6 @@ export const StudentSchema = new Schema<IStudent, StudentModel>(
     password: {
       type: String,
       required: true,
-      select: 0,
     },
     contactNo: {
       type: String,
