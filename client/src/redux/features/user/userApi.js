@@ -19,6 +19,14 @@ const productApi = api.injectEndpoints({
       }),
     }),
 
+    postProductRequest: builder.mutation({
+      query: ({ data }) => ({
+        url: `/productRequest/create-request`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/students/${id}`,

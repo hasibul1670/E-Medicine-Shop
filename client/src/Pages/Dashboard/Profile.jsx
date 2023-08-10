@@ -12,22 +12,10 @@ const Profile = () => {
   const { data, isLoading } = useSingleUserQuery(storedId, {
     refetchOnMountOrArgChange: true,
   });
-
-
-  
   const [editUser] = useEditUserMutation();
-
-
-
-
-
   const user = data?.data;
-
   const { register, handleSubmit, setValue } = useForm();
   const [editMode, setEditMode] = useState(false);
-
-
-
   const onSubmit = async (formData) => {
     try {
       const updatedData = {
@@ -90,7 +78,7 @@ const Profile = () => {
               defaultValue={user?.contactNo}
             />
           </div>
-          {/* Add more fields as needed */}
+     
           <button className="btn btn-info btn-sm capitalize" type="submit">
             Save
           </button>
@@ -103,7 +91,7 @@ const Profile = () => {
           <p className="text-sm font-bold text-info ">
             Contact Number: {user?.contactNo}
           </p>
-          {/* Display other fields */}
+   
           <button
             className="btn mt-5 btn-accent btn-sm capitalize"
             onClick={handleEditClick}
