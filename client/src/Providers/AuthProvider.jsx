@@ -10,13 +10,16 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const loginUser = async (userData) => {
     setLoading(true);
-    const response = await fetch("http://localhost:4000/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
+    const response = await fetch(
+      "https://emedicine.vercel.app/api/v1/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    );
 
     if (response.status === 401) {
       throw new Error("Incorrect  Password !!!");
@@ -29,7 +32,7 @@ const AuthProvider = ({ children }) => {
   };
   const createUser = async (userData) => {
     const response = await fetch(
-      "http://localhost:4000/api/v1/students/create-student",
+      "https://emedicine.vercel.app/api/v1/students/create-student",
       {
         method: "POST",
         headers: {
