@@ -23,6 +23,13 @@ const OrderSchema: Schema<IOrder> = new Schema<IOrder>(
     total: { type: Number },
     contactNumber: { type: String },
     userId: { type: String },
+    orderDate: {
+      type: String,
+    },
+    status: {
+      type: String,
+      default: 'pending',
+    },
   },
   {
     timestamps: true,

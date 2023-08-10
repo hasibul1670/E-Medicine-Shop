@@ -7,6 +7,9 @@ export type IOrder = {
   total?: number;
   contactNumber?: string;
   userId: string;
+  orderDate:string;
+  status:string;
+
 };
 
 export type OrderModel = Model<IOrder>;

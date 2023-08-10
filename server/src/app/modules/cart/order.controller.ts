@@ -15,24 +15,24 @@ const sendOrderResponse = (res: Response, message: string, data: any) => {
 };
 
 const createOrder = catchAsync(async (req: Request, res: Response) => {
-  const  OrderData  = req.body;
+  const OrderData = req.body;
   const result = await OrderService.createOrder(OrderData);
   sendOrderResponse(res, 'Order is Created Successfully!', result);
 });
 
 const getAllOrders = catchAsync(async (req: Request, res: Response) => {
-  const email = req.params.email;
-  const result = await OrderService.getAllOrders(email);
+  const { id } = req.params;
+  const result = await OrderService.getAllOrders(id);
   sendOrderResponse(res, 'Orders  are retrieved successfully !', result);
 });
 
 const deleteOrder = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const result = await OrderService.deleteOrder(id);
   sendOrderResponse(res, ' Order Deleted successfully !', result);
 });
 const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const result = await OrderService.getSingleOrder(id);
   sendOrderResponse(res, 'Single Order retrieved successfully !', result);
 });

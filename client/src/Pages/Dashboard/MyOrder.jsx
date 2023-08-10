@@ -1,19 +1,13 @@
-
-
-
-
-
+/* eslint-disable no-unused-vars */
 import { toast } from "react-hot-toast";
-import {
-  useDeleteRequestedProductMutation,
-  useGetRequestedProductQuery,
-} from "../../redux/features/user/userApi";
+import { useGetAllOrderQuery } from "../../redux/features/cart/cartApi";
+import { useDeleteRequestedProductMutation } from "../../redux/features/user/userApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const MyOrder = () => {
   const storedId = localStorage.getItem("_id");
 
-  const { data, isLoading } = useGetRequestedProductQuery(storedId, {
+  const { data, isLoading } = useGetAllOrderQuery(storedId, {
     refetchOnMountOrArgChange: true,
   });
 
@@ -31,37 +25,56 @@ const MyOrder = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table bg-white">
           {/* head */}
           <thead>
             <tr>
               <th></th>
               <th>Product Description</th>
-              <th>Quantity</th>
-              <th>Request Status</th>
-              <th>Request Date</th>
-              <th></th>
+
+              <th>Total </th>
+              <th>Order Status</th>
+              <th>Order Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {users?.map((user, index) => (
               <tr key={user?.id}>
                 <th>{index + 1}</th>
                 <td className="font-bold text-cyan-700">
-                  {user?.productDescription}
+                  {user?.orderedItems.map((item, index) => (
+                    <div key={index}>
+                      {" "}
+                      <ul className="list-disc">
+                        {" "}
+                        <li>
+                          {" "}
+                          {item.name}{" "}
+                          <span className="text-xs text-pink-700">
+                            {item.measurement}
+                            <br />
+                            Quantity:{item.quantity}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  ))}
                 </td>
-                <td>{user?.quantity}</td>
+
+                <td className=" font-bold text-sky-700"> {user?.total} tk</td>
+                {/* Status */}
                 <td className=" font-bold text-red-500">{user?.status}</td>
+
                 <td className=" font-bold text-xs text-teal-700">
-                  {user?.requestedTime}
+                  {user?.orderDate}
                 </td>
                 <th>
-                  <button
+                  {/* <button
                     onClick={() => handleRequestedProductDelete(user?._id)}
                     className="btn btn-info capitalize btn-xs"
                   >
                     delete
-                  </button>
+                  </button> */}
                 </th>
               </tr>
             ))}

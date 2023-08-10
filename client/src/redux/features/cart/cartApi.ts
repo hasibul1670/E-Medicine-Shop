@@ -4,7 +4,7 @@ import { api } from "../../api/apiSlice";
 const cartApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllOrder: builder.query({
-      query: (email) => `/cart/${email}`,
+      query: (id) => `/order/${id}`,
     }),
 
     createOrder: builder.mutation({

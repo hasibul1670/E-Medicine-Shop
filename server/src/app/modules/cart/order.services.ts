@@ -1,16 +1,22 @@
 /* eslint-disable no-unused-vars */
 
+import { customDateFormat } from '../../../helpers/customDateFormat';
 import { IOrder } from './order.interface';
 import { Order } from './order.model';
 
 const createOrder = async (payload: IOrder): Promise<IOrder> => {
-  const result = await Order.create(payload);
+  const date = new Date();
+  const formattedDate = customDateFormat(date);
+  const productRequestPayload = { ...payload, orderDate: formattedDate };
+
+  const result = await Order.create(productRequestPayload);
   return result;
 };
 
-const getAllOrders = async (email: string) => {
-  const result = await Order.find({ email: email }).populate('course');
-  return result;
+const getAllOrders = async (id: string) => {
+  const allRequest = await Order.find({}).lean();
+  const filteredNotes = allRequest.filter(pr => pr.userId && pr.userId === id);
+  return filteredNotes;
 };
 
 const getSingleOrder = async (id: string) => {
