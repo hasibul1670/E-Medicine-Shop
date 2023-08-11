@@ -2,9 +2,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { useGetProductsQuery } from "../../redux/features/course/courseApi";
+
 import ProductCategorySwiper from "./ProductCategorySwiper";
 import { filterProductsByCategory } from "./ProductFilter";
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
 
 const FiverAndPain = () => {
   const { data } = useGetProductsQuery(undefined, {

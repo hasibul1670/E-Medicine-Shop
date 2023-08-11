@@ -1,18 +1,11 @@
+import Lottie from "lottie-react";
+import animationlottie2 from "../../assets/animation/loading.json";
 const LoadingSpinner = () => {
   return (
-    <div className="py-20">
-      <span className="loading loading-spinner text-primary loading-2xl"></span>
-      <span className="loading loading-spinner text-primary loading-2xl"></span>
-      <span className="loading loading-spinner text-primary loading-2xl"></span>
-      <span className="loading loading-spinner text-primary loading-2xl"></span>
-      <span className="loading loading-spinner text-primary"></span>
-      <span className="loading loading-spinner text-secondary"></span>
-      <span className="loading loading-spinner text-accent"></span>
-      <span className="loading loading-spinner text-neutral"></span>
-      <span className="loading loading-spinner text-info"></span>
-      <span className="loading loading-spinner text-success"></span>
-      <span className="loading loading-spinner text-warning"></span>
-      <span className="loading loading-spinner text-error"></span>
+    <div className="py-40 px-20">
+      <div className="w-1/8  mb-10 md:mb-0 mx-auto">
+        <Lottie animationData={animationlottie2} loop={true} />
+      </div>
     </div>
   );
 };

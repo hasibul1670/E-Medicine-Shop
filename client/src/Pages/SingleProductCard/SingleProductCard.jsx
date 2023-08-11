@@ -8,9 +8,9 @@ import { useSingleProductQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { useAppDispatch } from "./../../redux/hook";
+import { useAppDispatch } from "../../redux/hook";
 
-const SingleCourseCard = () => {
+const SingleProductCard = () => {
   const { id } = useParams();
   let courseData;
   const dispatch = useAppDispatch();
@@ -105,4 +105,4 @@ const SingleCourseCard = () => {
   );
 };
 
-export default SingleCourseCard;
+export default SingleProductCard;

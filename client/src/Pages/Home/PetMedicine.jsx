@@ -1,4 +1,4 @@
-import { useGetProductsQuery } from "../../redux/features/course/courseApi";
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import ProductCategorySwiper from "./ProductCategorySwiper";
 import { filterProductsByCategory } from "./ProductFilter";
 

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Link } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
 
@@ -32,7 +32,7 @@ const NavBar = () => {
   };
 
   const { user, logOut } = useContext(AuthContext);
-  const [loggInUser] = useContext(userDataContext);
+
 
   const handleLogOut = () => {
     logOut();
@@ -116,29 +116,29 @@ const NavBar = () => {
           onChange={handleDrawerToggle}
         />
 
-        {user ? (
+        <div className="drawer-content">
+          <label htmlFor="my-drawer-4">
+            <div className="badge badge-outline mr-2 badge-primary">
+              <span className="text-xl">
+                <FaShoppingCart></FaShoppingCart>
+              </span>
+              <span> {totalQuantity()}</span>
+            </div>
+          </label>
+        </div>
+
+        <div className="drawer-side ">
+          <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+
+          <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
+            <ul className="cart-slider-list">
+              <CartSlider onClose={handleCartSliderClose} />
+            </ul>
+          </div>
+        </div>
+
+        {email ? (
           <>
-            <div className="drawer-content">
-              <label htmlFor="my-drawer-4">
-                <div className="badge badge-outline mr-2 badge-primary">
-                  <span className="text-xl">
-                    <FaShoppingCart></FaShoppingCart>
-                  </span>
-                  <span> {totalQuantity()}</span>
-                </div>
-              </label>
-            </div>
-
-            <div className="drawer-side ">
-              <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-
-              <div className="menu bg-base-300 p-4 w-72 h-full  text-base-content">
-                <ul className="cart-slider-list">
-                  <CartSlider onClose={handleCartSliderClose} />
-                </ul>
-              </div>
-            </div>
-
             <Link to="/login">
               <button
                 onClick={handleLogOut}

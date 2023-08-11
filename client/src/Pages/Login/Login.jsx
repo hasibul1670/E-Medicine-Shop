@@ -14,8 +14,7 @@ import login from "../../assets/animation/38435-register.json";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
+  const from = location.state?.path || "/";
   const { loginUser, setUser } = useContext(AuthContext);
   const {
     register,
@@ -142,16 +141,13 @@ const Login = () => {
                 </label>
 
                 <div className="form-control mt-6">
-
-
-                {mutation.isLoading ? (
-        <span className="loading loading-spinner loading-lg"></span>
-      ) : (
-        <button type="submit" className="btn btn-primary mt-2">
-          Login
-        </button>
-      )}
-
+                  {mutation.isLoading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                  ) : (
+                    <button type="submit" className="btn btn-primary mt-2">
+                      Login
+                    </button>
+                  )}
 
                   <p className="text-sm font-bold mt-4">
                     Don't you have any Account ?{" "}
@@ -165,8 +161,6 @@ const Login = () => {
           </form>
         </div>
       </div>
-
-
     </div>
   );
 };

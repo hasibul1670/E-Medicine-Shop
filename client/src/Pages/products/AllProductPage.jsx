@@ -1,11 +1,12 @@
 import Fuse from "fuse.js";
 import { useState } from "react";
-import { useGetProductsQuery } from "../../redux/features/course/courseApi";
+
 import { setPriceRange } from "../../redux/features/product/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import BookFilter from "./ProductFilter";
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
 
 const AllProductPage = () => {
   const { data, isLoading } = useGetProductsQuery(undefined, {

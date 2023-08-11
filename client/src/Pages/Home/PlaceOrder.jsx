@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PlaceOrderComponent from "../../Components/PlaceOrder/PlaceOrderComponent";
 import { useCreateOrderMutation } from "../../redux/features/cart/cartApi";
 import { clearCart } from "../../redux/features/cart/cartSlice";
@@ -30,6 +30,7 @@ const PlaceOrder = () => {
 
   const total1 = total?.toFixed(0);
 
+  const navigate = useNavigate();
   const handleOrder = async () => {
     const options = {
       data: {
@@ -44,6 +45,7 @@ const PlaceOrder = () => {
     if (result.statusCode === 200) {
       toast.success("Order Placed successfully");
       dispatch(clearCart());
+      navigate("/order-confirmed");
     }
   };
 
@@ -64,12 +66,13 @@ const PlaceOrder = () => {
 
           {cartData.length < 1 ? (
             <>
-            <h1 className="text-xl mt-2 text-blue-800 font-bold">Your Cart is Empty!! 😓 </h1>
-<button className="btn text-white mt-5 btn-info btn-sm capitalize">
-              <Link to="/products/category"> Start Shopping 💜</Link>
-            </button>
+              <h1 className="text-xl mt-2 text-blue-800 font-bold">
+                Your Cart is Empty!! 😓{" "}
+              </h1>
+              <button className="btn text-white mt-5 btn-info btn-sm capitalize">
+                <Link to="/products/category"> Start Shopping 💜</Link>
+              </button>
             </>
-          
           ) : (
             <button
               className="btn mt-5 btn-accent btn-sm capitalize"
