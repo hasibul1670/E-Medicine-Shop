@@ -2,7 +2,6 @@
 import { useContext, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { userDataContext } from "../../App";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
@@ -33,12 +32,12 @@ const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext);
 
-
   const handleLogOut = () => {
     logOut();
   };
 
   const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
 
   return (
     <div className="navbar fixed z-20 sm:px-20 px-8  max-w-screen-2xl  bg-gray-700	h-4 ">
@@ -95,6 +94,13 @@ const NavBar = () => {
               My Order{" "}
             </Link>
           </li>
+          {role==="admin" && (
+            <li>
+              <Link to="/dashboard" className="text-white font-semibold">
+                Dashboard
+              </Link>
+            </li>
+          )}
 
           <li>
             <Link

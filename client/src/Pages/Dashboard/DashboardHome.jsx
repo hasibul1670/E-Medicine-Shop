@@ -1,14 +1,19 @@
 import { useState } from "react";
 
+import AddProduct from "./AddProduct";
 import MyAddress from "./MyAddress";
 import MyOrder from "./MyOrder";
 import ProductRequest from "./ProductRequest";
 import Profile from "./Profile";
 import RequestedProduct from "./RequestedProduct";
 import SideBar from "./SideBar";
+import ManageOrder from "./ManageOrder";
 
 const DashboardHome = () => {
-  const [activeMenu, setActiveMenu] = useState("myOrder");
+  const role = localStorage.getItem("role");
+  const [activeMenu, setActiveMenu] = useState(
+    role === "admin" ? "addProduct" : "myOrder"
+  );
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
@@ -32,6 +37,13 @@ const DashboardHome = () => {
   } else if (activeMenu === "requestedProduct") {
     mainContent = <RequestedProduct />;
     headerContent = "My Requested Product";
+  } else if (activeMenu === "addProduct") {
+    mainContent = <AddProduct />;
+    headerContent = "Add New Product";
+  }
+  else if (activeMenu === "manageOrder") {
+    mainContent = <ManageOrder />;
+    headerContent = "Manage Order";
   }
 
   return (

@@ -29,9 +29,11 @@ const Login = () => {
       const token = data.data.accessToken;
       const email = data.data.email;
       const id = data.data.student._id;
+      const role = data?.data?.student.role;
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
       localStorage.setItem("_id", id);
+      localStorage.setItem("role", role);
 
       Swal.fire({
         position: "top-center",
@@ -40,6 +42,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+
       setUser({ token, email });
       navigate(from, { replace: true });
     },
