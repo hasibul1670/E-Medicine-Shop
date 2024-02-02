@@ -12,13 +12,14 @@ const HomePageCard = ({ product }) => {
   };
 
   return (
-    <div className="card w-52 h-72 p-1 border-solid border-2 border-sky-500 shadow-xl hover:shadow-3xl">
+    <div className="card w-64 h-72 p-1 border-solid border-2  border-sky-500 shadow-xl hover:shadow-3xl">
       <figure className=" pt-2">
         <img
+          className="p-5"
           alt="example"
           src={product?.url || defaultImage}
-          height={200}
-          width={200}
+          height={250}
+          width={250}
         />
       </figure>
       <div className="card-body items-center text-center py-3">

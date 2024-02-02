@@ -1,4 +1,9 @@
 import { Helmet } from "react-helmet-async";
+import BabyCare from "./BabyCare";
+import Banner from "./Banner";
+import FAQ from "./FAQ";
+import FiverAndPain from "./FiverAndPain";
+import PetMedicine from "./PetMedicine";
 
 const Home = () => {
   return (
@@ -7,15 +12,14 @@ const Home = () => {
         <title> E-Medicine | Home</title>
       </Helmet>
 
-      {/* <Banner />
-
-      <p className="text-xl font-bold underline flex justify-center mt-5 mb-5">
+      <Banner />
+      <p className="lg:text-xl text-sm font-bold underline flex justify-center mt-5 ">
         Our Products{" "}
-      </p> */}
-      {/* <FiverAndPain />
+      </p>
+      <FiverAndPain />
       <BabyCare />
       <PetMedicine />
-      <FAQ/> */}
+      <FAQ />
     </div>
   );
 };

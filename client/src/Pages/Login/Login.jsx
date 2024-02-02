@@ -64,7 +64,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main-container px-20 py-20 md:hero min-h-screen   justify-items-center">
+    <div className="main-container lg:px-20 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
         <title> E-Medicine | Login 😍</title>
       </Helmet>

@@ -72,14 +72,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="main-container p-10 py-20 md:hero min-h-screen   justify-items-center">
+    <div className="main-container lg:p-10 py-20 md:hero min-h-screen   justify-items-center">
       <Helmet>
         <title> E-Medicine | SignUp❤️</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-200 ">
         <div className="hero-content flex-col lg:flex-row-reverse  ">
           <div className="text-center ">
-            <h1 className="text-5xl font-bold">
+            <h1 className="lg:text-5xl font-bold">
               SignUp <span className="text-blue-500">Now!</span>{" "}
             </h1>
 

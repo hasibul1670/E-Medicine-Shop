@@ -9,11 +9,11 @@ import News from "../Pages/FooterComponents/News";
 import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
+import Home from "../Pages/Home/Home";
 import AllProductPage from "../Pages/products/AllProductPage";
 
 import OrderConfirmed from "../Pages/Dashboard/OrderConfirmed";
 import PlaceOrder from "../Pages/Home/PlaceOrder";
-import Home from "./../Pages/Home/Home";
 import SingleProductCard from "./../Pages/SingleProductCard/SingleProductCard";
 import Prp from "./../Pages/products/Prp";
 import PrivateRoute from "./PrivateRoute";
@@ -32,13 +32,14 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Main></Main>,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
+     
       {
         path: "signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/",
+        element: <Home></Home>,
       },
       {
         path: "login",

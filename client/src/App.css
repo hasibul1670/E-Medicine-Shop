@@ -83,3 +83,9 @@ body.drawer-open {
   overflow: hidden;
 }
 
+/* Add this to your global CSS or within the same component's CSS file */
+.swiper-slide-center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

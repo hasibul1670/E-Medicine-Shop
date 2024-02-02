@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useAppSelector } from "../../redux/hook";
 import CartSlider from "./CartSlider";
+import CustomDropdown from "./CustomDropdown";
 
 const NavBar = () => {
+  const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -36,52 +40,12 @@ const NavBar = () => {
     logOut();
   };
 
-  const email = localStorage.getItem("email");
-  const role = localStorage.getItem("role");
-
   return (
-    <div className="navbar fixed z-20 sm:px-20 px-8  max-w-screen-2xl  bg-gray-700	h-4 ">
+    <div className="navbar fixed z-20 sm:px-20 px-8  max-w-screen-2xl  flex justify-between bg-green-900	h-4 ">
       <div className="navbar-start ">
-        <div className="dropdown ">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-800 rounded-box w-52"
-          >
-            <li>
-              <Link to="/dashboard" className="text-white font-semibold">
-                My Order{" "}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to="/product-request"
-                className="btn btn-sm mt-1  capitalize btn-accent"
-              >
-                Product Request
-              </Link>
-            </li>
-          </ul>
-        </div>
         <Link
           to="/"
-          className="btn  text-white font-bold text-xl btn-ghost normal-case "
+          className="btn   text-white font-bold lg:text-xl text-sm btn-ghost normal-case "
         >
           E-Medicine
         </Link>
@@ -94,7 +58,7 @@ const NavBar = () => {
               My Order{" "}
             </Link>
           </li>
-          {role==="admin" && (
+          {role === "admin" && (
             <li>
               <Link to="/dashboard" className="text-white font-semibold">
                 Dashboard
@@ -113,7 +77,7 @@ const NavBar = () => {
         </ul>
       </div>
 
-      <div className="drawer flex navbar-end drawer-end mr-5">
+      <div className="drawer lg:flex navbar-end hidden drawer-end mr-5">
         <input
           id="my-drawer-4"
           type="checkbox"
@@ -164,6 +128,13 @@ const NavBar = () => {
           </>
         )}
       </div>
+
+      <CustomDropdown
+        isDrawerOpen={true}
+        handleDrawerToggle={false}
+        email={email}
+        handleLogOut={handleLogOut}
+      />
     </div>
   );
 };
