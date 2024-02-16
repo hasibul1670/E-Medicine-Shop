@@ -108,10 +108,9 @@
 - [swiper](https://www.npmjs.com/package/swiper): ^9.4.1
   If you have any questions, feel free to reach out to us:
 
-  ### Email: hasibul.dcc@gmail.com
 
-  ### Website: https://e-medicine007.vercel.app/
-
-  ### GitHub: https://github.com/hasibul1670
+### Email: hasibul.dcc@gmail.com
+### Website: https://e-medicine007.vercel.app/
+### GitHub: https://github.com/hasibul1670
 
 
