@@ -92,7 +92,7 @@ const SingleProductCard = () => {
 
             <button
               onClick={() => handleAddToCart(courseData)}
-              className="btn btn-primary btn-sm mx-2"
+              className="btn btn-primary btn-sm mx-2 rounded-lg capitalize"
             >
               Add to Cart
             </button>

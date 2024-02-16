@@ -11,17 +11,11 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import NavBar from "../Shared/NavBar";
 
 const PlaceOrder = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [shippingAddress, setShippingAddress] = useState({});
-  const { register, handleSubmit, setValue } = useForm();
-
   const storedId = localStorage.getItem("_id");
-
   const [createOrder] = useCreateOrderMutation();
   const { data, isLoading } = useSingleUserQuery(storedId, {
     refetchOnMountOrArgChange: true,
   });
-
   const user = data?.data;
 
   const { book, total } = useAppSelector((state) => state.cart);
@@ -52,7 +46,7 @@ const PlaceOrder = () => {
   return (
     <>
       <NavBar />
-      <div className="py-20  relative flex  px-20 justify-between">
+      <div className="py-20 px-20 flex flex-col">
         <div className="my-5">
           <p className="font-bold text-cyan-800 ">
             Shipping Address: {user?.address}
@@ -75,7 +69,7 @@ const PlaceOrder = () => {
             </>
           ) : (
             <button
-              className="btn mt-5 btn-accent btn-sm capitalize"
+              className="btn mt-5 btn-accent btn-sm capitalize rounded-lg p-2"
               onClick={handleOrder}
             >
               Place Order
@@ -83,7 +77,7 @@ const PlaceOrder = () => {
           )}
         </div>
 
-        <div className="menu fixed top-0 left-100 right-0 bg-base-300 p-4 w-96 h-full  text-base-content">
+        <div className="menu fixed top-0 left-100 right-0 bg-base-300 p-4 w-96 h-full  text-base-content px-10">
           <ul className="cart-slider-list">
             <PlaceOrderComponent />
           </ul>

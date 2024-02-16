@@ -32,51 +32,52 @@ const PlaceOrderComponent = () => {
 
   const handleRemoveBookFromCart = (book) => {
     dispatch(removeFromCart(book));
-    toast.success("Book Delete From Cart!!");
+    toast.success("Product Delete From Cart!!");
     
   };
 
   
   return (
     <div className="px-4 py-20  shadow-xl">
-    <h2 className="text-red-500 font-bold text-xl">My Cart </h2>
+      <h2 className="text-red-500 font-bold text-xl">My Cart </h2>
       <div className=" mt-4 gap-5">
         <div className="flex justify-between">
           <h1 className="font-bold text-cyan-700">
             Total: {total?.toFixed(2)}
           </h1>
-          <h2 className="text-red-500 font-bold text-sm">Total Items: {totalQuantity()}</h2>
+          <h2 className="text-red-500 font-bold text-sm">
+            Total Items: {totalQuantity()}
+          </h2>
         </div>
 
         {cartData &&
           cartData?.map((cart) => (
             <div key={cart._id} className="border-b-2 border-sky-500 p-5">
               <div className="border-r pr-20 shrink-0">
-                <img src={cart?.url} alt="" className="h-full" />
+                <img src={cart?.url} alt="" className="h-32 rounded-lg p-1" />
               </div>
               <p className="text-cyan-700 font-bold "> {cart?.name}</p>
               <p className=" font-bold text-xs">
-                {" "}
-                price: {(cart.price * cart.quantity).toFixed(2)}$
+                Price: {(cart.price * cart.quantity).toFixed(2)}$
               </p>
               <p>Quantity: {cart.quantity}</p>
               <button
                 onClick={() => dispatch(addToCart(cart))}
-                className="text-2xl text-cyan-500 btn-outline mr-5"
+                className="text-2xl text-cyan-500 btn-outline mr-5 rounded-lg p-1"
               >
                 <AiOutlinePlusSquare />
               </button>
 
               <button
                 onClick={() => dispatch(removeOne(cart))}
-                className="text-2xl text-cyan-500  btn-outline ml-5"
+                className="text-2xl text-cyan-500  btn-outline ml-5 rounded-lg p-1"
               >
                 <AiOutlineMinusCircle />
               </button>
 
               <button
                 onClick={() => handleRemoveBookFromCart(cart)}
-                className="text-2xl btn-outline text-red-500 ml-10"
+                className="text-2xl btn-outline text-red-500 ml-10 rounded-lg p-1"
               >
                 <AiFillDelete />
               </button>

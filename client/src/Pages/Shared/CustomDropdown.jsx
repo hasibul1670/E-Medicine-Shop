@@ -52,7 +52,7 @@ const CustomDropdown = ({ isDrawerOpen, handleDrawerToggle, handleLogOut }) => {
       </label>
 
       <ul
-        className={`absolute right-2 top-10 mt-2  p-2 flex flex-col text-left shadow bg-gray-800 rounded-box w-52 ${
+        className={`absolute right-2 top-10 mt-2  p-2 flex flex-col  justify-start text-left shadow bg-gray-800 rounded-box w-52 ${
           dropdownOpen ? "block " : "hidden"
         }`}
       >
@@ -65,13 +65,13 @@ const CustomDropdown = ({ isDrawerOpen, handleDrawerToggle, handleLogOut }) => {
         <li>
           <Link
             to="/product-request"
-            className="btn m-2 btn-sm mt-1 capitalize btn-accent"
+            className="btn mb-2 btn-sm mt-1 capitalize btn-accent rounded-lg"
           >
             Product Request
           </Link>
         </li>
 
-        <div className="drawer flex navbar-end drawer-end mr-5">
+        <div className="drawer flex justify-start navbar-end drawer-end mr-5 ">
           <input
             id="my-drawer-4"
             type="checkbox"
@@ -81,16 +81,16 @@ const CustomDropdown = ({ isDrawerOpen, handleDrawerToggle, handleLogOut }) => {
           />
 
           {email ? (
-            <>
+            <div className=" ">
               <Link to="/login">
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-sm capitalize btn-primary"
+                  className="btn btn-sm capitalize btn-primary   rounded-lg"
                 >
                   Log Out
                 </button>
               </Link>
-            </>
+            </div>
           ) : (
             <>
               <Link to="/login">

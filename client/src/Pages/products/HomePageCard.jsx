@@ -30,7 +30,7 @@ const HomePageCard = ({ product }) => {
         <h6 className="font-bold  ">{product?.price}</h6>
         <button
           onClick={() => handleAddToCart(product)}
-          className="btn capitalize btn-primary btn-sm mx-2"
+          className="btn capitalize btn-primary btn-sm mx-2 rounded-lg"
         >
           Add to Cart
         </button>

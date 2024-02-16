@@ -1,12 +1,12 @@
 import Fuse from "fuse.js";
 import { useState } from "react";
 
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import { setPriceRange } from "../../redux/features/product/productSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import BookFilter from "./ProductFilter";
-import { useGetProductsQuery } from "../../redux/features/product/productApi";
 
 const AllProductPage = () => {
   const { data, isLoading } = useGetProductsQuery(undefined, {
@@ -22,6 +22,12 @@ const AllProductPage = () => {
 
   const booksData = data?.data;
   let filteredData = booksData;
+
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const toggleFilterVisibility = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
 
   const handleRangeChange = (event) => {
     const newValue = parseInt(event.target.value);
@@ -77,43 +83,47 @@ const AllProductPage = () => {
     }
   }
 
-  if (isLoading ) {
+  if (isLoading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <>
-      <div className="flex static   py-24  ">
-        <div className="w-1/2 sm:w-1/4 z-0  py-24 bg-base-200 fixed top-0 right-0 bottom-0 ">
-          {" "}
-          <div className="">
-            <BookFilter
-              value={value}
-              handleRangeChange={handleRangeChange}
-              priceRange={priceRange}
-              searchText={searchText}
-              selectedGenre={selectedGenre}
-              selectedYear={selectedYear}
-              setSearchText={setSearchText}
-              setSelectedGenre={setSelectedGenre}
-              setSelectedYear={setSelectedYear}
-            />
-          </div>
+    <div className="flex flex-col sm:flex-row py-20">
+      <div className="w-full sm:w-1/4 z-0 py-4 bg-base-200">
+        <div className="sm:hidden">
+          <button
+            className="w-full bg-primary text-white py-2 px-4"
+            onClick={toggleFilterVisibility}
+          >
+            Filter
+          </button>
         </div>
-        <div className="w-1/2 sm:w-3/4 flex justify-end">
-          <div className="flex justify-end mx-auto px-4">
-            <div className="flex justify-end px-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-                {filteredData?.map((product) => (
-                  <ProductCard product={product} key={product._id} />
-                ))}
-              </div>
-            </div>
+
+        <div className={isFilterVisible ? "block sm:block" : "hidden sm:block"}>
+        
+          <BookFilter
+            value={value}
+            handleRangeChange={handleRangeChange}
+            priceRange={priceRange}
+            searchText={searchText}
+            selectedGenre={selectedGenre}
+            selectedYear={selectedYear}
+            setSearchText={setSearchText}
+            setSelectedGenre={setSelectedGenre}
+            setSelectedYear={setSelectedYear}
+          />
+        </div>
+      </div>
+      <div className="w-full sm:w-3/4">
+        <div className="flex justify-end mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+            {filteredData?.map((product) => (
+              <ProductCard product={product} key={product._id} />
+            ))}
           </div>
         </div>
       </div>
-      <div className="z-20 bg-red-500 "></div>
-    </>
+    </div>
   );
 };
 

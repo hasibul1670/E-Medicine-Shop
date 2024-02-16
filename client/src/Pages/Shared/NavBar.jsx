@@ -129,12 +129,43 @@ const NavBar = () => {
         )}
       </div>
 
-      <CustomDropdown
-        isDrawerOpen={true}
-        handleDrawerToggle={false}
-        email={email}
-        handleLogOut={handleLogOut}
-      />
+      <div className=" ">
+        <CustomDropdown
+          isDrawerOpen={true}
+          handleDrawerToggle={false}
+          email={email}
+          handleLogOut={handleLogOut}
+        />
+      </div>
+
+      <div className="  lg:hidden drawer-end ">
+        <input
+          id="my-drawer-4"
+          type="checkbox"
+          className="drawer-toggle"
+          checked={isDrawerOpen}
+          onChange={handleDrawerToggle}
+        />
+
+        <div className="drawer-content">
+          <label htmlFor="my-drawer-4">
+            <div className="badge badge-outline  badge-primary">
+              <span className="text-xl">
+                <FaShoppingCart></FaShoppingCart>
+              </span>
+              <span> {totalQuantity()}</span>
+            </div>
+          </label>
+        </div>
+
+        <div className="drawer-side ">
+          <div className="menu bg-base-300 p-4  h-full  text-base-content">
+            <ul className="cart-slider-list">
+              <CartSlider onClose={handleCartSliderClose} />
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

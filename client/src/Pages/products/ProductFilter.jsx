@@ -12,7 +12,9 @@ const ProductFilter = ({
 }) => {
   return (
     <div className="p-5">
-      <p className="text-xl font-semibold  text-cyan-700">Price Range</p>
+      <p className="lg:text-xl text-xs font-semibold  text-cyan-700">
+        Price Range
+      </p>
       <input
         type="range"
         defaultValue={50}
@@ -20,20 +22,23 @@ const ProductFilter = ({
         min={0}
         step={1}
         onChange={handleRangeChange}
-        className="range range-info"
+        className="range range-info range-xs"
       />
-      <h1 className="font-bold mb-2 text-red-500 ">From 0tk To {value}tk</h1>
+
+      <h1 className="font-bold mb-2 text-xs text-red-500 ">
+        From 0tk To {value}tk
+      </h1>
 
       <input
         type="text"
-        className="input input-bordered input-primary w-full max-w-xs mb-3"
-        placeholder="Search by name,category,brand"
+        className="input input-primary w-full max-w-xs mb-3 lg:h-12 h-10 rounded-lg focus:outline-none"
+        placeholder="Search by name, category, brand"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
 
       <select
-        className="select select-info w-full max-w-xs mb-5"
+        className="select  sm:select-sm w-full max-w-xs mb-5 lg:h-12 h-10 cursor-pointer	  focus:outline-none rounded-lg "
         value={selectedGenre}
         onChange={(e) => setSelectedGenre(e.target.value)}
       >
@@ -45,11 +50,13 @@ const ProductFilter = ({
         <option value="Fever & Pain">Fever & Pain</option>
         <option value="Diabetes">Diabetes</option>
         <option value="Blood Pressure & Heart Disease">
-          Blood Pressure & Heart Disease
+          Blood Pressure & Heart
         </option>
         <option value="Digestive Health">Digestive Health</option>
         <option value="Skin & Hair Condition">Skin & Hair Condition</option>
         <option value="Allergy & Asthma">Allergy & Asthma</option>
+
+ 
       </select>
     </div>
   );

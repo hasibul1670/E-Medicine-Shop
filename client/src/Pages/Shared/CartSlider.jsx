@@ -40,8 +40,11 @@ const CartSlider = ({ onClose }) => {
   };
 
   return (
-    <div className="p-2 shadow-xl">
-      <button onClick={handleClose} className="text-xl btn-outline">
+    <div className="p-2 shadow-xl cursor-pointer	">
+      <button
+        onClick={handleClose}
+        className="text-xl btn-outline  bg-cyan-500 p-2 rounded-lg"
+      >
         <AiOutlineClose />
       </button>
       <h2 className="text-red-500 text-sm">Total Items: {totalQuantity()}</h2>
@@ -53,7 +56,7 @@ const CartSlider = ({ onClose }) => {
           <Link
             onClick={handleClose}
             to="/place-order"
-            className="font-bold text-white btn  btn-sm btn-neutral capitalize "
+            className="font-bold text-white btn  btn-sm btn-neutral capitalize rounded-lg"
           >
             Place Order
           </Link>
@@ -65,29 +68,29 @@ const CartSlider = ({ onClose }) => {
               <div className="border-r pr-20 shrink-0">
                 <img src={cart?.url} alt="" className="h-full" />
               </div>
-              <p className="text-cyan-700 font-bold "> {cart?.name}</p>
-              <p className=" font-bold text-xs">
+              <p className="text-cyan-700 font-bold  "> {cart?.name}</p>
+              <p className=" font-bold text-sm">
                 {" "}
-                price: {(cart.price * cart.quantity).toFixed(2)}$
+                Price: {(cart.price * cart.quantity).toFixed(2)} tk
               </p>
-              <p>Quantity: {cart.quantity}</p>
+              <p className="text-sky-500 font-bold">Quantity: {cart.quantity}</p>
               <button
                 onClick={() => dispatch(addToCart(cart))}
-                className="text-2xl btn-outline mr-5"
+                className="text-2xl btn-outline hover:bg-cyan-700 mr-5 rounded-lg p-1"
               >
                 <AiOutlinePlusSquare />
               </button>
 
               <button
                 onClick={() => dispatch(removeOne(cart))}
-                className="text-2xl btn-outline ml-5"
+                className="text-2xl btn-outline ml-5 rounded-lg p-1 hover:bg-cyan-700"
               >
                 <AiOutlineMinusCircle />
               </button>
 
               <button
                 onClick={() => handleRemoveBookFromCart(cart)}
-                className="text-2xl btn-outline ml-10"
+                className="text-2xl btn-outline ml-10 rounded-lg p-1 hover:bg-red-700"
               >
                 <AiFillDelete />
               </button>
