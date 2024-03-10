@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useEffect, useState } from "react";
-import { userDataContext } from "../App";
+import { createContext, useEffect, useState } from "react";
+import { baseUrl } from "../redux/api/apiSlice";
 
 export const AuthContext = createContext(null);
 
@@ -12,16 +12,13 @@ const AuthProvider = ({ children }) => {
 
   const loginUser = async (userData) => {
     setLoading(true);
-    const response = await fetch(
-      "https://emedicine.vercel.app/api/v1/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }
-    );
+    const response = await fetch(`${baseUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
 
     if (response.status === 401) {
       throw new Error("Incorrect  Password !!!");
@@ -33,16 +30,13 @@ const AuthProvider = ({ children }) => {
     return response.json();
   };
   const createUser = async (userData) => {
-    const response = await fetch(
-      "https://emedicine.vercel.app/api/v1/students/create-student",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }
-    );
+    const response = await fetch(`${baseUrl}/students/create-student`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
 
     if (response.status === 400) {
       throw new Error("Field is Empty!!!");

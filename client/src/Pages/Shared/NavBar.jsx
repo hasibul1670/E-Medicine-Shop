@@ -45,7 +45,7 @@ const NavBar = () => {
       <div className="navbar-start ">
         <Link
           to="/"
-          className="btn   text-white font-bold lg:text-xl text-sm btn-ghost normal-case "
+          className="btn   text-white font-bold lg:text-xl text-sm btn-ghost rounded-lg normal-case "
         >
           E-Medicine
         </Link>
@@ -54,13 +54,19 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal ">
           <li>
-            <Link to="/dashboard" className="text-white font-semibold">
+            <Link
+              to="/dashboard"
+              className="text-white  rounded-lg hover:text-white  font-semibold"
+            >
               My Order{" "}
             </Link>
           </li>
           {role === "admin" && (
             <li>
-              <Link to="/dashboard" className="text-white font-semibold">
+              <Link
+                to="/dashboard"
+                className="text-white rounded-lg  font-semibold"
+              >
                 Dashboard
               </Link>
             </li>
@@ -69,7 +75,7 @@ const NavBar = () => {
           <li>
             <Link
               to="/product-request"
-              className="btn btn-sm mt-1  capitalize btn-accent"
+              className="btn btn-sm mt-1   rounded-lg hover:text-white   capitalize btn-accent"
             >
               Product Request
             </Link>
@@ -89,7 +95,7 @@ const NavBar = () => {
         <div className="drawer-content">
           <label htmlFor="my-drawer-4">
             <div className="badge badge-outline mr-2 badge-primary">
-              <span className="text-xl">
+              <span className="text-xl ">
                 <FaShoppingCart></FaShoppingCart>
               </span>
               <span> {totalQuantity()}</span>
@@ -112,7 +118,7 @@ const NavBar = () => {
             <Link to="/login">
               <button
                 onClick={handleLogOut}
-                className="btn btn-sm  capitalize btn-primary"
+                className="btn btn-sm border-none  capitalize rounded-lg text-white hover:bg-sky-800 bg-sky-800"
               >
                 Log Out
               </button>
@@ -121,7 +127,7 @@ const NavBar = () => {
         ) : (
           <>
             <Link to="/login">
-              <button className="btn btn-sm  capitalize btn-primary">
+              <button className="btn btn-sm border-none  capitalize rounded-lg btn-primary text-white hover:bg-blue-900 bg-sky-800">
                 Sign In
               </button>
             </Link>

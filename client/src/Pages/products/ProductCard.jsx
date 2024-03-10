@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="cursor-pointer	 card w-auto h-72 p-1 border-solid border-2 border-sky-500 shadow-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-50">
+    <div className="cursor-pointer	 card w-auto h-72 p-1 border-solid border border-sky-500  transform hover:-translate-y-1 transition-all duration-50">
       <figure className="px-6 pt-2 relative group overflow-hidden hover:scale-105 transition-transform duration-300">
         <img
           alt="example"

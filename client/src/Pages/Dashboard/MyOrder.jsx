@@ -25,13 +25,12 @@ const MyOrder = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table bg-white">
+        <table className="table bg-white rounded-lg">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="font-bold text-sm text-cyan-700">
               <th></th>
               <th>Product Description</th>
-
               <th>Total </th>
               <th>Order Status</th>
               <th>Order Date</th>
@@ -39,9 +38,9 @@ const MyOrder = () => {
           </thead>
           <tbody className="">
             {users?.map((user, index) => (
-              <tr key={user?.id}>
+              <tr key={user?.id} className="border border-sky-950">
                 <th>{index + 1}</th>
-                <td className="font-bold text-cyan-700">
+                <td className="font-bold text-cyan-700 ">
                   {user?.orderedItems.map((item, index) => (
                     <div key={index}>
                       {" "}
@@ -50,7 +49,7 @@ const MyOrder = () => {
                         <li>
                           {" "}
                           {item.name}{" "}
-                          <span className="text-xs text-pink-700">
+                          <span className="text-xs text-pink-800">
                             {item.measurement}
                             <br />
                             Quantity:{item.quantity}
@@ -68,14 +67,6 @@ const MyOrder = () => {
                 <td className=" font-bold text-xs text-teal-700">
                   {user?.orderDate}
                 </td>
-                <th>
-                  {/* <button
-                    onClick={() => handleRequestedProductDelete(user?._id)}
-                    className="btn btn-info capitalize btn-xs"
-                  >
-                    delete
-                  </button> */}
-                </th>
               </tr>
             ))}
           </tbody>

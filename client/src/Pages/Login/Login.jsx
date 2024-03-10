@@ -84,7 +84,7 @@ const Login = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="md:hero font-bold "
           >
-            <div className="card flex-shrink-0 w-full max-w-screen-sm  shadow-2xl ">
+            <div className="card flex-shrink-0 w-full   max-w-screen-sm  shadow-2xl ">
               <div className="card-body">
                 {/* email */}
                 <div className="form-control">
@@ -107,7 +107,7 @@ const Login = () => {
                     })}
                     name="email"
                     placeholder="Email"
-                    className="input input-bordered"
+                    className="input input-bordered  rounded-lg"
                   />
 
                   {errors.email?.message && (
@@ -127,10 +127,12 @@ const Login = () => {
                     name="password"
                     type="password"
                     placeholder="Password"
-                    className="input input-bordered"
+                    className="input input-bordered  rounded-lg"
                   />
                   {errors.password?.type === "required" && (
-                    <span className="text-red-600">Password is required!</span>
+                    <small className="text-red-600">
+                      Password is required!
+                    </small>
                   )}
                 </div>
 
@@ -143,11 +145,14 @@ const Login = () => {
                   </Link>
                 </label>
 
-                <div className="form-control mt-6">
+                <div className="form-control mt-2">
                   {mutation.isLoading ? (
                     <span className="loading loading-spinner loading-lg"></span>
                   ) : (
-                    <button type="submit" className="btn btn-primary mt-2">
+                    <button
+                      type="submit"
+                      className="btn bg-sky-800 hover:bg-sky-800 capitalize rounded-lg text-white mt-2"
+                    >
                       Login
                     </button>
                   )}

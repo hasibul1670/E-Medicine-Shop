@@ -47,13 +47,13 @@ const RequestedProduct = () => {
                 </td>
                 <td>{user?.quantity}</td>
                 <td className=" font-bold text-red-500">{user?.status}</td>
-                <td className=" font-bold text-xs text-teal-700">
+                <td className=" font-bold text-xs text-teal-700 ">
                   {user?.requestedTime}
                 </td>
                 <th>
                   <button
                     onClick={() => handleRequestedProductDelete(user?._id)}
-                    className="btn btn-info capitalize btn-xs"
+                    className="btn bg-sky-800 hover:bg-sky-800 text-white capitalize btn-xs rounded-lg"
                   >
                     delete
                   </button>

@@ -17,7 +17,6 @@ const MyAddress = () => {
   });
   const user = data?.data;
 
-
   const [editUser] = useEditUserMutation();
 
   const { register, handleSubmit, setValue } = useForm();
@@ -59,21 +58,21 @@ const MyAddress = () => {
         Hey, {user?.name.firstName}! 🙋
       </h1>
       {editMode ? (
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-4 mt-5" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label htmlFor="address" className=" mr-1 text-sm font-bold">
-              Address :
-            </label>
-            <input
+            <textarea
               type="text"
               id="address"
-              className="input input-bordered input-primary w-full max-w-xs"
+              className="textarea w-full max-w-xs rounded-lg h-24"
               {...register("address")}
               defaultValue={user?.address}
             />
           </div>
 
-          <button className="btn btn-info btn-sm capitalize" type="submit">
+          <button
+            className="btn btn-info btn-sm capitalize rounded-lg"
+            type="submit"
+          >
             Save
           </button>
         </form>
@@ -84,10 +83,10 @@ const MyAddress = () => {
           </p>
 
           <button
-            className="btn mt-5 btn-accent btn-sm capitalize"
+            className="btn mt-5 btn-accent btn-sm  rounded-lg capitalize"
             onClick={handleEditClick}
           >
-            Edit
+            Update Address
           </button>
         </div>
       )}

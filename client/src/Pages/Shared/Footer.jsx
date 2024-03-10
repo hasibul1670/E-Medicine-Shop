@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
         <div>
           <p className="text-white font-bold">
-            Copyright © 2023 - All right reserved by
+            Copyright © 2024 - All right reserved by
             <Link className="text-cyan-300 underline" target="_blank" to="https://hasibul-islam365.netlify.app/"> E-Medicine</Link>
           </p>
         </div>
