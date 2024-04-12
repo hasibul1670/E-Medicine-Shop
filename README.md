@@ -83,5 +83,3 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
   ### GitHub: https://github.com/hasibul1670
 
-
-dev branch included
