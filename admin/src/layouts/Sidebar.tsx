@@ -26,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div className="overflow-y-auto h-full hide-scrollbar" >
       <div className="text-white">
         <div className='flex justify-between '> 
-          <h2 className={`${isSideBarOpen ? 'block':'hidden'} mt-2 px-4 text-xl text-cyan-400 font-semibold`}>Travello</h2>
+          <Link to="/" className={`${isSideBarOpen ? 'block':'hidden'} mt-2 px-4 text-xl text-cyan-700 font-semibold`}>E-Medicine</Link>
           {isSideBarOpen ? (
             <FaArrowAltCircleLeft onClick={handleIsSideBarOpen} className='text-3xl mt-2 mr-4 cursor-pointer' />
           ) : (
