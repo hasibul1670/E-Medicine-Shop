@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Line } from "react-chartjs-2";
 
 import {
@@ -49,7 +50,7 @@ const LineChart = () => {
     ],
   };
 
-  const options = {
+  const options :any = {
     indexAxis: "x",
     plugins: {
       legend: {

@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 
-const currenciesToShow = [ "BDT","EUR", "BHD", "GBP", "CAD", "INR"];
-
+const currenciesToShow = ["BDT", "EUR", "BHD", "GBP", "CAD", "INR"];
+interface ExchangeRateData {
+  // Define the structure of exchange rate data here
+  // For example:
+  USD: number;
+  EUR: number;
+  rates:any;
+  // Add other currency properties as needed
+}
 const ExchangeRate = () => {
-  const [exchangeRates, setExchangeRates] = useState(null);
+  const [exchangeRates, setExchangeRates] = useState<ExchangeRateData | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
@@ -20,7 +29,7 @@ const ExchangeRate = () => {
         const data = await response.json();
         setExchangeRates(data);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
         setIsLoading(false);
       }
@@ -42,7 +51,9 @@ const ExchangeRate = () => {
       <div className="grid grid-cols-3 gap-4">
         {currenciesToShow.map((currencyCode) => (
           <div key={currencyCode} className="text-blue-700 font-medium text-xl">
-            <p>{exchangeRates.rates[currencyCode].toFixed(4)}</p>
+            {exchangeRates?.rates[currencyCode] && (
+              <p>{exchangeRates?.rates[currencyCode].toFixed(4)}</p>
+            )}
             <p className="text-sm">{currencyCode}</p>
           </div>
         ))}

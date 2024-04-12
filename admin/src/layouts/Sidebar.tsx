@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import MenuItems from './MenuItem';
