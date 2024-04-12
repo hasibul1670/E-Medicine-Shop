@@ -5,7 +5,7 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 # Live Link 
   ### Client Site : https://e-medicine007.vercel.app/
-  ### Admin Site : https://admin-p8d98uaey-hasibul1670.vercel.app/
+  ### Admin Site : https://eadmin007.vercel.app/
 
 
 #### Git Commit Messages
