@@ -1,4 +1,4 @@
-import { FaFileInvoice, FaUser } from "react-icons/fa";
+import { FaBorderAll, FaFileInvoice, FaUser } from "react-icons/fa";
 import { HiReceiptTax } from "react-icons/hi";
 import { IoIosSettings, IoMdAddCircle } from "react-icons/io";
 import { LuTablets } from "react-icons/lu";
@@ -23,6 +23,12 @@ const MenuItems = [
     icon: IoMdAddCircle,
     text: "Add Products",
     link: "/add-products",
+  },
+  {
+    id: 4,
+    icon: FaBorderAll,
+    text: "Order Management",
+    link: "/order",
   },
 
   {

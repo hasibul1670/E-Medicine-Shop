@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 <Link to={item.link}  
                  onClick={() => handleItemClick('bg-stone-200',item.text)} 
                 className={`rounded px-2 p-1 flex items-center ${selectedItem === item.text ? `${selectedColor} text-black rounded-none`: ''}`}>
-                  <li><item.icon className='mr-2 lg:text-4xl text-2xl hover:text-blue-400 hover-spin '/></li>
+                  <li><item.icon className='mr-2 lg:text-3xl text-2xl hover:text-cyan-400 hover-spin '/></li>
                 </Link>
               </li>
             ))}
