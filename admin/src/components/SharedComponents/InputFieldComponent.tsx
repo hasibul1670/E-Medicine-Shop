@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
 
-interface ButtonProps {
-  onClick?: () => void;
-  onChange?: () => void;
+interface iInputProps {
+  onClick?: any;
+  onChange?: any;
   className?: string;
   children?: string;
-  required?:any
-  disabled?:any
-  title?:string
-  type?:any
-  name?:string
-  placeholder?:string
+  required?: any;
+  disabled?: any;
+  title?: string;
+  type?: any;
+  value?: any;
+  name?: string;
+  placeholder?: string;
+  register?: any;
 }
 
-const InputFieldComponent : React.FC<ButtonProps> = ({ type, title, placeholder,required, onChange, disabled, name }) => {
+const InputFieldComponent: React.FC<iInputProps> = ({
+  type,
+  value,
+  title,
+  required,
+  onChange,
+  disabled,
+  name,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -25,15 +37,15 @@ const InputFieldComponent : React.FC<ButtonProps> = ({ type, title, placeholder,
   };
 
   return (
-    <div className='form-input'>
-      <div className='w-full mt-4'>
-        <div className='relative'>
+    <div className="form-input">
+      <div className="w-full mt-4">
+        <div className="relative">
           <label
-            htmlFor='input'
+            htmlFor="input"
             className={`absolute py-2 mt-2 left-3 transition-all ${
               isFocused
-                ? 'top-1 text-primaryColor font-bold text-sm'
-                : 'top-3.5 text-gray-700 text-base'
+                ? "top-1 text-primaryColor font-bold text-sm"
+                : "top-3.5 text-gray-700 text-base"
             }`}
           >
             {title}
@@ -44,8 +56,8 @@ const InputFieldComponent : React.FC<ButtonProps> = ({ type, title, placeholder,
             onChange={onChange}
             type={type}
             required={required}
-            
-            className='shadow appearance-none border rounded w-full h-16 pt-8 mt-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-primaryColor focus:border-blue-600'
+            value={value}
+            className="shadow appearance-none border rounded w-full h-16 pt-8 mt-3 px-3 text-blue-800 font-semibold leading-tight focus:outline-none focus:shadow-outline-primaryColor focus:border-blue-600"
             onFocus={handleFocus}
             onBlur={handleBlur}
           />

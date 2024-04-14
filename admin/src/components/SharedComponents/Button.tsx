@@ -1,22 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 
 interface ButtonProps {
-  onClick?: () => void;
+  onClick?: any;
   className?: string;
   children?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, className, children }) => {
-    const [isClicked, setIsClicked] = useState(false);
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  className,
+  children,
+}) => {
+  const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(true);
     if (onClick) onClick();
     setTimeout(() => {
       setIsClicked(false);
-    }, 150); 
+    }, 150);
   };
   return (
- <button
+    <button
       onClick={handleClick}
       className={`px-3 py-2 bg-blue-800 text-white font-medium capitalize rounded-md focus:outline-none relative ${
         isClicked ? "scale-y-90" : ""
@@ -29,5 +34,3 @@ export const Button: React.FC<ButtonProps> = ({ onClick, className, children }) 
     </button>
   );
 };
-
-

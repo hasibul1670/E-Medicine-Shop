@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
+import EditProductModal from "../../components/EditProduct/EditProductModal";
 import Loader from "../../components/LoaderComponent/Loader";
 import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";
@@ -5,25 +8,47 @@ import { useGetProductsQuery } from "../../redux/features/product/productApi";
 
 interface ProductProps {
   id?: string;
+  _id?: string;
   productDescription?: string;
   name?: string;
   price?: string;
 }
 
 const Product: React.FC<ProductProps> = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [id, setId] = useState(null);
   const { data, isLoading } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const openEditModal = (id: any) => {
+    setIsOpen(true);
+    setId(id);
+  };
 
   const handleDeleteProduct = () => {
     alert("Product Deleted");
   };
   const handleEditProduct = () => {
     alert("Product Edited");
+    setIsOpen(false);
   };
   return (
     <div className="container mx-auto">
       <Headline>All Products List</Headline>
+      {isOpen && (
+        <>
+          <EditProductModal
+            closeModal={closeModal}
+            handleEditProduct={handleEditProduct}
+            id={id}
+          />
+        </>
+      )}
       {isLoading ? (
         <Loader />
       ) : (
@@ -56,7 +81,10 @@ const Product: React.FC<ProductProps> = () => {
                     {product.price}
                   </td>
                   <td className="border px-4 py-3 flex gap-1 border-red-300 w-84 ">
-                    <Button onClick={handleEditProduct} className="bg-blue-400">
+                    <Button
+                      onClick={()=>openEditModal(product._id)}
+                      className="bg-blue-400"
+                    >
                       Edit
                     </Button>
                     <Button

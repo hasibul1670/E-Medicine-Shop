@@ -31,11 +31,11 @@ export const BeatLoaderComponent: React.FC<LoaderColorProps> = ({ color }) => {
 };
 
 
-const override = {
-  display: 'block',
-  margin: '0 auto',
-  borderColor: 'red',
-};
+// const override = {
+//   display: 'block',
+//   margin: '0 auto',
+//   borderColor: 'red',
+// };
 
 export const OwnLoader:React.FC<LoaderColorProps> = ({ height }) => {
   return (
