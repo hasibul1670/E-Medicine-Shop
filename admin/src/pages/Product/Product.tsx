@@ -17,15 +17,13 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState(null);
-  const { data, isLoading } = useGetProductsQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isLoading } = useGetProductsQuery("");
 
-  const closeModal = () => {
+  const closeModal = async () => {
     setIsOpen(false);
   };
 
-  const openEditModal = (id: any) => {
+  const openEditModal = async (id: any) => {
     setIsOpen(true);
     setId(id);
   };
@@ -33,20 +31,13 @@ const Product: React.FC<ProductProps> = () => {
   const handleDeleteProduct = () => {
     alert("Product Deleted");
   };
-  const handleEditProduct = () => {
-    alert("Product Edited");
-    setIsOpen(false);
-  };
+
   return (
     <div className="container mx-auto">
       <Headline>All Products List</Headline>
       {isOpen && (
         <>
-          <EditProductModal
-            closeModal={closeModal}
-            handleEditProduct={handleEditProduct}
-            id={id}
-          />
+          <EditProductModal closeModal={closeModal} id={id} />
         </>
       )}
       {isLoading ? (
@@ -82,7 +73,7 @@ const Product: React.FC<ProductProps> = () => {
                   </td>
                   <td className="border px-4 py-3 flex gap-1 border-red-300 w-84 ">
                     <Button
-                      onClick={()=>openEditModal(product._id)}
+                      onClick={() => openEditModal(product._id)}
                       className="bg-blue-400"
                     >
                       Edit

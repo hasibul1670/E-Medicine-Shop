@@ -9,7 +9,7 @@ export const api = createApi({
     baseUrl: baseUrl,
   }),
 
-  tagTypes: ["name", "phone", "email", "data"],
+  tagTypes: ["products", "name", "price", "data"],
 
   endpoints: () => ({}),
 });

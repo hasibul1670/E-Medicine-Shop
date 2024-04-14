@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
-import { useSingleProductQuery, useUpdateProductMutation } from "../../redux/features/product/productApi";
+import {
+  useSingleProductQuery,
+  useUpdateProductMutation,
+} from "../../redux/features/product/productApi";
 import Loader from "../LoaderComponent/Loader";
 import { Button } from "../SharedComponents/Button";
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -15,15 +18,20 @@ type iEditProductModalType = {
 
 const EditProductModal: React.FC<iEditProductModalType> = ({
   closeModal,
-  handleEditProduct,
   id,
 }) => {
   const { data, isLoading } = useSingleProductQuery(id, {
     refetchOnMountOrArgChange: true,
   });
+
   const singleProduct = data?.data;
   const { register, handleSubmit, setValue } = useForm();
   const [updateProduct] = useUpdateProductMutation();
+
+  const onSubmit = async (data: any) => {
+    await updateProduct({ id, data });
+    await closeModal();
+  };
 
   useEffect(() => {
     if (singleProduct) {
@@ -35,11 +43,6 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
       setValue("measurement", singleProduct.measurement);
     }
   }, [singleProduct, setValue]);
-
-  const onSubmit = async(data: any) => {
-    handleEditProduct(data);
-   await updateProduct({ id, singleProduct });
-  };
 
   return (
     <div>
@@ -161,7 +164,7 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
                 </div>
 
                 <div className="flex justify-end mt-4 mr-2">
-                  <Button onClick={handleEditProduct}>Save</Button>
+                  <Button>Save</Button>
                 </div>
               </form>
             </div>
