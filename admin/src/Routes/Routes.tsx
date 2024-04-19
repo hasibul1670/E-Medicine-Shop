@@ -7,9 +7,10 @@ import FinancialDashboard from "../pages/FinancialDashboard/FinancialDashboard";
 import Product from "../pages/Product/Product";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import Invoice from "../pages/Invoice/Invoice";
-import ExpenseManagement from "../pages/ExpenseManagement/ExpenseManagement";
+
 import TaxManagement from "../pages/TaxManagement/TaxManagement";
 import Report from "../pages/Report/Report";
+import QuickBill from "../pages/ExpensePage/QuickBill";
 
 const LayoutRouter = () => {
   return (
@@ -24,10 +25,9 @@ const LayoutRouter = () => {
           <Route path="/products" Component={Product} />
           <Route path="/add-products" Component={AddProduct} />
           <Route path="/invoice" Component={Invoice} />
-          <Route path="/expense-management" Component={ExpenseManagement} />
+          <Route path="/expense-management" Component={QuickBill} />
           <Route path="/tax-management" Component={TaxManagement} />
           <Route path="/reports" Component={Report} />
-    
         </Routes>
       </DefaultLayout>
     </Router>
