@@ -1,16 +1,15 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import DefaultLayout from "../layouts/DefaultLayout";
 import DashboardHome from "../pages/DashboardHome/DashboardHome";
-import User from "../pages/Product/Product";
-import Settings from "../pages/Settings/Settings";
 import FinancialDashboard from "../pages/FinancialDashboard/FinancialDashboard";
-import Product from "../pages/Product/Product";
-import AddProduct from "../pages/AddProduct/AddProduct";
 import Invoice from "../pages/Invoice/Invoice";
+import Product from "../pages/Product/Product";
+import Settings from "../pages/Settings/Settings";
+import User from "../pages/User/User";
 
-import TaxManagement from "../pages/TaxManagement/TaxManagement";
-import Report from "../pages/Report/Report";
 import QuickBill from "../pages/ExpensePage/QuickBill";
+import Report from "../pages/Report/Report";
+import TaxManagement from "../pages/TaxManagement/TaxManagement";
 
 const LayoutRouter = () => {
   return (
@@ -23,7 +22,6 @@ const LayoutRouter = () => {
           <Route path="/dashboard" Component={DashboardHome} />
           <Route path="/financial-dashboard" Component={FinancialDashboard} />
           <Route path="/products" Component={Product} />
-          <Route path="/add-products" Component={AddProduct} />
           <Route path="/invoice" Component={Invoice} />
           <Route path="/expense-management" Component={QuickBill} />
           <Route path="/tax-management" Component={TaxManagement} />

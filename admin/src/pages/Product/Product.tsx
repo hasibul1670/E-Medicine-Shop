@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
+import CreateProductModal from "../../components/CreateProduct/CreateProduct";
 import EditProductModal from "../../components/EditProduct/EditProductModal";
 import Loader from "../../components/LoaderComponent/Loader";
 import { Button } from "../../components/SharedComponents/Button";
@@ -16,16 +17,21 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
   const [id, setId] = useState(null);
   const { data, isLoading } = useGetProductsQuery("");
 
   const closeModal = async () => {
     setIsOpen(false);
+    setIsAddProductModalOpen(false);
   };
 
   const openEditModal = async (id: any) => {
     setIsOpen(true);
     setId(id);
+  };
+  const openAddProductModal = async () => {
+    setIsAddProductModalOpen(true);
   };
 
   const handleDeleteProduct = () => {
@@ -34,10 +40,21 @@ const Product: React.FC<ProductProps> = () => {
 
   return (
     <div className="container mx-auto">
-      <Headline>All Products List</Headline>
+      <div className="flex justify-between">
+        <Headline>All Products List</Headline>
+        <div className="flex justify-end h-12 lg:mt-5 lg:mr-36">
+          <Button onClick={() => openAddProductModal()}>Add New Product</Button>
+        </div>
+      </div>
+
       {isOpen && (
         <>
           <EditProductModal closeModal={closeModal} id={id} />
+        </>
+      )}
+      {isAddProductModalOpen && (
+        <>
+          <CreateProductModal closeModal={closeModal} />
         </>
       )}
       {isLoading ? (

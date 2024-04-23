@@ -1,7 +1,6 @@
 import { FaBorderAll, FaFileInvoice, FaUser } from "react-icons/fa";
 import { HiReceiptTax } from "react-icons/hi";
 import { IoIosSettings, IoMdAddCircle } from "react-icons/io";
-import { LuTablets } from "react-icons/lu";
 import {
   MdDashboard,
   MdOutlineAttachMoney,
@@ -17,13 +16,7 @@ const MenuItems = [
     text: "Financial Dashboard",
     link: "/financial-dashboard",
   },
-  { id: 3, icon: LuTablets, text: "Products", link: "/products" },
-  {
-    id: 4,
-    icon: IoMdAddCircle,
-    text: "Add Products",
-    link: "/add-products",
-  },
+  { id: 3, icon: IoMdAddCircle, text: "Products", link: "/products" },
   {
     id: 4,
     icon: FaBorderAll,
