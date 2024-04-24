@@ -47,7 +47,7 @@ const DashboardHome = () => {
   }
 
   return (
-    <div className=" py-20 flex-col lg:flex-row bg-base-300">
+    <div className=" py-20 flex-col lg:flex-row bg-white">
       <div className="z-20 fixed h-screen lg:w-1/6 drawer-overlay overflow-y-auto">
         <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
       </div>
@@ -55,7 +55,7 @@ const DashboardHome = () => {
       <div className="flex justify-end">
         <div className="w-1/6">/</div>
 
-        <div className="  bg-base-300 w-5/6  ">
+        <div className="  bg-white w-5/6  ">
           <header className="shadow-lg p-4">
             <h1 className="text-blue-800 font-bold text-xl ">
               {headerContent}

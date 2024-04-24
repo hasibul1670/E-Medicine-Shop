@@ -19,18 +19,18 @@ const Sidebar: React.FC<SidebarProps> = ({
   selectedItem,
 }) => {
   return (
-    <div className="overflow-y-auto h-full hide-scrollbar">
-      <div className="text-white">
-        <div className="flex justify-between ">
+    <div className="overflow-y-auto h-full hide-scrollbar  ">
+      <div className="text-white   ">
+        <div className="flex justify-between  ">
           <Link
             to="/"
             className={`${
               isSideBarOpen ? "block" : "hidden"
-            } mt-2 px-4 text-xl text-cyan-700 font-semibold`}
+            } mt-2 px-4 text-xl text-white font-bold`}
           >
             E-Medicine
           </Link>
-        
+
           {isSideBarOpen ? (
             <FaArrowAltCircleLeft
               onClick={handleIsSideBarOpen}
@@ -45,42 +45,57 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {isSideBarOpen ? (
-          <ul className="mt-2">
+          <ul className="mt-2  ">
             {MenuItems.map((item) => (
-              <li key={item.id} className="py-1">
+              <li key={item.id} className="py-1 ">
                 <Link
                   to={item.link}
-                  onClick={() => handleItemClick("bg-stone-200", item.text)}
-                  className={`rounded md:text-sm px-2 p-2 flex items-center hover:bg-cyan-100 hover:text-black ${
+                  onClick={() => handleItemClick("bg-white", item.text)}
+                  className={`rounded md:text-sm px-2 p-2 flex items-center hover:font-extrabold  hover:text-yellow-400  ${
                     selectedItem === item.text
                       ? `${selectedColor} text-black  font-bold rounded-none`
                       : ""
                   }`}
                 >
-                  <li>
-                    <item.icon className="mr-2 text-2xl" />
-                  </li>
-                  {item.text}
+                  <div className="relative">
+                    <li className="flex w-52">
+                      <item.icon className="mr-2 text-2xl" />
+                    {item.text}
+                    </li>
+                    {selectedItem === item.text && (
+                      <div className="curve-top"></div>
+                    )}
+                    {selectedItem === item.text && (
+                      <div className="curve-bottom"></div>
+                    )}
+                  </div>
                 </Link>
               </li>
             ))}
           </ul>
         ) : (
-          <ul className="mt-2">
+          <ul className="mt-2 relative">
             {MenuItems.map((item) => (
-              <li key={item.id} className="py-1">
+              <li key={item.id} className="py-1 ">
                 <Link
                   to={item.link}
-                  onClick={() => handleItemClick("bg-stone-200", item.text)}
-                  className={`rounded px-2 p-1 flex items-center ${
+                  onClick={() => handleItemClick("bg-white", item.text)}
+                  className={`px-2 p-1 flex items-center ${
                     selectedItem === item.text
-                      ? `${selectedColor} text-black rounded-none`
+                      ? `${selectedColor} text-black  rounded-l-2xl  py-2 ml-2`
                       : ""
                   }`}
                 >
-                  <li>
-                    <item.icon className="mr-2 lg:text-3xl text-2xl hover:text-cyan-400 hover-spin " />
-                  </li>
+                  <div className="relative">
+                    <item.icon className="mr-2 lg:text-3xl text-2xl hover:text-cyan-400 hover-spin" />
+                    {/* Add the curved shape here only if the item is selected */}
+                    {selectedItem === item.text && (
+                      <div className="navigation-top"></div>
+                    )}
+                    {selectedItem === item.text && (
+                      <div className="navigation"></div>
+                    )}
+                  </div>
                 </Link>
               </li>
             ))}

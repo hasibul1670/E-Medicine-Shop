@@ -21,7 +21,7 @@ const DefaultLayout: React.FC<any> = ({ children }) => {
       <div
         className={`${
           isSideBarOpen ? "lg:w-1/6 " : "lg:w-20 "
-        } bg-gray-700 transition-all duration-400 `}
+        } bg-gradient-to-r from-blue-900 to-cyan-400 transition-all duration-400 `}
       >
         <Sidebar
           handleIsSideBarOpen={handleIsSideBarOpen}
@@ -36,7 +36,7 @@ const DefaultLayout: React.FC<any> = ({ children }) => {
       <div
         className={`${
           isSideBarOpen ? "w-5/6" : "w-dvw"
-        } bg-gray-200 flex flex-col transition-all duration-400 overflow-y-auto h-full hide-scrollbar`}
+        } bg-white flex flex-col transition-all duration-400 overflow-y-auto h-full hide-scrollbar`}
       >
         <main className={`ml flex-1 ${selectedColor ? selectedColor : ""}`}>
           {children}
