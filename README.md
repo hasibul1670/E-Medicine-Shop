@@ -77,15 +77,17 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 ## SnapShort 
 
+  ##  Admin Site
 ![alt text](image.png)
 ![alt text](image-1.png)
 
+   ##  Client Site
 
+
+## Contact Info
 
   ### Email: hasibul.dcc@gmail.com
-
   ### Client Site : https://e-medicine007.vercel.app/
   ### Admin Site : https://eadmin007.vercel.app/
-
   ### GitHub: https://github.com/hasibul1670
 
