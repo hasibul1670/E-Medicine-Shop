@@ -8,7 +8,7 @@ const productApi = api.injectEndpoints({
 
     singleUser: builder.query({
       query: (id) => `/students/${id}`,
-      providesTags: ["address", "phone"],
+      providesTags: ["products", "name"],
     }),
 
     getRequestedProduct: builder.query({
@@ -46,7 +46,7 @@ const productApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["address", "phone"],
+      invalidatesTags: ["products", "name"],
     }),
   }),
 });
