@@ -75,6 +75,12 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 - Deployment: Vercel
 - Authentication: JWT
 
+## SnapShort 
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+
 
   ### Email: hasibul.dcc@gmail.com
 
