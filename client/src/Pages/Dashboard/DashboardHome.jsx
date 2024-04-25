@@ -21,7 +21,6 @@ const DashboardHome = () => {
 
   let mainContent;
   let headerContent;
-
   if (activeMenu === "myOrder") {
     mainContent = <MyOrder />;
     headerContent = "My Order";

@@ -1,13 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-export const AddSupplierDropdown = ({ options, onSelect, onAdd }) => {
+type IAddSupplierDropdownType = {
+  onSelect?: any;
+  options?: any;
+  onAdd?: any;
+};
+
+
+export const AddSupplierDropdown: React.FC<IAddSupplierDropdownType> = ({
+  options,
+  onSelect,
+  onAdd,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
-  const dropdownRef = useRef(null);
+  const [selectedOption, setSelectedOption] = useState<any>(null);
+  const dropdownRef = useRef<any>(null); 
 
-  const handleSelectOption = (option) => {
+  const handleSelectOption = (option: any) => {
     setSelectedOption(option);
     setSearchTerm(option?.name);
     onSelect(option);
@@ -29,21 +41,18 @@ export const AddSupplierDropdown = ({ options, onSelect, onAdd }) => {
     setSearchTerm("");
   };
 
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    console.log("Removing event listener");
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
-
-
-
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      console.log("Removing event listener");
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col mt-1 relative " ref={dropdownRef}>
@@ -73,20 +82,33 @@ useEffect(() => {
         <div className="absolute mt-16 w-full bg-blue-50 rounded shadow-lg z-10">
           <ul className="py-1">
             {options
-              .filter((option) =>
+              .filter((option: { name: string }) =>
                 option.name.toLowerCase().includes(searchTerm.toLowerCase())
               )
-              .map((option) => (
-                <li
-                  key={option.id}
-                  className="px-3 py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleSelectOption(option)}
-                >
-                  {option.name}
-                </li>
-              ))}
+              .map(
+                (option: {
+                  id: Key | null | undefined;
+                  name:
+                    | string
+                    | number
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | null
+                    | undefined;
+                }) => (
+                  <li
+                    key={option.id}
+                    className="px-3 py-2 cursor-pointer hover:bg-gray-200"
+                    onClick={() => handleSelectOption(option)}
+                  >
+                    {option.name}
+                  </li>
+                )
+              )}
             {searchTerm.trim() !== "" &&
-              options.filter((option) =>
+              options.filter((option: { name: string }) =>
                 option.name.toLowerCase().includes(searchTerm.toLowerCase())
               ).length < 1 && (
                 <li

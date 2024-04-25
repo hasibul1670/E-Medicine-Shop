@@ -57,10 +57,10 @@ const Sidebar: React.FC<SidebarProps> = ({
                       : ""
                   }`}
                 >
-                  <div className="relative">
-                    <li className="flex w-52">
+                  <div className="relative lg:w-72  md:w-72 xl:w-[20rem]">
+                    <li className="flex ">
                       <item.icon className="mr-2 text-2xl" />
-                    {item.text}
+                      {item.text}
                     </li>
                     {selectedItem === item.text && (
                       <div className="curve-top"></div>
@@ -74,9 +74,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             ))}
           </ul>
         ) : (
-          <ul className="mt-2 relative">
+          <ul className="mt-2 relative lg:w-40  md:w-40 xl:w-[5rem]">
             {MenuItems.map((item) => (
-              <li key={item.id} className="py-1 ">
+              <li key={item.id} className="py-[0.5rem]">
                 <Link
                   to={item.link}
                   onClick={() => handleItemClick("bg-white", item.text)}

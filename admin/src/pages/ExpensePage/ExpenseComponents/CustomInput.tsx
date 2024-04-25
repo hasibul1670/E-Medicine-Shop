@@ -1,10 +1,10 @@
 type ICustomInputType = {
-  label: string;
-  type: string;
-  name: string;
-  defaultValue: string;
-  required: boolean;
-  min: string;
+  label?: string;
+  type?: string;
+  name?: string;
+  defaultValue?: string;
+  required?: boolean;
+  min?: string;
 };
 
 const CustomInput: React.FC<ICustomInputType> = ({

@@ -1,16 +1,21 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ChangeEvent, SetStateAction, useState } from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import HeadingComponent2 from "../../components/CommonComponent/HeadingComponent/HeadingComponent2";
-import { useAppSelector } from "../../stores/hooks";
-import AddSupplierModal from "./AddSupplierModal";
+import Headline from "../../components/SharedComponents/Headline";
 import { categories } from "./CatagoryDataSet";
-import { AddSupplierDropdown } from "./ExpenseComponents.jsx/AddSupplierDropdown";
-import CustomInput from "./ExpenseComponents.jsx/CustomInput";
-import CustomSelect from "./ExpenseComponents.jsx/CustomSelect";
-import { getCurrentDate } from "./ExpenseComponents.jsx/DateFormater";
+import { AddSupplierDropdown } from "./ExpenseComponents/AddSupplierDropdown";
+import CustomInput from "./ExpenseComponents/CustomInput";
+import CustomSelect from "./ExpenseComponents/CustomSelect";
+
+type INewSupplieType = {
+  id?: any;
+  name?: string;
+
+};
+
 
 const CreateNewBill = () => {
-  const { userData, userLoading } = useAppSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
@@ -22,7 +27,7 @@ const CreateNewBill = () => {
     address: "",
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setNewSupplierData({
       ...newSupplierData,
@@ -30,17 +35,17 @@ const CreateNewBill = () => {
     });
   };
 
-  const handleSelectSupplier = (supplier) => {
+  const handleSelectSupplier = (supplier: SetStateAction<null>) => {
     setSelectedSupplier(supplier);
   };
 
-  const handleAddSupplier = (newSupplier) => {
+  const handleAddSupplier = (newSupplier:any) => {
     // Implement your logic to add the new supplier to your list
     console.log("Adding new supplier:", newSupplier);
   };
 
-  const [billDate, setBillDate] = useState(getCurrentDate());
-  const [dueBillDate, setDuebillDate] = useState(getCurrentDate());
+  const [billDate, setBillDate] = useState(" ");
+  const [dueBillDate, setDuebillDate] = useState(" ");
 
   const sampleSuppliers = [
     { id: 1, name: "Rahim " },
@@ -76,40 +81,23 @@ const CreateNewBill = () => {
     ]);
   };
 
-  const handleRemoveField = (id) => {
+  const handleRemoveField = (id: number) => {
     setBillData(billData.filter((bill) => bill.id !== id));
   };
 
-  const handleInputChange2 = (index, field, value) => {
+  const handleInputChange2 = (index: any, field: string, value: string) => {
     const updatedBillData = [...billData];
     updatedBillData[index][field] = value;
     setBillData(updatedBillData);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     console.log(billData);
   };
 
-  const handleModalSubmit = async (e) => {
-    e.preventDefault();
-    const newSupplier = {
-      id: sampleSuppliers.length + 1,
-      name: newSupplierData.supplierName,
-    };
-    setSelectedSupplier(newSupplier);
-    setIsOpen(false);
-    // Clear form data
-    setNewSupplierData({
-      supplierName: "",
-      supplierCompany: "",
-      phone: "",
-      address: "",
-    });
 
-    setIsSupplierModalOpen(false);
-  };
-  function onDateChange(e, field) {
+  function onDateChange(e: ChangeEvent<HTMLInputElement>, field: string) {
     if (field === "billDate") {
       setBillDate(e.target.value);
     } else if (field === "dueBillDate") {
@@ -120,7 +108,7 @@ const CreateNewBill = () => {
   return (
     <div className="  mb-20">
       <div className="mx-5">
-        <HeadingComponent2 title="Create New Bill" />
+        <Headline>Create New Bill</Headline>
       </div>
       {/* supplier info */}
       <div className="grid grid-cols-4  gap-5  mx-5">
@@ -138,7 +126,7 @@ const CreateNewBill = () => {
           <input
             disabled
             type="text"
-            value={userData?.email}
+            value=""
             className="rounded-md"
             name="createdBy"
             required
@@ -197,7 +185,7 @@ const CreateNewBill = () => {
                   required
                 >
                   <option value="">Select a category</option>
-                  {categories.map((category) => (
+                  {categories?.map((category) => (
                     <option key={category.id} value={category.title}>
                       {category.title}
                     </option>
@@ -364,16 +352,6 @@ const CreateNewBill = () => {
           </div>
         </div>
       </form>
-
-      {isSupplierModalOpen && (
-        <AddSupplierModal
-          isOpen={isSupplierModalOpen}
-          onClose={() => setIsSupplierModalOpen(false)}
-          onSubmit={handleModalSubmit}
-          onChange={handleInputChange}
-          formData={newSupplierData}
-        />
-      )}
     </div>
   );
 };

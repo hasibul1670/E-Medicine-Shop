@@ -31,7 +31,7 @@
 
 .curve-top  {
   position: absolute;
-  right: 3px;
+  right: -8px;
   top: -53px;
   width: 45px;
   height: 45px;
@@ -42,7 +42,7 @@
 }
 .curve-bottom  {
   position: absolute;
-  right: 3px;
+  right: -8px;
   bottom: -53px;
   width: 45px;
   height: 45px;
@@ -55,7 +55,7 @@
 
 .navigation  {
   position: absolute;
-  right: -21px;
+  right: -25px;
   bottom: -53px;
   width: 45px;
   height: 45px;
@@ -67,7 +67,7 @@
 
 .navigation-top  {
   position: absolute;
-  right: -21px;
+  right: -25px;
   top: -53px;
   width: 45px;
   height: 45px;

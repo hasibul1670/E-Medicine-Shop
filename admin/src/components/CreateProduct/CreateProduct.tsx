@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
-import CustomInput from "../../pages/ExpensePage/ExpenseComponents.jsx/CustomInput";
+import CustomInput from "../../pages/ExpensePage/ExpenseComponents/CustomInput";
 import {
   useSingleProductQuery,
   useUpdateProductMutation,
