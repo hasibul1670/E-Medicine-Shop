@@ -27,7 +27,7 @@ function QuickBillModal({
   billDescription,
 }: IQuickBillModalTypes) {
   const [selectedSupplier, setSelectedSupplier] = useState(null);
-
+  console.log(selectedSupplier);
   const onChange = (e: { target: { value: any } }) => {
     setBillDescription(e.target.value);
   };
@@ -48,7 +48,7 @@ function QuickBillModal({
     setSelectedAccount(selectedOption.value);
   };
 
-  const options = AccountData?.map((account, index) => ({
+  const options = AccountData?.map((account) => ({
     value: account.value,
     label: `${account.name}`,
   }));
