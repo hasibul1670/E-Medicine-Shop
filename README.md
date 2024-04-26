@@ -5,7 +5,7 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 # Live Link 
   ### Client Site : https://e-medicine007.vercel.app/
-  ### Admin Site : https://eadmin007.vercel.app/
+  ### Admin Site : https://emedecine-admin.vercel.app/
 
 
 #### Git Commit Messages
@@ -88,6 +88,6 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
   ### Email: hasibul.dcc@gmail.com
   ### Client Site : https://e-medicine007.vercel.app/
-  ### Admin Site : https://eadmin007.vercel.app/
+  ### Admin Site : https://emedecine-admin.vercel.app/
   ### GitHub: https://github.com/hasibul1670
 
