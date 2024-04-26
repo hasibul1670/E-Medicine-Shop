@@ -4,7 +4,7 @@ interface HeadlineProps {
 
 const Headline: React.FC<HeadlineProps> = ({ children }) => {
   return (
-    <div className=" py-6 px-4  text-center flex justify-between mx-5">
+    <div className=" py-4 px-5  text-center flex justify-between mx-5">
       <h1 className="text-3xl font-bold text-cyan-700">{children}</h1>
     </div>
   );

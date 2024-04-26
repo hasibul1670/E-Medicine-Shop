@@ -8,6 +8,7 @@ import Settings from "../pages/Settings/Settings";
 import User from "../pages/User/User";
 
 import QuickBill from "../pages/ExpensePage/QuickBill";
+import ShowAllBills from "../pages/ExpensePage/ShowAllBills";
 import Report from "../pages/Report/Report";
 import TaxManagement from "../pages/TaxManagement/TaxManagement";
 
@@ -24,6 +25,10 @@ const LayoutRouter = () => {
           <Route path="/products" Component={Product} />
           <Route path="/invoice" Component={Invoice} />
           <Route path="/expense-management" Component={QuickBill} />
+          <Route
+            path="/expense-management/all-bills"
+            Component={ShowAllBills}
+          />
           <Route path="/tax-management" Component={TaxManagement} />
           <Route path="/reports" Component={Report} />
         </Routes>

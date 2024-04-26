@@ -62,7 +62,7 @@ export const AddSupplierDropdown: React.FC<IAddSupplierDropdownType> = ({
       <div className="relative">
         <input
           id="billTo"
-          className="rounded-md w-full"
+          className="border-2 border-blue-400 py-2 px-2 rounded-md w-full"
           type="text"
           value={selectedOption ? selectedOption.name : searchTerm}
           onFocus={() => setIsOpen(true)}

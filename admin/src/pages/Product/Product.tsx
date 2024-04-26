@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import CreateProductModal from "../../components/CreateProduct/CreateProduct";
-import EditProductModal from "../../components/EditProduct/EditProductModal";
+import CreateProductModal from "../../components/ProductComponents/CreateProduct";
+import EditProductModal from "../../components/ProductComponents/EditProductModal";
 import Loader from "../../components/LoaderComponent/Loader";
 import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";

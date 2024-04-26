@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";
 import {
   default as insurance,
@@ -45,40 +47,25 @@ const imagesData = [
 
 export default function QuickBill() {
   const [isQuickBillModalOpen, setIsQuickBillModalOpen] = useState(false);
+  const [billDescription, setBillDescription] = useState("");
+  const handleQuickBillSubmit = () => {
+    console.log();
+  };
 
-  const [formData, setFormData] = useState({
-    billDescription: "",
-    billTo: "",
-    billDate: " ",
-    amount: 0,
-  });
-
-  function handleSubmit() {
-    console.log("Form submitted with data:", formData);
-    setIsQuickBillModalOpen(false);
-  }
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }
-
-  function handleAmountChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: parseFloat(value),
-    }));
-  }
-
+  const handleQuickBillModal = (item: { title: SetStateAction<string> }) => {
+    console.log(item);
+    setIsQuickBillModalOpen(true);
+    setBillDescription(item?.title);
+  };
   return (
     <div className="container ">
-      <div className="mx-5">
+      <div className="flex justify-between">
         <Headline>Quick Bill</Headline>
+        <div className="flex justify-end h-12 lg:mt-5 lg:mr-36">
+          <Button>
+            <Link to="all-bills">All Bills</Link>
+          </Button>
+        </div>
       </div>
 
       <div className="mx-5 shadow-lg p-2 rounded-lg">
@@ -88,7 +75,7 @@ export default function QuickBill() {
         <div className="grid grid-cols-7 gap-4">
           {imagesData.map((item, index) => (
             <div
-              onClick={() => setIsQuickBillModalOpen(true)}
+              onClick={() => handleQuickBillModal(item)}
               key={index}
               className="flex flex-col justify-center items-center border cursor-pointer border-blue-700 p-6 py-8 rounded-lg bg-white  text-blue-600"
             >
@@ -104,11 +91,10 @@ export default function QuickBill() {
       {isQuickBillModalOpen && (
         <QuickBillModal
           isOpen={isQuickBillModalOpen}
+          billDescription={billDescription}
+          setBillDescription={setBillDescription}
           onClose={() => setIsQuickBillModalOpen(false)}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          onAmountChange={handleAmountChange}
-          formData={formData}
+          onSubmit={() => handleQuickBillSubmit()}
         />
       )}
     </div>

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
-import CustomInput from "../../pages/ExpensePage/ExpenseComponents/CustomInput";
 import {
   useSingleProductQuery,
   useUpdateProductMutation,
 } from "../../redux/features/product/productApi";
+import CustomInput from "../ExpenseComponents/CustomInput";
 import Loader from "../LoaderComponent/Loader";
 import { Button } from "../SharedComponents/Button";
 /* eslint-disable @typescript-eslint/no-explicit-any */
