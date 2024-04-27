@@ -1,35 +1,103 @@
+import { Tooltip } from "@mui/material";
 import { CiExport } from "react-icons/ci";
-import { Tooltip } from "react-tooltip";
+import {
+  FaCartPlus,
+  FaChartLine,
+  FaShuttleVan,
+  FaUserCheck,
+} from "react-icons/fa";
+import { MdSell } from "react-icons/md";
+import SalesCard from "../../components/DashboardComponents/SalesCard";
+import TopProductTable from "../../components/DashboardComponents/TopProductTable";
+import TotalRevenueChart from "../../components/DashboardComponents/TotalRevenueChart";
 
 const DashboardHome = () => {
   return (
-    <div className="flex  justify-between px-2 py-4 ">
-      <div className="px-2 shadow-2xl p-5 bg-gray-300  rounded-lg">
+    <div className=" px-2 py-4 ">
+      <div className="px-2  shadow-lg bg-white rounded-xl p-4">
         <div className="flex justify-between mb-4">
           <p className="font-semibold text-lg ">
-            Today's Sales <br />
-            <span className="text-gray-700  text-sm">Sales Summary</span>
+            Today's Sales Summary <br />
           </p>
-          <Tooltip id="my-tooltip" />
-          <p
-            className="text-red-500 text-2xl scale-150  cursor-pointer  py-2 flex "
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Export today's data"
+          <Tooltip
+            title="Export Today's Data"
+            slotProps={{
+              popper: {
+                modifiers: [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [0, -94],
+                    },
+                  },
+                ],
+              },
+            }}
           >
-            <CiExport />
-          </p>
+            <p className="text-3xl">
+              <CiExport />{" "}
+            </p>
+          </Tooltip>
         </div>
 
-        <div className="flex gap-x-1.5">
-          <p className="p-4 bg-red-200 rounded-lg">Total Sales</p>
-          <p className="p-4 bg-red-200 rounded-lg">Total Order</p>
-          <p className="p-4 bg-red-200 rounded-lg">Product Stock</p>
-          <p className="p-4 bg-red-200 rounded-lg">New Customers</p>
+        <div className="flex justify-center  gap-x-1.5  ">
+          <SalesCard
+            icon={FaChartLine}
+            ammount="$ 15500"
+            salesTitle="Total Orders"
+            saleRate="5"
+            position="+"
+            className="text-orange-600"
+          />
+
+          <SalesCard
+            icon={FaCartPlus}
+            ammount="80"
+            salesTitle="Total Orders"
+            saleRate="5"
+            position="+"
+            className="text-blue-600"
+          />
+          <SalesCard
+            icon={MdSell}
+            ammount="450"
+            className="text-green-500"
+            salesTitle="Product Sold"
+            saleRate="2.45"
+            position="+"
+          />
+          <SalesCard
+            icon={FaUserCheck}
+            className="text-pink-700"
+            ammount="8"
+            salesTitle="New Customers "
+            saleRate="0.45"
+            position="+"
+          />
+          <SalesCard
+            icon={FaShuttleVan}
+            className="text-fuchsia-700"
+            ammount="48"
+            salesTitle="Total Delivary  "
+            saleRate="1.45"
+            position="-"
+          />
         </div>
       </div>
 
-      <div>
-        <h1>Total Revenue</h1>
+      <div className=" flex justify-between mt-4">
+        <div className="w-3/6 bg-gray-200 rounded-lg p-4">
+          <p className="font-semibold text-lg ">
+            Total Revenue <br />
+          </p>
+          <TotalRevenueChart />
+        </div>
+        <div className="w-3/6 bg-white p-4">
+          <p className="font-semibold text-lg ">
+            Total Products <br />
+          </p>
+          <TopProductTable />
+        </div>
       </div>
     </div>
   );
