@@ -6,7 +6,6 @@ import {
 import MonthlySellComponent from "./MonthlySellComponent";
 import SellComponents from "./SellComponents";
 
-import ExchangeRate from "./ExchangeRate";
 import LineChart from "./LineChart";
 import PieChartComponent from "./PieChartComponent";
 
@@ -81,7 +80,12 @@ const FinancialDashboardV2 = () => {
               <SellComponents />
             </div>
             <div className="w-3/6  h-64 flex justify-center">
-              <PieChartComponent />
+              <PieChartComponent
+                colorOffline="blue"
+                colorOnline="purple"
+                valueOffline={2500}
+                valueOnline={1500}
+              />
             </div>
           </div>
         </div>
@@ -94,23 +98,13 @@ const FinancialDashboardV2 = () => {
         </div>
       </div>
       <div className="w-2/6">
-        <div className="h-80 bg-white rounded-lg shadow-lg mr-4 p-2 mb-4">
+        <div className="h-96 bg-white rounded-lg shadow-lg mr-4 p-2 mb-4">
           <p className="text-xl font-semibold px-2 text-blue-800">
             Current Month’s Sell
           </p>
           <div className=" text-xl font-semibold px-2 text-blue-800">
             <MonthlySellComponent />
           </div>
-        </div>
-        <div className="h-48 bg-white rounded-lg shadow-lg mr-4 p-2 mb-4">
-          <p className="text-xl font-semibold px-2 text-blue-800">Top-Up</p>
-          <ExchangeRate />
-        </div>
-        <div className="h-64 bg-white rounded-lg shadow-lg mr-4 p-2 mb-4">
-          <p className="text-xl font-semibold px-2 text-blue-800">
-            USD X. Rate Today (1 USD)
-          </p>
-          <ExchangeRate />
         </div>
       </div>
     </div>

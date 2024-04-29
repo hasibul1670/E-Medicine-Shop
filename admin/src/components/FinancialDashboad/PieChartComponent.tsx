@@ -1,55 +1,57 @@
-import { Pie } from "react-chartjs-2";
-import { Chart, ArcElement } from "chart.js";
-
-Chart.register(ArcElement);
-
-
-export interface ChartOptions {
-  plugins: {
-    legend: {
-      display: boolean;
-      position: "top" | "bottom" | "left" | "right"; // Allowed positions
-      labels: {
-        color: string;
-      };
-    };
-    tooltip: {
-      enabled: boolean;
-    };
-  };
-}
-
-const PieChartComponent = () => {
-  const data = {
-    labels: ["Flight", "Visa", "Hotel", "Tour"],
-    datasets: [
-      {
-        label: "Sells",
-        data: [10000, 5000, 25000, 54000],
-        backgroundColor: ["green", "blue", "orange", "purple"],
-      },
-    ],
-  };
-
-
-  const options: ChartOptions = {
-    plugins: {
-      legend: {
-        display: true,
-        position: "bottom",
-        labels: {
-          color: "black",
-        },
-      },
-      tooltip: {
-        enabled: false,
-      },
-    },
+import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
+type IPieChartComponentTypes = {
+  valueOnline: number;
+  valueOffline: number;
+  colorOnline: string;
+  colorOffline: string;
+};
+const PieChartComponent: React.FC<IPieChartComponentTypes> = ({
+  valueOnline,
+  valueOffline,
+  colorOnline,
+  colorOffline,
+}) => {
+  const sizing = {
+    margin: { right: 5 },
+    width: 200,
+    height: 200,
+    legend: { hidden: true },
   };
 
   return (
     <div className="px-1">
-      <Pie data={data} options={options} />
+      <PieChart
+        series={[
+          {
+            arcLabel: (item) => `${item.label}`,
+            arcLabelMinAngle: 15,
+
+            highlightScope: { faded: "global", highlighted: "item" },
+            faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
+            data: [
+              {
+                id: 0,
+                label: "Online",
+                value: valueOnline,
+                color: colorOnline,
+              },
+              {
+                id: 1,
+                label: "Offline",
+                value: valueOffline,
+                color: colorOffline,
+              },
+            ],
+          },
+        ]}
+        sx={{
+          [`& .${pieArcLabelClasses.root}`]: {
+            fill: "white",
+            fontSize: 14,
+          },
+        }}
+        {...sizing}
+      />
     </div>
   );
 };

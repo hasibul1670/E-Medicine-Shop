@@ -1,12 +1,6 @@
-import {
-  FaCcVisa,
-  FaHiking,
-  FaHotel,
-  FaInternetExplorer,
-  FaLongArrowAltUp,
-  FaPlane,
-} from "react-icons/fa";
-import { IoCloudOffline } from "react-icons/io5";
+import { CiTablets1 } from "react-icons/ci";
+import { FaLongArrowAltUp } from "react-icons/fa";
+import PieChartComponent from "./PieChartComponent";
 
 interface SellItemProps {
   online: number | string | null;
@@ -28,7 +22,7 @@ const SellItem: React.FC<SellItemProps> = ({
   };
 
   return (
-    <div className="flex justify-between text-black bg-sky-100 px-2 py-2 mt-2 rounded-none">
+    <div className="flex justify-between text-black bg-teal-200 px-2 py-5 rounded-lg mt-2 ">
       <p className="flex">
         {formatValue(online) || 0.0}
         <p className="text-green-300 text-2xl hidden"> {icon2}</p>
@@ -41,43 +35,27 @@ const SellItem: React.FC<SellItemProps> = ({
 
 const MonthlySellComponent = () => {
   return (
-    <div className="h-64">
-      <div className="flex justify-between font-medium">
-        <p className="flex items-center ">
-          <FaInternetExplorer />
-          Online
-        </p>
+    <div className="h-full flex flex-col justify-center">
+      <div className="flex justify-between font-medium mt-2 mx-2  mb-2">
+        <p>Online</p>
 
-        <p className="flex items-center">
-          <IoCloudOffline />
-          Counter
-        </p>
+        <p>Offline</p>
       </div>
 
       <SellItem
         online="7845914"
         counter="4554545"
-        icon={<FaPlane />}
+        icon={<CiTablets1 />}
         icon2={<FaLongArrowAltUp />}
       />
-      <SellItem
-        online="7845914"
-        counter="1187954"
-        icon={<FaCcVisa />}
-        icon2={<FaLongArrowAltUp />}
-      />
-      <SellItem
-        online="257800"
-        counter="94500"
-        icon={<FaHotel />}
-        icon2={<FaLongArrowAltUp />}
-      />
-      <SellItem
-        online="23658946"
-        counter="199874"
-        icon={<FaHiking />}
-        icon2={<FaLongArrowAltUp />}
-      />
+      <div className="flex justify-center mt-5">
+        <PieChartComponent
+          colorOffline="cyan"
+          colorOnline="blue"
+          valueOffline={5000}
+          valueOnline={10000}
+        />
+      </div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const DashboardHome = () => {
                   {
                     name: "offset",
                     options: {
-                      offset: [0, -94],
+                      offset: [0, 5],
                     },
                   },
                 ],
@@ -86,7 +86,7 @@ const DashboardHome = () => {
       </div>
 
       <div className=" flex justify-between mt-4">
-        <div className="w-3/6 bg-gray-200 rounded-lg p-4">
+        <div className="w-3/6 bg-white shadow-lg rounded-lg p-4">
           <p className="font-semibold text-lg ">
             Total Revenue <br />
           </p>
