@@ -7,9 +7,20 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
   ### Client Site : https://e-medicine007.vercel.app/
   ### Admin Site : https://emedecine-admin.vercel.app/
 
+# SnapShort 
+###  Admin Site
+  ### Dashboard HomePage Show OverAll App Data
+![alt text](image-4.png)
+  ### Financial Dashboard Show All Sales Data 
+![alt text](image-2.png)
+  ### Product table With Search ,Filter,Pagination
+![alt text](image-3.png)
+
+
+
+
 
 #### Git Commit Messages
-
 - feat: Introducing New Features
 - fix: Fixing Bugs
 - chore: Miscellaneous Changes
@@ -24,7 +35,6 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 - revert: Reverting Changes
 
 ## Features
-
 ### User Authentication and Authorization
 - Secure user registration and login functionality.
 - Role-based access control for different user types (e.g., customers, admins).
@@ -68,22 +78,11 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 
 ## Technologies Used
-
 - Frontend: JavaScript,TypeScripts,Tailwind CSS,
 - Backend: Node.js, Express.js,Typescript
 - Database: MongoDB
 - Deployment: Vercel
 - Authentication: JWT
-
-## SnapShort 
-
-##  Admin Site
-### Dashboard HomePage Show OverAll App Data
-![alt text](image-4.png)
-### Financial Dashboard Show All Sales Data 
-![alt text](image-2.png)
-### Product table With Search ,Filter,Pagination
-![alt text](image-3.png)
 
 
 
