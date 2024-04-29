@@ -77,15 +77,17 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 ## SnapShort 
 
-  ##  Admin Site
-![alt text](image.png)
-![alt text](image-1.png)
+##  Admin Site
+### Dashboard HomePage Show OverAll App Data
+![alt text](image-4.png)
+### Financial Dashboard Show All Sales Data 
+![alt text](image-2.png)
+### Product table With Search ,Filter,Pagination
+![alt text](image-3.png)
 
-   ##  Client Site
 
 
 ## Contact Info
-
   ### Email: hasibul.dcc@gmail.com
   ### Client Site : https://e-medicine007.vercel.app/
   ### Admin Site : https://emedecine-admin.vercel.app/

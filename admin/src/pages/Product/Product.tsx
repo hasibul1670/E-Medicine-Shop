@@ -113,7 +113,7 @@ const Product: React.FC<ProductProps> = () => {
       ) : (
         <Box sx={{ height: 500, width: "100%" }}>
           <DataGrid
-          className="mx-5 mt-5 bg-slate-200 rounded-lg"
+            className="mx-5 mt-5 bg-slate-200 rounded-lg"
             rowHeight={50}
             rows={rows}
             columns={columns}
