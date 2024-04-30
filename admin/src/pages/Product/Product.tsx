@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useState } from "react";
 import Loader from "../../components/LoaderComponent/Loader";
 import CreateProductModal from "../../components/ProductComponents/CreateProduct";
 import EditProductModal from "../../components/ProductComponents/EditProductModal";
-import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
-
 interface ProductProps {
   id?: string;
   _id?: string;
@@ -45,46 +44,72 @@ const Product: React.FC<ProductProps> = () => {
     Name: product?.name,
     Description: product?.productDescription,
     Price: product?.price,
+    Stock: Math.floor(Math.random() * 90),
   }));
 
+  const CenteredCellRenderer = (params: any) => (
+    <div style={{ textAlign: "center" }}>{params.value}</div>
+  );
+
   const columns: GridColDef<(typeof data)[number]>[] = [
-    { field: "id", headerName: "ID", width: 10 },
+    { field: "id", headerName: "ID", headerAlign: "center", width: 10 },
     {
       field: "Name",
+      headerAlign: "center",
       headerName: "Name",
-      width: 150,
+      width: 200,
+      renderCell: CenteredCellRenderer,
     },
     {
       field: "Description",
+      headerAlign: "center",
       headerName: "Description",
       width: 250,
+      renderCell: CenteredCellRenderer,
     },
     {
       field: "Price",
+      headerAlign: "center",
       headerName: "Price",
       type: "number",
-      width: 125,
+      width: 100,
+      renderCell: CenteredCellRenderer,
     },
     {
-      field: "action",
+      field: "Stock",
+      headerAlign: "center",
+      headerName: "Stock",
+      type: "number",
+      width: 100,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "Action",
+      headerAlign: "center",
       headerName: "Action",
       width: 200,
       sortable: false,
       renderCell: (params) => (
-        <div className="flex justify-between mx-5 ">
-          <p
+        <strong>
+          <Button
+            variant="contained"
+            size="small"
+            style={{ marginLeft: 16 }}
+            tabIndex={params.hasFocus ? 0 : -1}
             onClick={() => openEditModal(params.row._id)}
-            className="bg-blue-900 rounded-lg cursor-pointer text-white px-5 "
           >
             Edit
-          </p>
-          <p
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            style={{ marginLeft: 16, backgroundColor: "#C70000" }}
+            tabIndex={params.hasFocus ? 0 : -1}
             onClick={() => handleDeleteProduct(params.row._id)}
-            className="bg-red-700 rounded-lg ml-2 cursor-pointer text-white px-5 "
           >
             Delete
-          </p>
-        </div>
+          </Button>
+        </strong>
       ),
     },
   ];
@@ -94,7 +119,9 @@ const Product: React.FC<ProductProps> = () => {
       <div className="flex justify-between">
         <Headline>All Products List</Headline>
         <div className="flex justify-end h-12 lg:mt-5 lg:mr-36">
-          <Button onClick={() => openAddProductModal()}>Add New Product</Button>
+          <Button variant="contained" onClick={() => openAddProductModal()}>
+            Add New Product
+          </Button>
         </div>
       </div>
 
@@ -134,32 +161,3 @@ const Product: React.FC<ProductProps> = () => {
 };
 
 export default Product;
-
-{
-  /* <thead>
-  <tr className="border border-blue-500 bg-cyan-200">
-    <th className="px-4 py-2  border border-blue-500">Serial</th>
-    <th className="px-4 py-2 border border-blue-500">Name</th>
-    <th className="px-4 py-2 border border-blue-500">Description</th>
-    <th className="w-64  px-4 py-2 border border-blue-500">Price</th>
-    <th className="w-64  px-4 py-2 border border-blue-500">Action</th>
-  </tr>
-</thead>; */
-}
-
-// <tr key={product.id} className=" bg-cyan-50">
-//   <td className="border border-red-400 w-64  px-4 py-2">
-//     {product?.id}
-//   </td>
-//   <td className="border border-red-400 w-64  px-4 py-2">
-//     {product.name}
-//   </td>
-//   <td className="border border-red-400 w-64 px-4 py-2 whitespace-pre-line">
-//     {product.productDescription}
-//   </td>
-
-//   <td className="border px-4 py-2  w-64  border-red-400">
-//     {product.price}
-//   </td>
-
-// </tr>

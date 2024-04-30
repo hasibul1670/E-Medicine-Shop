@@ -17,11 +17,11 @@ function createData(
 }
 
 const rows = [
-  createData(1, "Frozen yoghurt", 45, 45),
-  createData(2, "Ice cream sandwich", 35, 35),
-  createData(3, "Eclair", 32, 32),
-  createData(4, "Cupcake", 25, 25),
-  createData(5, "Gingerbread", 10, 10),
+  createData(1, "Neopectin Syrup", 45, 45),
+  createData(2, "Ebastine Tablet", 35, 35),
+  createData(3, "BirdBoost Feather Supplement", 32, 32),
+  createData(4, "Indapamide 2.5 mg Tablet", 25, 25),
+  createData(5, "Protonox Capsule", 10, 10),
 ];
 
 export default function TopProductTable() {

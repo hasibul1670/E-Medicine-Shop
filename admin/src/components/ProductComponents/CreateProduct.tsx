@@ -48,7 +48,7 @@ const CreateProductModal: React.FC<iEditProductModalType> = ({
   return (
     <div>
       <div className="fixed inset-0 bg-gray-950 bg-opacity-75  z-20 flex items-center justify-center">
-        <div className="bg-white p-2  rounded shadow-lg w-8/12 h-3/5">
+        <div className="bg-white p-2  rounded shadow-lg w-8/12 h-/5">
           {/* Modal Header */}
           <div className="mb-4 flex   justify-between ">
             <h2 className="text-lg font-bold">Create a Product</h2>
@@ -63,7 +63,7 @@ const CreateProductModal: React.FC<iEditProductModalType> = ({
           {isLoading ? (
             <Loader />
           ) : (
-            <div className="max-h-80 overflow-y-auto">
+            <div className="h-full overflow-y-auto">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex justify-between mx-2">
                   <div className="mb-4 w-1/2 mr-2">
