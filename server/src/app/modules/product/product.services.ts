@@ -2,7 +2,10 @@ import { IProduct } from './product.interface';
 import { Product } from './product.model';
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
-  const result = await Product.create(payload);
+
+  let count = await Product.countDocuments();
+  const id = count++;
+  const result = await Product.create({ id: id, ...payload });
   return result;
 };
 
@@ -12,7 +15,7 @@ const getAllProducts = async () => {
 };
 
 const getSingleProduct = async (id: string) => {
-  const result = await Product.findById({ _id: id })
+  const result = await Product.findById({ _id: id });
   return result;
 };
 

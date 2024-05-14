@@ -16,8 +16,7 @@ const sendProductResponse = (res: Response, message: string, data: any) => {
 };
 
 const createProduct = catchAsync(async (req: Request, res: Response) => {
-  const { ...ProductData } = req.body;
-  const result = await ProductService.createProduct(ProductData);
+  const result = await ProductService.createProduct(req.body);
   sendProductResponse(res, 'Product is Created Successfully!', result);
 });
 
@@ -49,5 +48,4 @@ export const productController = {
   getSingleProduct,
   deleteProduct,
   updateProduct,
-
 };

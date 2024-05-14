@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
+import { ApiError } from '../../../handlingError/ApiError';
 import { IProduct, ProductModel } from './product.interface';
-
 
 const ProductSchema = new Schema<IProduct>(
   {
@@ -35,7 +35,6 @@ const ProductSchema = new Schema<IProduct>(
     imageUrl: {
       type: String,
     },
-
   },
   {
     timestamps: true,
@@ -45,9 +44,9 @@ const ProductSchema = new Schema<IProduct>(
 ProductSchema.pre('save', async function (next) {
   const existingProduct = await Product.findOne({ name: this.name });
   if (existingProduct) {
-    throw new Error('This Product is already Exist');
+    throw new ApiError(409, 'This Product is already Exist');
   }
   next();
 });
 
-export const Product = model<IProduct, ProductModel >('Product', ProductSchema);
+export const Product = model<IProduct, ProductModel>('Product', ProductSchema);
