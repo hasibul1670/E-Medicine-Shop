@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { StatusCodes } from 'http-status-codes';
@@ -7,8 +8,6 @@ import { buildWhereConditions } from '../../../helpers/buildWhereCondition';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { IAdmin } from '../admin/admin.interface';
-import { Admin } from '../admin/admin.model';
 
 import { studentSearchableFields } from './student.constant';
 import { IStudent, IStudentFilters } from './student.interface';
@@ -48,17 +47,17 @@ const getAllStudents = async (
 };
 
 const getSingleStudent = async (id: string): Promise<IStudent | null> => {
-  const result = await Student.findById({_id:id});
+  const result = await Student.findById({ _id: id });
   return result;
 };
 
 const updateStudent = async (
   id: string,
   payload: Partial<IStudent>
-): Promise<IStudent | null> => {
+): Promise<any> => {
   const result = await Student.findByIdAndUpdate({ _id: id }, payload, {
     new: true,
-  });
+  }).select('-password -role');
   return result;
 };
 
@@ -75,9 +74,7 @@ const createStudent = async (payload: IStudent) => {
   if (!payload.password) {
     payload.password = config.default_user_pass as string;
   }
-
   const existingStudent = await Student.findOne({ email: payload?.email });
-
   if (existingStudent) {
     throw new ApiError(
       StatusCodes.CONFLICT,
@@ -89,8 +86,6 @@ const createStudent = async (payload: IStudent) => {
   const { password, ...result } = createdStudent.toObject();
   return result;
 };
-
-
 
 export const StudentService = {
   getAllStudents,

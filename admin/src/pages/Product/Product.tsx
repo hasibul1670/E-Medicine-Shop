@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { useState } from "react";
 import Loader from "../../components/LoaderComponent/Loader";
 import CreateProductModal from "../../components/ProductComponents/CreateProduct";
@@ -140,15 +140,25 @@ const Product: React.FC<ProductProps> = () => {
       ) : (
         <Box sx={{ height: 500, width: "100%" }}>
           <DataGrid
-            className="mx-5 mt-5 bg-slate-200 rounded-lg"
-            rowHeight={50}
+            {...data}
+            disableColumnFilter
+            disableColumnSelector
+            disableDensitySelector
+            className="mx-5 mt-5 bg-gray-50 rounded-lg"
+            rowHeight={70}
             rows={rows}
             columns={columns}
+            slots={{ toolbar: GridToolbar }}
             initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 8,
+                  pageSize: 20,
                 },
+              },
+            }}
+            slotProps={{
+              toolbar: {
+                showQuickFilter: true,
               },
             }}
             pageSizeOptions={[1]}

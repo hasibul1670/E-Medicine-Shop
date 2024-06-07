@@ -49,7 +49,6 @@ const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
 const updateStudent = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const updatedData = req.body;
-
   const result = await StudentService.updateStudent(id, updatedData);
 
   sendStudentResponse(res, 'Student updated successfully !', result);

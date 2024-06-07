@@ -3,36 +3,40 @@ import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
 import {
-  useSingleProductQuery,
-  useUpdateProductMutation,
-} from "../../redux/features/product/productApi";
+  useEditUserMutation,
+  useSingleUserQuery,
+} from "../../redux/features/user/userApi";
 import Loader from "../LoaderComponent/Loader";
 import { Button } from "../SharedComponents/Button";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type iEditProductModalType = {
+type iEditUserModalType = {
   closeModal?: any;
   product?: any;
   handleEditProduct?: any;
   id?: any;
 };
 
-const EditProductModal: React.FC<iEditProductModalType> = ({
-  closeModal,
-  id,
-}) => {
-  const { data, isLoading } = useSingleProductQuery(id, {
+const EditUserModal: React.FC<iEditUserModalType> = ({ closeModal, id }) => {
+  const { data, isLoading } = useSingleUserQuery(id, {
     refetchOnMountOrArgChange: true,
   });
-
   const singleProduct = data?.data;
   const { register, handleSubmit, setValue } = useForm();
-  const [updateProduct] = useUpdateProductMutation();
+  const [updateProduct] = useEditUserMutation();
 
   const onSubmit = async (data: any) => {
-    const res = await updateProduct({ id, data });
+    const payload = {
+      name: {
+        firstName: data.fname,
+        lastName: data.lname,
+      },
+      address: data.address,
+      contactNo: data.contactNo,
+    };
+    const res = await updateProduct({ id, data: payload });
     if ("data" in res && res?.data?.statusCode) {
-      toast.success("Product Updated Successfully !! ");
+      toast.success("User Updated Successfully !! ");
     } else {
       toast.error("Something went wrong! Try again later !! ");
     }
@@ -42,24 +46,20 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
 
   useEffect(() => {
     if (singleProduct) {
-      setValue("name", singleProduct.name);
-      setValue("generic", singleProduct.generic);
-      setValue("price", singleProduct.price);
-      setValue("productDescription", singleProduct.productDescription);
-      setValue("country", singleProduct.country);
-      setValue("measurement", singleProduct.measurement);
+      setValue("fname", singleProduct.name.firstName);
+      setValue("lname", singleProduct.name.lastName);
+      setValue("address", singleProduct.address);
+      setValue("contactNo", singleProduct.contactNo);
     }
   }, [singleProduct, setValue]);
-
-  // Hello
 
   return (
     <div>
       <div className="fixed inset-0 bg-gray-950 bg-opacity-75   z-20 flex items-center justify-center ">
-        <div className="bg-white p-2  rounded shadow-lg w-8/12 h-4/5">
+        <div className="bg-white p-2  rounded shadow-lg w-8/12 h-3/5 py-8">
           {/* Modal Header */}
           <div className="mb-4 flex  justify-between ">
-            <h2 className="text-lg font-bold">Edit Product</h2>
+            <h2 className="text-lg font-bold">Edit User</h2>
 
             <IoMdClose
               className="text-2xl cursor-pointer bg-cyan-200  text-red-400 "
@@ -79,95 +79,60 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Product Name
+                      First Name
                     </label>
                     <input
-                      {...register("name")}
+                      {...register("fname")}
                       id="name"
                       className="border rounded px-3 py-2 w-full"
                       placeholder="Product Name"
                     />
                   </div>
-                  <div className="mb-4 w-1/2">
+                  <div className="mb-4 w-1/2 mr-2">
                     <label
-                      htmlFor="generic"
+                      htmlFor="name"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Generic
+                      Last Name
                     </label>
                     <input
-                      {...register("generic")}
-                      id="generic"
+                      {...register("lname")}
+                      id="name"
                       className="border rounded px-3 py-2 w-full"
-                      placeholder="Generic"
+                      placeholder="Product Name"
                     />
                   </div>
                 </div>
 
-                {/* Price & Country */}
                 <div className="flex justify-between mx-2">
                   <div className="mb-4 w-1/2 mr-2">
                     <label
                       htmlFor="price"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Price
+                      Address
                     </label>
                     <input
-                      {...register("price")}
-                      id="price"
-                      type="number"
+                      {...register("address")}
+                      id="address"
+                      type="text"
                       className="border rounded px-3 py-2 w-full"
                       placeholder="Price"
                     />
                   </div>
 
-                  <div className="mb-4 w-1/2 ">
+                  <div className="mb-4 w-1/2">
                     <label
-                      htmlFor="country"
+                      htmlFor="contactNo"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Origin
+                      Contact Number
                     </label>
                     <input
-                      {...register("country")}
-                      id="country"
+                      {...register("contactNo")}
+                      id="contactNo"
                       className="border rounded px-3 py-2 w-full"
-                      placeholder="Origin"
-                    />
-                  </div>
-                </div>
-
-                {/* des & measurement */}
-
-                <div className="flex justify-between mx-2">
-                  <div className="mb-4 w-1/2  mr-2">
-                    <label
-                      htmlFor="productDescription"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      {...register("productDescription")}
-                      id="productDescription"
-                      className="border resize rounded-md  px-3  py-2 w-full "
-                      placeholder="Description"
-                    />
-                  </div>
-
-                  <div className="mb-4 w-1/2 ">
-                    <label
-                      htmlFor="measurement"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Measurement
-                    </label>
-                    <input
-                      {...register("measurement")}
-                      id="measurement"
-                      className="border rounded px-3 py-2 w-full"
-                      placeholder="Origin"
+                      placeholder="contactNo"
                     />
                   </div>
                 </div>
@@ -184,4 +149,4 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
   );
 };
 
-export default EditProductModal;
+export default EditUserModal;

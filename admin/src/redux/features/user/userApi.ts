@@ -1,21 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { api } from "../../api/apiSlice";
 
-const productApi = api.injectEndpoints({
+const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => "/products",
+      query: () => "/students",
+      transformResponse: (response: any) => response.data.data,
+      providesTags: ["data"],
     }),
 
     singleUser: builder.query({
       query: (id) => `/students/${id}`,
-      providesTags: ["products", "name"],
-    }),
-
-    getRequestedProduct: builder.query({
-      query: (id) => `/productRequest/${id}`,
       providesTags: ["data"],
     }),
-
     postUser: builder.mutation({
       query: ({ data }) => ({
         url: `/students/create-User`,
@@ -24,38 +21,20 @@ const productApi = api.injectEndpoints({
       }),
     }),
 
-    postProductRequest: builder.mutation({
-      query: ({ data }) => ({
-        url: `/productRequest/create-request`,
-        method: "POST",
-        body: data,
-      }),
-    }),
-
-    deleteRequestedProduct: builder.mutation({
-      query: (id) => ({
-        url: `/productRequest/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["data"],
-    }),
-
     editUser: builder.mutation({
       query: ({ id, data }) => ({
         url: `/students/${id}`,
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["products", "name"],
+      invalidatesTags: ["data"],
     }),
   }),
 });
 
 export const {
   useEditUserMutation,
-  useGetRequestedProductQuery,
-  usePostProductRequestMutation,
   usePostUserMutation,
-  useDeleteRequestedProductMutation,
   useSingleUserQuery,
-} = productApi;
+  useGetUsersQuery,
+} = userApi;
