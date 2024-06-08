@@ -1,5 +1,6 @@
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import MenuItems from "./MenuItem";
 
 interface SidebarProps {
@@ -28,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               isSideBarOpen ? "block" : "hidden"
             } mt-2 px-4 text-xl text-white font-bold`}
           >
-            E-Medicine
+            <img className="w-32" src={logo} alt="E-Care" />
           </Link>
 
           {isSideBarOpen ? (

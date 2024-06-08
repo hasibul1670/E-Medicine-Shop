@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { IOrder, OrderModel } from './order.interface';
 
-const ToySchema = new Schema({
+const orderSchema = new Schema({
   _id: String,
   name: String,
   productDescription: String,
@@ -18,15 +18,20 @@ const ToySchema = new Schema({
 
 const OrderSchema: Schema<IOrder> = new Schema<IOrder>(
   {
-    orderedItems: [ToySchema],
+    orderedItems: [orderSchema],
+    orderId: String,
     shippingAddress: { type: String },
     total: { type: Number },
     contactNumber: { type: String },
-    userId: { type: String },
+    userId: { type: Schema.Types.ObjectId, ref: 'Student' },
     orderDate: {
       type: String,
     },
-    status: {
+    paymentStatus: {
+      type: String,
+      default: 'pending',
+    },
+    delivaryStatus: {
       type: String,
       default: 'pending',
     },

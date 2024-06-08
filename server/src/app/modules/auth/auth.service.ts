@@ -18,10 +18,7 @@ const loginStudent = async (
   payload: ILoginUser
 ): Promise<ILoginUserResponse> => {
   const { email, password } = payload;
-
   const student = await Student.findOne({ email: email }).lean();
-
-  console.log('Hellossss', student);
 
   if (!student) {
     throw new ApiError(StatusCodes.NOT_FOUND, 'User does not exist');

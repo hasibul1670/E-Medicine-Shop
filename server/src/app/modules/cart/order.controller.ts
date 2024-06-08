@@ -25,6 +25,10 @@ const getAllOrders = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderService.getAllOrders(id);
   sendOrderResponse(res, 'Orders  are retrieved successfully !', result);
 });
+const getAllOrdersForAdmin = catchAsync(async (req: Request, res: Response) => {
+  const result = await OrderService.getAllOrdersForAdmin();
+  sendOrderResponse(res, 'Orders  are retrieved successfully !', result);
+});
 
 const deleteOrder = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -39,6 +43,7 @@ const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
 export const OrderController = {
   createOrder,
   getAllOrders,
+  getAllOrdersForAdmin,
   getSingleOrder,
   deleteOrder,
 };

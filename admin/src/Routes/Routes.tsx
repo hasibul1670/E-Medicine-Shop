@@ -9,8 +9,11 @@ import User from "../pages/User/User";
 
 import QuickBill from "../pages/ExpensePage/QuickBill";
 import ShowAllBills from "../pages/ExpensePage/ShowAllBills";
+import OrderManagement from "../pages/OrderManagement/OrderManagement";
+import SingleOrder from "../pages/OrderManagement/SingleOrder";
 import Report from "../pages/Report/Report";
 import TaxManagement from "../pages/TaxManagement/TaxManagement";
+import OrderInvoice from "../pages/OrderManagement/OrderInvoice";
 
 const LayoutRouter = () => {
   return (
@@ -25,6 +28,9 @@ const LayoutRouter = () => {
           <Route path="/products" Component={Product} />
           <Route path="/invoice" Component={Invoice} />
           <Route path="/expense-management" Component={QuickBill} />
+          <Route path="/order-management" Component={OrderManagement} />
+          <Route path="/order-management/:id" Component={SingleOrder} />
+          <Route path="/order-invoice/:id" Component={OrderInvoice} />
           <Route
             path="/expense-management/all-bills"
             Component={ShowAllBills}

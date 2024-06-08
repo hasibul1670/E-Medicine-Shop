@@ -21,7 +21,7 @@ const MenuItems = [
     id: 4,
     icon: FaBorderAll,
     text: "Order Management",
-    link: "/order",
+    link: "/order-management",
   },
 
   {
