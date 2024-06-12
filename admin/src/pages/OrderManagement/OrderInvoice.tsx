@@ -2,16 +2,30 @@
 // @ts-ignore
 import html2pdf from "html2pdf.js";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import cod from "../../assets/cod.png";
 import logo from "../../assets/logo.png";
 import paid from "../../assets/paid.png";
 import Loader from "../../components/LoaderComponent/Loader";
 import { useSingleOrderQuery } from "../../redux/features/order/orderApi";
 
-// Hello Invoice
-
 function OrderInvoice() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    if (location.state?.from) {
+      navigate(location.state.from);
+      return;
+    }
+
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+    navigate("/");
+  };
+
   let billCount = 1;
   const { id } = useParams();
 
@@ -43,14 +57,14 @@ function OrderInvoice() {
     <div className="px-5">
       <div className="mx-5   flex justify-between">
         <div>
-          <Link
-            to={`/order-management/${orderData.orderId}`}
+          <button
+            onClick={handleBack}
             className="flex text-xl text-blue-700 font-bold items-center"
           >
             <IoArrowBackCircleOutline className="text-3xl" /> Back
-          </Link>
+          </button>
           <p className="text-xl font-bold text-green-900">
-            {orderData?.billNo}{" "}
+            #{orderData?.orderId}{" "}
           </p>
         </div>
 

@@ -8,7 +8,9 @@ import { Order } from './order.model';
 const createOrder = async (payload: IOrder): Promise<IOrder> => {
   const date = new Date();
   const formattedDate = customDateFormat(date);
-  const generateID = await generateId(Order, 'O');
+  const generateID = await generateId(Order, 'O', 'orderId');
+  console.log("🚀 ~ createOrder ~ generateID:", generateID)
+  
   const productRequestPayload = {
     ...payload,
     orderId: generateID,

@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../components/LoaderComponent/Loader";
 import Headline from "../../components/SharedComponents/Headline";
-import CreateUserModal from "../../components/UserComponents/CreateUserModal";
-import EditUserModal from "../../components/UserComponents/EditUserModal";
 import { useGetAllOrderForAdminQuery } from "../../redux/features/order/orderApi";
 interface ProductProps {
   id?: string;
@@ -18,22 +14,7 @@ interface ProductProps {
 }
 
 const OrderManagement: React.FC<ProductProps> = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
-  const [id, setId] = useState(null);
-  
   const { data, isLoading } = useGetAllOrderForAdminQuery("");
-
-  const closeModal = async () => {
-
-    setIsOpen(false);
-    setIsAddProductModalOpen(false);
-  };
-
-
-  const openAddProductModal = async () => {
-    setIsAddProductModalOpen(true);
-  };
 
   let count = 1;
   const rows = data?.map((u: any) => ({
@@ -113,23 +94,8 @@ const OrderManagement: React.FC<ProductProps> = () => {
     <div className="container mx-auto">
       <div className="flex justify-between">
         <Headline>All Orders </Headline>
-        <div className="flex justify-end h-12 lg:mt-5 lg:mr-36">
-          <Button variant="contained" onClick={() => openAddProductModal()}>
-            Add New User
-          </Button>
-        </div>
       </div>
 
-      {isOpen && (
-        <>
-          <EditUserModal closeModal={closeModal} id={id} />
-        </>
-      )}
-      {isAddProductModalOpen && (
-        <>
-          <CreateUserModal closeModal={closeModal} />
-        </>
-      )}
       {isLoading ? (
         <Loader />
       ) : (

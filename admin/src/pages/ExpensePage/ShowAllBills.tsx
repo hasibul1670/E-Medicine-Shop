@@ -1,137 +1,150 @@
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import Box from "@mui/material/Box";
+import {
+  DataGrid,
+  GridColDef,
+  GridRowsProp,
+  GridToolbar,
+} from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";
 
-function createData(
-  billNumber: string,
-  billDescription: string,
-  billTo: string,
-  billDate: string,
-  billingAccount: string,
-  billAmount: string | number
-) {
-  return {
-    billNumber,
-    billDescription,
-    billTo,
-    billDate,
-    billingAccount,
-    billAmount,
-  };
-}
+import Loader from "../../components/LoaderComponent/Loader";
 
-const rows = [
-  createData(
-    "Bill-202404-00003",
-    "Office Expenses",
-    "Rahim ",
-    "04/26/2024",
-    "404-Rent",
-    4500
-  ),
-  createData(
-    "Bill-202404-00003",
-    "Office Expenses",
-    "Rahim ",
-    "04/26/2024",
-    "404-Rent",
-    4500
-  ),
-  createData(
-    "Bill-202404-00003",
-    "Office Expenses",
-    "Rahim ",
-    "04/26/2024",
-    "404-Rent",
-    4500
-  ),
-];
+export default function BillOverview() {
+  // const { data, isLoading } = useGetAllExpenseQuery(" ", {
+  //   refetchOnMountOrArgChange: true,
+  // });
 
-export default function BasicTable() {
+  const isLoading = false;
+
+  const data = [
+    {
+      id: "45454",
+      _id: "45454",
+      billNo: "45454",
+      billTo: "45454",
+      amount: "45454",
+      paymentStatus: "45454",
+      dueDate: "06-06-2024",
+      createdBy: "45454",
+    },
+  ];
+  let count = 1;
+  const rows: GridRowsProp = data?.map((product: any) => ({
+    id: count++,
+    _id: product?._id,
+    billNo: product?.billNo,
+    billTo: product?.billTo,
+    amount: product?.paidAmount,
+    paymentStatus: product?.paymentStatus,
+    dueDate: product?.dueDate,
+    createdBy: product?.createdBy,
+  }));
+
+  const LinkCellRenderer = (params: any) => (
+    <Link
+      to={`/bill-overview/${params.value}`}
+      className="cursor-pointer text-center text-lg	 hover:underline text-blue-700"
+    >
+      {params.value}
+    </Link>
+  );
+  const CenteredCellRenderer = (params: any) => (
+    <Link to="#" className=" text-center text-lg	 ">
+      {params.value}
+    </Link>
+  );
+
+  const columns: GridColDef[] = [
+    {
+      field: "billNo",
+      headerAlign: "center",
+      headerName: "Bill No",
+      width: 200,
+      renderCell: LinkCellRenderer,
+      align: "center",
+    },
+    {
+      field: "billTo",
+      headerAlign: "center",
+      headerName: "Bill To",
+      align: "center",
+      width: 100,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      align: "center",
+      field: "amount",
+      headerAlign: "center",
+      headerName: "Amount",
+      width: 100,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "paymentStatus",
+      align: "center",
+      headerAlign: "center",
+      headerName: "Status",
+      width: 80,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "dueDate",
+      align: "center",
+      headerAlign: "center",
+      headerName: "Due Date ",
+      filterable: false,
+      sortable: false,
+      width: 120,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "createdBy",
+      headerAlign: "center",
+      headerName: "Created By",
+      align: "center",
+      width: 220,
+      renderCell: CenteredCellRenderer,
+    },
+  ];
+
   return (
-    <div>
-      <div className="flex justify-between">
-        <Headline>All Products List</Headline>
-        <div className="flex justify-end h-12 lg:mt-5 lg:mr-24">
-          <Link to="/expense-management">
-            <Button>Back To QuickBills </Button>
-          </Link>
-        </div>
+    <div className="container ">
+      <div className="mx-5">
+        <Headline>All Expenses Bill</Headline>
       </div>
-      <div className="mx-2 border-2 border-sky-400">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <label className="text-base font-semibold text-cyan-800">
-                    Bill No
-                  </label>
-                </TableCell>
-                <TableCell align="right">
-                  {" "}
-                  <label className="text-base font-semibold text-cyan-800">
-                    Description
-                  </label>
-                </TableCell>
-                <TableCell align="right">
-                  <label className="text-base font-semibold text-cyan-800">
-                    Bill To
-                  </label>
-                </TableCell>
-                <TableCell align="right">
-                  <label className="text-base font-semibold text-cyan-800">
-                    Bill Date{" "}
-                  </label>
-                </TableCell>
-                <TableCell align="right">
-                  <label className="text-base font-semibold text-cyan-800">
-                    Amount
-                  </label>
-                </TableCell>
-                <TableCell align="right">
-                  <label className="text-base font-semibold text-cyan-800">
-                    Account
-                  </label>
-                </TableCell>
-                <TableCell align="center">
-                  <label className="text-base font-semibold text-cyan-800">
-                    Action
-                  </label>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.billNumber}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.billNumber}
-                  </TableCell>
-                  <TableCell align="right">{row.billDescription}</TableCell>
-                  <TableCell align="right">{row.billTo}</TableCell>
-                  <TableCell align="right">{row.billDate}</TableCell>
-                  <TableCell align="right">{row.billingAccount}</TableCell>
-                  <TableCell align="right">{row.billAmount}</TableCell>
-                  <TableCell align="right">
-                    <Button className="bg-blue-700 mr-2">Edit</Button>
-                    <Button className="bg-red-700 mr-2">Delete</Button>
-                    <Button className="bg-green-700 mr-2">Print</Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+      <div className="">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Box sx={{ height: 500, width: "100%" }}>
+            <DataGrid
+              {...data}
+              disableColumnFilter
+              disableColumnSelector
+              disableDensitySelector
+              className="mx-5 mt-5 bg-gray-50 rounded-lg"
+              rowHeight={70}
+              rows={rows}
+              columns={columns}
+              slots={{ toolbar: GridToolbar }}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 20,
+                  },
+                },
+              }}
+              slotProps={{
+                toolbar: {
+                  showQuickFilter: true,
+                },
+              }}
+              pageSizeOptions={[1]}
+              disableRowSelectionOnClick
+            />
+          </Box>
+        )}
       </div>
     </div>
   );

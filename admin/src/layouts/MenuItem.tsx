@@ -1,11 +1,6 @@
 import { FaBorderAll, FaFileInvoice, FaUser } from "react-icons/fa";
-import { HiReceiptTax } from "react-icons/hi";
-import { IoIosSettings, IoMdAddCircle } from "react-icons/io";
-import {
-  MdDashboard,
-  MdOutlineAttachMoney,
-  MdOutlineReport,
-} from "react-icons/md";
+import { IoMdAddCircle } from "react-icons/io";
+import { MdDashboard, MdOutlineAttachMoney } from "react-icons/md";
 import { RiLogoutCircleLine, RiMoneyPoundBoxFill } from "react-icons/ri";
 
 const MenuItems = [
@@ -38,14 +33,14 @@ const MenuItems = [
     text: "Expense Management",
     link: "/expense-management",
   },
-  {
-    id: 6,
-    icon: HiReceiptTax,
-    text: "Tax Management",
-    link: "/tax-management",
-  },
-  { id: 7, icon: MdOutlineReport, text: "Reports", link: "/reports" },
-  { id: 10, icon: IoIosSettings, text: "Settings", link: "/settings" },
+  // {
+  //   id: 6,
+  //   icon: HiReceiptTax,
+  //   text: "Tax Management",
+  //   link: "/tax-management",
+  // },
+  // { id: 7, icon: MdOutlineReport, text: "Reports", link: "/reports" },
+  // { id: 10, icon: IoIosSettings, text: "Settings", link: "/settings" },
   { id: 11, icon: RiLogoutCircleLine, text: "Logout", link: "/logout" },
 ];
 
