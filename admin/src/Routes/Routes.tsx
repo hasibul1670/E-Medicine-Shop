@@ -3,17 +3,14 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import DashboardHome from "../pages/DashboardHome/DashboardHome";
 import FinancialDashboard from "../pages/FinancialDashboard/FinancialDashboard";
 import Invoice from "../pages/Invoice/Invoice";
-import Product from "../pages/Product/Product";
-import Settings from "../pages/Settings/Settings";
-import User from "../pages/User/User";
-
-import QuickBill from "../pages/ExpensePage/QuickBill";
-import ShowAllBills from "../pages/ExpensePage/ShowAllBills";
 import OrderInvoice from "../pages/OrderManagement/OrderInvoice";
 import OrderManagement from "../pages/OrderManagement/OrderManagement";
 import SingleOrder from "../pages/OrderManagement/SingleOrder";
+import Product from "../pages/Product/Product";
 import Report from "../pages/Report/Report";
+import Settings from "../pages/Settings/Settings";
 import TaxManagement from "../pages/TaxManagement/TaxManagement";
+import User from "../pages/User/User";
 
 const LayoutRouter = () => {
   return (
@@ -27,15 +24,10 @@ const LayoutRouter = () => {
           <Route path="/financial-dashboard" Component={FinancialDashboard} />
           <Route path="/products" Component={Product} />
           <Route path="/invoice" Component={Invoice} />
-          <Route path="/expense-management" Component={QuickBill} />
           <Route path="/order-management" Component={OrderManagement} />
           <Route path="/order-management/:id" Component={SingleOrder} />
           <Route path="/invoice/:id" Component={OrderInvoice} />
           <Route path="/order-invoice/:id" Component={OrderInvoice} />
-          <Route
-            path="/expense-management/all-bills"
-            Component={ShowAllBills}
-          />
           <Route path="/tax-management" Component={TaxManagement} />
           <Route path="/reports" Component={Report} />
         </Routes>

@@ -33,10 +33,6 @@ const User: React.FC<ProductProps> = () => {
   const openAddProductModal = async () => {
     setIsAddProductModalOpen(true);
   };
-
-  const handleDeleteProduct = (id: any) => {
-    alert(id);
-  };
   let count = 1;
   const rows = data?.map((u: any) => ({
     id: count++,
@@ -89,7 +85,7 @@ const User: React.FC<ProductProps> = () => {
       width: 200,
       sortable: false,
       renderCell: (params) => (
-        <strong>
+        <strong className=" flex  justify-center mt-5 ">
           <Button
             variant="contained"
             size="small"
@@ -98,15 +94,6 @@ const User: React.FC<ProductProps> = () => {
             onClick={() => openEditModal(params.row._id)}
           >
             Edit
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            style={{ marginLeft: 16, backgroundColor: "#C70000" }}
-            tabIndex={params.hasFocus ? 0 : -1}
-            onClick={() => handleDeleteProduct(params.row._id)}
-          >
-            Delete
           </Button>
         </strong>
       ),
