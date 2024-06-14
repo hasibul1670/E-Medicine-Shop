@@ -23,7 +23,7 @@ const OrderManagement: React.FC<ProductProps> = () => {
     orderId: u?.orderId,
     orderDate: u?.orderDate,
     address: u?.shippingAddress,
-    status: u?.status,
+    status: u?.delivaryStatus,
     contactNo: u?.contactNumber,
     total: u?.total.toFixed(2),
     items: u?.orderedItems.map((item: any) => item.name).join(", "),
