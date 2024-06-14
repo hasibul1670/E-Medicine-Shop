@@ -11,7 +11,6 @@ import NotFound from "../Pages/Shared/NotFound";
 import SignUp from "../Pages/SignUp/SignUp";
 import Home from "../Pages/Home/Home";
 import AllProductPage from "../Pages/products/AllProductPage";
-
 import OrderConfirmed from "../Pages/Dashboard/OrderConfirmed";
 import PlaceOrder from "../Pages/Home/PlaceOrder";
 import SingleProductCard from "./../Pages/SingleProductCard/SingleProductCard";

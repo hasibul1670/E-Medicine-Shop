@@ -9,8 +9,8 @@ const createOrder = async (payload: IOrder): Promise<IOrder> => {
   const date = new Date();
   const formattedDate = customDateFormat(date);
   const generateID = await generateId(Order, 'O', 'orderId');
-  console.log("🚀 ~ createOrder ~ generateID:", generateID)
-  
+  console.log('🚀 ~ createOrder ~ generateID:', generateID);
+
   const productRequestPayload = {
     ...payload,
     orderId: generateID,
@@ -20,11 +20,11 @@ const createOrder = async (payload: IOrder): Promise<IOrder> => {
   return result;
 };
 
-const getAllOrders = async (id: string) => {
-  const allRequest = await Order.find({}).lean();
-  const filteredNotes = allRequest.filter(pr => pr.userId && pr.userId === id);
-  return filteredNotes;
+const getAllOrders = async (userId: string) => {
+  const orders = await Order.find({ userId }).lean();
+  return orders;
 };
+
 const getAllOrdersForAdmin = async () => {
   const res = await Order.find({}).lean();
   return res;

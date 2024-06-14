@@ -32,7 +32,8 @@ const MyOrder = () => {
               <th></th>
               <th>Product Description</th>
               <th>Total </th>
-              <th>Order Status</th>
+              <th>Payment Status</th>
+              <th>Delivery Status</th>
               <th>Order Date</th>
             </tr>
           </thead>
@@ -60,9 +61,17 @@ const MyOrder = () => {
                   ))}
                 </td>
 
-                <td className=" font-bold text-sky-700"> {user?.total} tk</td>
+                <td className=" font-bold text-sky-700">
+                  {" "}
+                  {user?.total.toFixed(2)} tk
+                </td>
                 {/* Status */}
-                <td className=" font-bold text-red-500">{user?.status}</td>
+                <td className=" font-bold text-red-500">
+                  {user?.paymentStatus}
+                </td>
+                <td className=" font-bold text-red-500">
+                  {user?.delivaryStatus}
+                </td>
 
                 <td className=" font-bold text-xs text-teal-700">
                   {user?.orderDate}
