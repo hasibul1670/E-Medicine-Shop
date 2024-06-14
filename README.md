@@ -4,6 +4,8 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 
 # Live Link 
+  #### client site email :  rifat@gmail.com  || pass : 110220
+  
   ### Client Site : https://e-medicine007.vercel.app/
   ### Admin Site : https://emedecine-admin.vercel.app/
 
