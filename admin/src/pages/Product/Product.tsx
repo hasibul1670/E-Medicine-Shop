@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { useState } from "react";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useMemo, useRef, useState } from "react";
 import Loader from "../../components/LoaderComponent/Loader";
 import CreateProductModal from "../../components/ProductComponents/CreateProduct";
 import EditProductModal from "../../components/ProductComponents/EditProductModal";
 import Headline from "../../components/SharedComponents/Headline";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import { Box } from "@mui/material";
 interface ProductProps {
   id?: string;
+  pageInfo: any;
   _id?: string;
   productDescription?: string;
   name?: string;
@@ -17,10 +19,26 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = () => {
+  const [paginationModel, setPaginationModel] = useState({
+    page: 0,
+    pageSize: 10,
+  });
+
   const [isOpen, setIsOpen] = useState(false);
   const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
   const [id, setId] = useState(null);
-  const { data, isLoading } = useGetProductsQuery("");
+  const { data, isLoading } = useGetProductsQuery(paginationModel);
+  console.log("🚀 ~ data:", data)
+  const pageInfo = data?.pageInfo || 1;
+  const rowCountRef = useRef(pageInfo?.totalRowCount || 0);
+
+  // const rowCount = useMemo(() => {
+  //   if (pageInfo?.totalRowCount !== undefined) {
+  //     rowCountRef.current = pageInfo.totalRowCount;
+  //   }
+  //   return rowCountRef.current;
+  // }, [pageInfo?.totalRowCount]);
+
   const closeModal = async () => {
     setIsOpen(false);
     setIsAddProductModalOpen(false);
@@ -51,8 +69,8 @@ const Product: React.FC<ProductProps> = () => {
     <div style={{ textAlign: "center" }}>{params.value}</div>
   );
 
-  const columns: GridColDef<(typeof data)[number]>[] = [
-    { field: "id", headerName: "ID", headerAlign: "center", width: 10 },
+  const columns: any = [
+    // { field: "id", headerName: "ID", headerAlign: "center", width: 10 },
     {
       field: "Name",
       headerAlign: "center",
@@ -89,7 +107,7 @@ const Product: React.FC<ProductProps> = () => {
       headerName: "Action",
       width: 200,
       sortable: false,
-      renderCell: (params) => (
+      renderCell: (params: any) => (
         <strong>
           <Button
             variant="contained"
@@ -141,31 +159,41 @@ const Product: React.FC<ProductProps> = () => {
         <Box sx={{ height: 500, width: "100%" }}>
           <DataGrid
             {...data}
+            rowCount={100}
             disableColumnFilter
             disableColumnSelector
+            loading={isLoading}
             disableDensitySelector
             className="mx-5 mt-5 bg-gray-50 rounded-lg"
             rowHeight={70}
+            paginationMode="server"
             rows={rows}
+            pageSizeOptions={[10]}
+            paginationModel={paginationModel}
+            onPaginationModelChange={setPaginationModel}
             columns={columns}
             slots={{ toolbar: GridToolbar }}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 20,
-                },
-              },
-            }}
             slotProps={{
               toolbar: {
                 showQuickFilter: true,
               },
             }}
-            pageSizeOptions={[1]}
-            disableRowSelectionOnClick
           />
         </Box>
       )}
+
+      {/* <Box sx={{ height: 500, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          {...data}
+          rowCount={rowCount}
+          loading={isLoading}
+          pageSizeOptions={[5]}
+          paginationModel={paginationModel}
+          paginationMode="server"
+          onPaginationModelChange={setPaginationModel}
+        />
+      </Box> */}
     </div>
   );
 };

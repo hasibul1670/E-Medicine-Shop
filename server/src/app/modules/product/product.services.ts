@@ -2,15 +2,15 @@ import { IProduct } from './product.interface';
 import { Product } from './product.model';
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
-
   let count = await Product.countDocuments();
   const id = count++;
   const result = await Product.create({ id: id, ...payload });
   return result;
 };
 
-const getAllProducts = async () => {
-  const result = await Product.find();
+const getAllProducts = async (page: any, limit: any) => {
+const skip = Math.max(0, (page - 1) * limit);
+  const result = await Product.find().skip(skip).limit(limit);
   return result;
 };
 
