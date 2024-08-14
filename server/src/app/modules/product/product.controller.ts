@@ -21,8 +21,8 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
-  const { page, limit } = req.query;
-  const result = await ProductService.getAllProducts(page, limit);
+  const { page, limit, searchText } = req.query;
+  const result = await ProductService.getAllProducts(page,searchText, limit);
   sendProductResponse(res, 'Products retrieved successfully !', result);
 });
 

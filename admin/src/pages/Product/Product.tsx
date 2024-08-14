@@ -2,23 +2,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from "@mui/material/Button";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useMemo, useRef, useState } from "react";
+import {useState } from "react";
 import Loader from "../../components/LoaderComponent/Loader";
 import CreateProductModal from "../../components/ProductComponents/CreateProduct";
 import EditProductModal from "../../components/ProductComponents/EditProductModal";
 import Headline from "../../components/SharedComponents/Headline";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import { Box } from "@mui/material";
-interface ProductProps {
-  id?: string;
-  pageInfo: any;
-  _id?: string;
-  productDescription?: string;
-  name?: string;
-  price?: string;
-}
 
-const Product: React.FC<ProductProps> = () => {
+const Product: React.FC<any> = () => {
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 10,
@@ -28,9 +20,9 @@ const Product: React.FC<ProductProps> = () => {
   const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
   const [id, setId] = useState(null);
   const { data, isLoading } = useGetProductsQuery(paginationModel);
-  console.log("🚀 ~ data:", data)
-  const pageInfo = data?.pageInfo || 1;
-  const rowCountRef = useRef(pageInfo?.totalRowCount || 0);
+
+  // const pageInfo = data?.pageInfo || 1;
+  // const rowCountRef = useRef(pageInfo?.totalRowCount || 0);
 
   // const rowCount = useMemo(() => {
   //   if (pageInfo?.totalRowCount !== undefined) {

@@ -3,7 +3,7 @@ import express from 'express';
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 
-import { OrderRoutes } from '../modules/cart/order.routes';
+import { OrderRoutes } from '../modules/order/order.routes';
 import { ProductRoutes } from '../modules/product/product.routes';
 import { ProductRequestRoutes } from '../modules/productRequest/productRequest.routes';
 import { StudentRoutes } from '../modules/student/student.route';
