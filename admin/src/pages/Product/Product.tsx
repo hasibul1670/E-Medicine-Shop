@@ -1,41 +1,38 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Button from "@mui/material/Button";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import {useState } from "react";
+import { Box, TextField } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { useState } from "react";
 import Loader from "../../components/LoaderComponent/Loader";
 import CreateProductModal from "../../components/ProductComponents/CreateProduct";
 import EditProductModal from "../../components/ProductComponents/EditProductModal";
+import { Button } from "../../components/SharedComponents/Button";
 import Headline from "../../components/SharedComponents/Headline";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
-import { Box } from "@mui/material";
 
 const Product: React.FC<any> = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
+  const [id, setId] = useState(null);
+
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
     pageSize: 10,
+    searchText: searchText,
   });
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
-  const [id, setId] = useState(null);
   const { data, isLoading } = useGetProductsQuery(paginationModel);
-
-  // const pageInfo = data?.pageInfo || 1;
-  // const rowCountRef = useRef(pageInfo?.totalRowCount || 0);
-
-  // const rowCount = useMemo(() => {
-  //   if (pageInfo?.totalRowCount !== undefined) {
-  //     rowCountRef.current = pageInfo.totalRowCount;
-  //   }
-  //   return rowCountRef.current;
-  // }, [pageInfo?.totalRowCount]);
+  const handleSearch = (e: any) => {
+    setPaginationModel((prevModel) => ({
+      ...prevModel,
+      searchText,
+    }));
+  };
 
   const closeModal = async () => {
     setIsOpen(false);
     setIsAddProductModalOpen(false);
   };
-
   const openEditModal = async (id: any) => {
     setIsOpen(true);
     setId(id);
@@ -47,14 +44,13 @@ const Product: React.FC<any> = () => {
   const handleDeleteProduct = (id: any) => {
     alert(id);
   };
-  let count = 1;
   const rows = data?.data?.map((product: any) => ({
-    id: count++,
+    id: product?.productId,
     _id: product?._id,
     Name: product?.name,
     Description: product?.productDescription,
     Price: product?.price,
-    Stock: Math.floor(Math.random() * 90),
+    Stock: product?.stock,
   }));
 
   const CenteredCellRenderer = (params: any) => (
@@ -62,7 +58,7 @@ const Product: React.FC<any> = () => {
   );
 
   const columns: any = [
-    // { field: "id", headerName: "ID", headerAlign: "center", width: 10 },
+    { field: "id", headerName: "ID", headerAlign: "center", width: 80 },
     {
       field: "Name",
       headerAlign: "center",
@@ -100,24 +96,18 @@ const Product: React.FC<any> = () => {
       width: 200,
       sortable: false,
       renderCell: (params: any) => (
-        <strong>
+        <strong className="flex justify-center">
           <Button
-            variant="contained"
-            size="small"
-            style={{ marginLeft: 16 }}
-            tabIndex={params.hasFocus ? 0 : -1}
+            className="bg-blue-700 hover:bg-cyan-700 h-10  mt-5"
             onClick={() => openEditModal(params.row._id)}
           >
-            Edit
+            <p className="-mt-5">Edit</p>
           </Button>
           <Button
-            variant="contained"
-            size="small"
-            style={{ marginLeft: 16, backgroundColor: "#C70000" }}
-            tabIndex={params.hasFocus ? 0 : -1}
+            className="bg-red-700 ml-5 h-10  mt-5"
             onClick={() => handleDeleteProduct(params.row._id)}
           >
-            Delete
+            <p className="-mt-5">Delete</p>
           </Button>
         </strong>
       ),
@@ -127,9 +117,9 @@ const Product: React.FC<any> = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between">
-        <Headline>All Products List</Headline>
+        <Headline>All Products</Headline>
         <div className="flex justify-end h-12 lg:mt-5 lg:mr-36">
-          <Button variant="contained" onClick={() => openAddProductModal()}>
+          <Button className="bg-cyan-700" onClick={() => openAddProductModal()}>
             Add New Product
           </Button>
         </div>
@@ -149,9 +139,39 @@ const Product: React.FC<any> = () => {
         <Loader />
       ) : (
         <Box sx={{ height: 500, width: "100%" }}>
+          <p className="flex justify-start items-center mt-5">
+           
+            <Box
+              component="form"
+              className="px-5 flex items-center"
+              sx={{
+                "& > :not(style)": { width: "55ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                onChange={(e: any) => {
+                  setSearchText(e.target.value);
+                }}
+                color="success"
+                id="filled-basic"
+                label="Search Product by Name,Descripton,Company Name "
+                variant="filled"
+              />
+            </Box>
+
+            <Button
+              onClick={(e: any) => handleSearch(e)}
+              className="bg-gray-700 h-10"
+            >
+              Search
+            </Button>
+          </p>
+
           <DataGrid
             {...data}
-            rowCount={100}
+            rowCount={252}
             disableColumnFilter
             disableColumnSelector
             loading={isLoading}
@@ -164,12 +184,6 @@ const Product: React.FC<any> = () => {
             paginationModel={paginationModel}
             onPaginationModelChange={setPaginationModel}
             columns={columns}
-            slots={{ toolbar: GridToolbar }}
-            slotProps={{
-              toolbar: {
-                showQuickFilter: true,
-              },
-            }}
           />
         </Box>
       )}

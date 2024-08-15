@@ -10,16 +10,17 @@ const createProduct = async (payload: IProduct): Promise<IProduct> => {
 
 const getAllProducts = async (page: any, searchText: any, limit: any) => {
   const skip = Math.max(0, (page - 1) * limit);
-  const searchQuery = searchText
-    ? {
-        $or: [
-          { name: { $regex: searchText, $options: 'i' } },
-          { generic: { $regex: searchText, $options: 'i' } },
-          { company: { $regex: searchText, $options: 'i' } },
-          { productDescription: { $regex: searchText, $options: 'i' } },
-        ],
-      }
-    : {};
+  const searchQuery =
+    searchText && searchText!='undefined'
+      ? {
+          $or: [
+            { name: { $regex: searchText, $options: 'i' } },
+            { generic: { $regex: searchText, $options: 'i' } },
+            { company: { $regex: searchText, $options: 'i' } },
+            { productDescription: { $regex: searchText, $options: 'i' } },
+          ],
+        }
+      : {};
   const result = await Product.find(searchQuery).skip(skip).limit(limit);
   return result;
 };

@@ -43,6 +43,7 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
   useEffect(() => {
     if (singleProduct) {
       setValue("name", singleProduct.name);
+      setValue("stock", singleProduct.stock);
       setValue("generic", singleProduct.generic);
       setValue("price", singleProduct.price);
       setValue("productDescription", singleProduct.productDescription);
@@ -116,7 +117,7 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
                     <input
                       {...register("price")}
                       id="price"
-                      type="number"
+                      type="float"
                       className="border rounded px-3 py-2 w-full"
                       placeholder="Price"
                     />
@@ -170,6 +171,21 @@ const EditProductModal: React.FC<iEditProductModalType> = ({
                       placeholder="Origin"
                     />
                   </div>
+                </div>
+
+                <div className="mb-4 w-1/2 ">
+                  <label
+                    htmlFor="stock"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Stock
+                  </label>
+                  <input
+                    {...register("stock")}
+                    id="stock"
+                    className="border rounded px-3 py-2 w-full"
+                    placeholder="Origin"
+                  />
                 </div>
 
                 <div className="flex justify-end mt-4 mr-2">
