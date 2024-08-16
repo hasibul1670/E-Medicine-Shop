@@ -26,6 +26,8 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
   ### Order Management
   ![alt text](image-6.png)
   ![alt text](image-7.png)
+  <img width="889" alt="image" src="https://github.com/user-attachments/assets/78129f55-08d4-410c-b3ca-760e98e4cf98">
+
 
 
 
