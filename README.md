@@ -16,7 +16,8 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 ![alt text](image-2.png)
 
   ## Product Management
-![alt text](image-3.png)
+<img width="782" alt="image" src="https://github.com/user-attachments/assets/db27b75a-dd0f-4f47-9db6-94591a9790da">
+
 
   ## User Management
 ![alt text](image.png)
