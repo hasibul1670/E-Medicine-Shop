@@ -9,6 +9,6 @@ router.get('/all-orders', OrderController.getAllOrdersForAdmin);
 router.get('/:id', OrderController.getSingleOrder);
 router.get('/all-order-user/:id', OrderController.getAllOrders);
 router.delete('/:id', OrderController.deleteOrder);
-router.patch('/:id', OrderController.deleteOrder);
+router.patch('/:id', OrderController.updateOrder);
 
 export const OrderRoutes = router;

@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/LoaderComponent/Loader";
-import {
-  useSingleOrderQuery,
-} from "../../redux/features/order/orderApi";
+import OrderStatusModal from "../../components/OrderComponents/OrderStatusModal";
+import { useSingleOrderQuery } from "../../redux/features/order/orderApi";
 
 const SingleOrder = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   let billCount = 1;
   const { id } = useParams();
   const { data, isLoading } = useSingleOrderQuery(id, {
@@ -17,8 +18,20 @@ const SingleOrder = () => {
   const handlePrint = () => {
     navigate(`/order-invoice/${orderData.orderId}`);
   };
+  const handleChangeStatus = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = async () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="  mb-20">
+      {isModalOpen && (
+        <>
+          <OrderStatusModal closeModal={closeModal} id={id} />
+        </>
+      )}
+
       <div className="mx-5   flex justify-between">
         <div>
           <Link
@@ -41,14 +54,13 @@ const SingleOrder = () => {
             Print
           </button>
 
-          <Link to={`/bill-overview/edit/${orderData?.billNo}`}>
-            <button
-              className="bg-blue-950 py-3 px-8 text-white mt-2 rounded-sm font-bold text-base"
-              type="submit"
-            >
-              Edit
-            </button>
-          </Link>
+          <button
+            className="bg-blue-950 py-3 px-8 text-white mt-2 rounded-sm font-bold text-base"
+            type="submit"
+            onClick={handleChangeStatus}
+          >
+            Change Status
+          </button>
         </div>
       </div>
       <div className="border-b-2 border-blue-400"></div>
@@ -121,7 +133,7 @@ const SingleOrder = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {orderData?.orderedItems?.map((p:any, index:any) => (
+                    {orderData?.orderedItems?.map((p: any, index: any) => (
                       <tr key={index} className="text-center">
                         <td className="border border-gray-200 px-4 py-2">
                           {billCount++}

@@ -22,10 +22,40 @@ const OrderManagement: React.FC<ProductProps> = () => {
     _id: u?._id,
     orderId: u?.orderId,
     orderDate: u?.orderDate,
-    address: u?.shippingAddress,
-    status: u?.delivaryStatus,
+    delivaryStatus: (
+      <p
+        className={`font-bold text-lg mt-6 ${
+          u?.delivaryStatus === "pending"
+            ? "text-yellow-500"
+            : u?.delivaryStatus === "delivered"
+            ? "text-green-600"
+            : u?.delivaryStatus === "cancelled"
+            ? "text-red-600"
+            : ""
+        }`}
+      >
+        {u?.delivaryStatus}
+      </p>
+    ),
+    paymentStatus: (
+      <p
+        className={`font-bold text-lg mt-6 ${
+          u?.paymentStatus === "pending"
+            ? "text-yellow-500"
+            : u?.paymentStatus === "paid"
+            ? "text-green-600"
+            : u?.paymentStatus === "cod"
+            ? "text-cyan-600"
+            : ""
+        }`}
+      >
+        {u?.paymentStatus}
+      </p>
+    ),
+
     contactNo: u?.contactNumber,
     total: u?.total.toFixed(2),
+    address: u?.shippingAddress,
     items: u?.orderedItems.map((item: any) => item.name).join(", "),
   }));
 
@@ -51,20 +81,6 @@ const OrderManagement: React.FC<ProductProps> = () => {
       renderCell: CenteredCellLinkRenderer,
     },
     {
-      field: "items",
-      headerAlign: "center",
-      headerName: "Items",
-      width: 200,
-      renderCell: CenteredCellRenderer,
-    },
-    {
-      field: "address",
-      headerAlign: "center",
-      headerName: "Shipping Address",
-      width: 250,
-      renderCell: CenteredCellRenderer,
-    },
-    {
       field: "contactNo",
       headerAlign: "center",
       headerName: "Phone",
@@ -73,11 +89,19 @@ const OrderManagement: React.FC<ProductProps> = () => {
       renderCell: CenteredCellRenderer,
     },
     {
-      field: "status",
+      field: "paymentStatus",
       headerAlign: "center",
-      headerName: "Status",
+      headerName: "Payment Status",
       type: "number",
-      width: 100,
+      width: 120,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "delivaryStatus",
+      headerAlign: "center",
+      headerName: "Delivary Status",
+      type: "number",
+      width: 130,
       renderCell: CenteredCellRenderer,
     },
     {
@@ -85,7 +109,15 @@ const OrderManagement: React.FC<ProductProps> = () => {
       headerAlign: "center",
       headerName: "Total",
       type: "number",
-      width: 100,
+      width: 130,
+      renderCell: CenteredCellRenderer,
+    },
+    {
+      field: "address",
+      headerAlign: "center",
+      headerName: "Address",
+      type: "number",
+      width: 150,
       renderCell: CenteredCellRenderer,
     },
   ];

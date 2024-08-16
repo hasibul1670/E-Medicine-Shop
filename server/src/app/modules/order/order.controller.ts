@@ -40,10 +40,17 @@ const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
   const result = await OrderService.getSingleOrder(id);
   sendOrderResponse(res, 'Single Order retrieved successfully !', result);
 });
+const updateOrder = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const UpdateData = req.body;
+  const result = await OrderService.updateOrder(id, UpdateData);
+  sendOrderResponse(res, 'Single Order retrieved successfully !', result);
+});
 export const OrderController = {
   createOrder,
   getAllOrders,
   getAllOrdersForAdmin,
   getSingleOrder,
   deleteOrder,
+  updateOrder,
 };

@@ -22,7 +22,7 @@ const Product: React.FC<any> = () => {
     searchText: searchText,
   });
   const { data, isLoading } = useGetProductsQuery(paginationModel);
-  const handleSearch = (e: any) => {
+  const handleSearch = () => {
     setPaginationModel((prevModel) => ({
       ...prevModel,
       searchText,
@@ -162,7 +162,7 @@ const Product: React.FC<any> = () => {
             </Box>
 
             <Button
-              onClick={(e: any) => handleSearch(e)}
+              onClick={() => handleSearch()}
               className="bg-gray-700 h-10"
             >
               Search

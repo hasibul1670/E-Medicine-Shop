@@ -42,10 +42,21 @@ const deleteOrder = async (id: string) => {
   return result;
 };
 
+const updateOrder = async (
+  id: string,
+  payload: Partial<IOrder>
+): Promise<IOrder | null> => {
+  const result = await Order.findOneAndUpdate({ orderId: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
 export const OrderService = {
   createOrder,
   deleteOrder,
   getAllOrders,
   getSingleOrder,
   getAllOrdersForAdmin,
+  updateOrder,
 };

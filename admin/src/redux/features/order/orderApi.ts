@@ -1,4 +1,3 @@
-
 import { api } from "../../api/apiSlice";
 
 const orderApi = api.injectEndpoints({
@@ -13,40 +12,19 @@ const orderApi = api.injectEndpoints({
       providesTags: ["data"],
     }),
 
-    createOrder: builder.mutation({
-      query: ({ data }) => ({
-        url: `/order/create-order`,
-        method: "POST",
-        body: data,
-        providesTags: ["data"],
-      }),
-    }),
-
-    deleteOrder: builder.mutation({
-      query: ({ email, cartItemId }) => ({
-        url: "/cart",
-        method: "DELETE",
-        body: { email: email, cartItemId: cartItemId },
-      }),
-    }),
-
-    updateCart: builder.mutation({
-      query: ({ email, enrolled }) => ({
-        url: `/cart/update`,
+    updateOrder: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `/order/${id}`,
         method: "PATCH",
-        body: {
-          enrolled: enrolled,
-          email: email,
-        },
+        body: data,
       }),
+      invalidatesTags: ["data"],
     }),
   }),
 });
 
 export const {
-  useCreateOrderMutation,
-  useDeleteOrderMutation,
+  useUpdateOrderMutation,
   useGetAllOrderForAdminQuery,
-  useUpdateCartMutation,
-  useSingleOrderQuery
+  useSingleOrderQuery,
 } = orderApi;
