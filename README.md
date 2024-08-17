@@ -4,12 +4,25 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 
 # Live Link 
-  #### client site email :  rifat@gmail.com  || pass : 110220
-  
+  ### Client Site Credentials --> email :  demo@gmail.com  || pass : 110220
   ### Client Site : https://e-medicine007.vercel.app/
   ### Admin Site : https://emedecine-admin.vercel.app/
 
+
+## Technologies Used
+- Language : JavaScript, TypeScript, HTML
+- Frontend [Admin] : React, Meterial UI, Tailwind CSS, etc
+- Frontend [Client] : NextJs, Meterial UI, Tailwind CSS, Framer Motion, etc
+- Backend: ExpressJS, Mongoose, JWT, Zod, etc
+- Database: MongoDB
+- Deployment: Vercel
+
+  
+
 # SnapShort 
+  ## Client Site
+  <img width="948" alt="image" src="https://github.com/user-attachments/assets/e2559a5a-a332-404d-b2c2-ec9fc6e33366">
+
   ## Dashboard HomePage Show OverAll App Data
 ![alt text](image-4.png)
   ## Financial Dashboard Show All Sales Data 
@@ -34,21 +47,6 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 
 
-
-
-#### Git Commit Messages
-- feat: Introducing New Features
-- fix: Fixing Bugs
-- chore: Miscellaneous Changes
-- refactor: Code Refactoring
-- docs: Documentation Updates
-- style: Code Formatting
-- test: Testing Updates
-- perf: Performance Improvements
-- ci: Continuous Integration
-- cd: Continuous Deployment
-- build: BuildSystem Updates
-- revert: Reverting Changes
 
 ## Features
 ### User Authentication and Authorization
@@ -93,12 +91,7 @@ Welcome to our Healthcare Platform! This platform provides a comprehensive set o
 
 
 
-## Technologies Used
-- Frontend: JavaScript,TypeScripts,Tailwind CSS,
-- Backend: Node.js, Express.js,Typescript
-- Database: MongoDB
-- Deployment: Vercel
-- Authentication: JWT
+
 
 
 
