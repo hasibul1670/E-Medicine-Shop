@@ -157,7 +157,7 @@ const NavBar = () => {
           <label htmlFor="my-drawer-4">
             <div className="badge badge-outline  badge-primary">
               <span className="text-xl">
-                <FaShoppingCart></FaShoppingCart>
+                <FaShoppingCart/>
               </span>
               <span> {totalQuantity()}</span>
             </div>
