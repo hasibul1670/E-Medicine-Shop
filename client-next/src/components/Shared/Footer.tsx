@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className=" text-black   bg-gradient-to-r from-white to-cyan-300">
+    <div className=" text-black   bg-gradient-to-r from-white to-blue-300">
       <footer className="footer footer-center p-5  text-base-content rounded">
         <div className="flex justify-between">
           <div className="w-1/3">
