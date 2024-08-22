@@ -10,7 +10,8 @@ mkdir -p .husky
 
 # Create pre-commit hook
 echo '#!/bin/sh' > .husky/pre-commit
-echo 'yarn lint' >> .husky/pre-commit
+echo 'yarn format' >> .husky/pre-commit
+echo 'yarn build' >> .husky/pre-push
 chmod +x .husky/pre-commit
 
 echo "Husky hooks have been set up successfully."
