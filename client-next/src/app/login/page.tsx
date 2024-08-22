@@ -8,6 +8,7 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { z } from "zod";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
