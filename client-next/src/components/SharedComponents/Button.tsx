@@ -6,14 +6,18 @@ interface ButtonProps {
   children?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, className, children }) => {
-    const [isClicked, setIsClicked] = useState(false);
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  className,
+  children,
+}) => {
+  const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(true);
     if (onClick) onClick();
     setTimeout(() => {
       setIsClicked(false);
-    }, 150); 
+    }, 150);
   };
   return (
     <motion.button
@@ -36,5 +40,3 @@ export const Button: React.FC<ButtonProps> = ({ onClick, className, children }) 
     </motion.button>
   );
 };
-
-

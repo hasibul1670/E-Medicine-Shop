@@ -29,7 +29,7 @@ const SideBar = () => {
         href="/"
       >
         {/* <Image src="#" width={40} height={40} alt="logo" /> */}
-       
+
         <Typography
           variant="h6"
           component="h1"

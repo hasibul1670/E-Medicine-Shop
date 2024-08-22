@@ -7,7 +7,6 @@ import {
   AiOutlinePlusSquare,
 } from "react-icons/ai";
 
-
 const ShoppingCart: React.FC<any> = ({ onClose }) => {
   const handleClose = () => {
     onClose();

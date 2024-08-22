@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import logo from "../../../public/asset/home/logo.png";
