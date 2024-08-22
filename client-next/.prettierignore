@@ -1,8 +1,8 @@
-.yarn
 .next
-dist
-node_modules
-.husky
-assets
+.cache
+package-lock.json
 public
+node_modules
+next-env.d.ts
+next.config.ts
 yarn.lock
