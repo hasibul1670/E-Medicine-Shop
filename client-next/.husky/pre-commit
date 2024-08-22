@@ -1,1 +1,1 @@
-yarn format && yarn build 
+npm run format
