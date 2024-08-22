@@ -2,8 +2,8 @@ import { SxProps, TextField } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 
 type TInputProps = {
-  name: string;
-  label?: string;
+     name: string;
+  label?:     string;
   type?: string;
   size?: "small" | "medium";
   fullWidth?: boolean;
