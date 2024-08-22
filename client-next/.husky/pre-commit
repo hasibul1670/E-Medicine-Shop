@@ -1,1 +1,1 @@
-yarn format && yarn build
+echo “npm run format” > .husky/pre-commit
