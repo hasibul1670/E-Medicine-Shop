@@ -36,10 +36,10 @@ const AutoFileUploader = ({
         <Input
           type=" file"
           inputProps={{ accept:  accept }}
-          style={{ display: " none" }}
+          style={{ display: "    none" }}
           onChange={(e) => {
             const fileInput = e.target as HTMLInputElement;
-            const file = fileInput.files?.[0];
+            const file =   fileInput.files?.[0];
             if (file) {
                onFileUpload(file);
             }
