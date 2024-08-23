@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 
 const menuStyles = {
   paper: {
@@ -56,7 +56,7 @@ export default function AccountMenu() {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box sx={{display: "flex", alignItems: "center", textAlign: "center"}}>
         <Tooltip
           title="Account settings"
           componentsProps={{
@@ -94,11 +94,11 @@ export default function AccountMenu() {
         slotProps={{
           ...menuStyles,
         }}
-        transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        transformOrigin={{horizontal: "right", vertical: "top"}}
+        anchorOrigin={{horizontal: "right", vertical: "bottom"}}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar sx={{ background: "transparent", color: "primary.main" }} />
+          <Avatar sx={{background: "transparent", color: "primary.main"}} />
           Profile
         </MenuItem>
 
@@ -106,7 +106,7 @@ export default function AccountMenu() {
 
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
-            <Logout fontSize="small" sx={{ color: "error.main" }} />
+            <Logout fontSize="small" sx={{color: "error.main"}} />
           </ListItemIcon>
           Logout
         </MenuItem>

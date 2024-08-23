@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import {Box, Button, Container, Stack, Typography} from "@mui/material";
 import Link from "next/link";
 
 const NotFoundPage = () => {

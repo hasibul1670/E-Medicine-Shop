@@ -1,9 +1,9 @@
 import React from "react";
-import { SxProps } from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TimePicker } from "@mui/x-date-pickers";
+import {SxProps} from "@mui/material";
+import {Controller, useFormContext} from "react-hook-form";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {TimePicker} from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 
 interface ITimePicker {
@@ -24,7 +24,7 @@ const PHTimePicker = ({
   fullWidth = true,
   sx,
 }: ITimePicker) => {
-  const { control, formState } = useFormContext();
+  const {control, formState} = useFormContext();
   const isError = formState.errors[name] !== undefined;
 
   return (
@@ -32,7 +32,7 @@ const PHTimePicker = ({
       control={control}
       name={name}
       defaultValue={dayjs(new Date().toDateString())}
-      render={({ field: { onChange, value, ...field } }) => {
+      render={({field: {onChange, value, ...field}}) => {
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
@@ -51,9 +51,7 @@ const PHTimePicker = ({
                   },
                   variant: "outlined",
                   error: isError,
-                  helperText: isError
-                    ? (formState.errors[name]?.message as string)
-                    : "",
+                  helperText: isError ? (formState.errors[name]?.message as string) : "",
                 },
               }}
             />

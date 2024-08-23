@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {FaFacebook, FaInstagram, FaLinkedin, FaTwitter} from "react-icons/fa";
 import logo from "../../../public/asset/home/logo.png";
 import Image from "next/image";
 
@@ -80,28 +80,16 @@ const Footer = () => {
               </Link>
 
               <p className="flex gap-2">
-                <Link
-                  className="hover:underline text-3xl hover:text-blue-600"
-                  href="/"
-                >
+                <Link className="hover:underline text-3xl hover:text-blue-600" href="/">
                   <FaFacebook />
                 </Link>
-                <Link
-                  className="hover:underline  text-3xl hover:text-blue-600"
-                  href="/"
-                >
+                <Link className="hover:underline  text-3xl hover:text-blue-600" href="/">
                   <FaLinkedin />
                 </Link>
-                <Link
-                  className="hover:underline text-3xl hover:text-blue-600"
-                  href="/"
-                >
+                <Link className="hover:underline text-3xl hover:text-blue-600" href="/">
                   <FaTwitter />
                 </Link>
-                <Link
-                  className="hover:underline text-3xl hover:text-blue-600"
-                  href="/"
-                >
+                <Link className="hover:underline text-3xl hover:text-blue-600" href="/">
                   <FaInstagram />
                 </Link>
               </p>

@@ -1,6 +1,6 @@
-import { MenuItem, SxProps, TextField } from "@mui/material";
+import {MenuItem, SxProps, TextField} from "@mui/material";
 import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
 
 interface ITextField {
   name: string;
@@ -22,14 +22,14 @@ const PHSelectField = ({
   fullWidth = true,
   sx,
 }: ITextField) => {
-  const { control, formState } = useFormContext();
+  const {control, formState} = useFormContext();
   const isError = formState.errors[name] !== undefined;
 
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field }) => (
+      render={({field}) => (
         <TextField
           {...field}
           sx={{
@@ -41,9 +41,7 @@ const PHSelectField = ({
           required={required}
           fullWidth={fullWidth}
           error={isError}
-          helperText={
-            isError ? (formState.errors[name]?.message as string) : ""
-          }
+          helperText={isError ? (formState.errors[name]?.message as string) : ""}
         >
           {items.map((name) => (
             <MenuItem key={name} value={name}>

@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import {Box, Container, Grid, Typography} from "@mui/material";
 import assets from "@/assets";
 import chooseUsImg from "@/assets/choose-us.png";
 import Image from "next/image";
@@ -34,13 +34,8 @@ const WhyUs = () => {
   return (
     <Container>
       <Box>
-        <Box sx={{ textAlign: "center" }}>
-          <Typography
-            color="primary"
-            variant="h6"
-            component="h1"
-            fontWeight={700}
-          >
+        <Box sx={{textAlign: "center"}}>
+          <Typography color="primary" variant="h6" component="h1" fontWeight={700}>
             Why Us
           </Typography>
           <Typography variant="h4" component="h1" fontWeight={700}>
@@ -69,12 +64,7 @@ const WhyUs = () => {
                 <Image src={servicesData[0].imageSrc} width={50} alt="award" />
               </Box>
               <Box>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h1"
-                  fontWeight={600}
-                >
+                <Typography gutterBottom variant="h5" component="h1" fontWeight={600}>
                   {servicesData[0].title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

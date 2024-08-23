@@ -1,9 +1,9 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import {Box, Button, Container, Stack, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
 const Specialist = async () => {
-  const { data: specialties } = ["34"];
+  const {data: specialties} = ["34"];
 
   return (
     <Container>
@@ -52,12 +52,7 @@ const Specialist = async () => {
               component={Link}
               href={`/doctors?specialties=${specialty.title}`}
             >
-              <Image
-                src={specialty.icon}
-                width={100}
-                height={100}
-                alt="specialty icon"
-              />
+              <Image src={specialty.icon} width={100} height={100} alt="specialty icon" />
               <Box>
                 <Typography component="p" fontWeight={600} fontSize={18} mt={2}>
                   {specialty.title}

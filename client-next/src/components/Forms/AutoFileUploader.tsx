@@ -1,7 +1,7 @@
 "use client";
-import { CloudUpload as CloudUploadIcon } from "@mui/icons-material";
-import { Box, Button, Input, SvgIconProps, SxProps } from "@mui/material";
-import { ReactElement } from "react";
+import {CloudUpload as CloudUploadIcon} from "@mui/icons-material";
+import {Box, Button, Input, SvgIconProps, SxProps} from "@mui/material";
+import {ReactElement} from "react";
 
 interface IFileUploadButton {
   name: string;
@@ -30,26 +30,23 @@ const AutoFileUploader = ({
         variant={variant}
         tabIndex={-1}
         startIcon={icon ? icon : <CloudUploadIcon />}
-        sx={{ ...sx }}
+        sx={{...sx}}
       >
         {label || "Upload file 45 "}
         <Input
           type=" file"
-          inputProps={{ accept  :    accept }}
-          style={{ display: "     none" }}
+          inputProps={{accept: accept}}
+          style={{display: "     none"}}
           onChange={(e) => {
             const fileInput = e.target as HTMLInputElement;
-            const file =   fileInput.files?.[0];
+            const file = fileInput.files?.[0];
             if (file) {
-               onFileUpload(file);
+              onFileUpload(file);
             }
           }}
         />
       </Button>
-      <p>     
-        
-        
-        hello</p>
+      <p>hello</p>
     </Box>
   );
 };

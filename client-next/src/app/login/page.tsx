@@ -1,14 +1,14 @@
 "use client";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {Box, Button, Container, Grid, Stack, Typography} from "@mui/material";
 import Image from "next/image";
 
 import Link from "next/link";
-import { FieldValues } from "react-hook-form";
+import {FieldValues} from "react-hook-form";
 
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { z } from "zod";
+import {toast} from "sonner";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
+import {z} from "zod";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
@@ -24,7 +24,7 @@ const LoginPage = () => {
       const res = await userLogin(values);
       if (res?.data?.accessTokeLn) {
         toast.success(res?.message);
-        storeUserInfo({ accessToken: res?.data?.accessToken });
+        storeUserInfo({accessToken: res?.data?.accessToken});
         // router.push("/dashboard");
       } else {
         setError(res.message);
@@ -97,20 +97,10 @@ const LoginPage = () => {
             >
               <Grid container spacing={2} my={1}>
                 <Grid item md={6}>
-                  <input
-                    name="email"
-                    label="Email"
-                    type="email"
-                    fullWidth={true}
-                  />
+                  <input name="email" label="Email" type="email" fullWidth={true} />
                 </Grid>
                 <Grid item md={6}>
-                  <input
-                    name="password"
-                    label="Password"
-                    type="password"
-                    fullWidth={true}
-                  />
+                  <input name="password" label="Password" type="password" fullWidth={true} />
                 </Grid>
               </Grid>
 
@@ -138,8 +128,7 @@ const LoginPage = () => {
                 Login
               </Button>
               <Typography component="p" fontWeight={300}>
-                Don&apos;t have an account?{" "}
-                <Link href="/register">Create an account</Link>
+                Don&apos;t have an account? <Link href="/register">Create an account</Link>
               </Typography>
             </form>
           </Box>

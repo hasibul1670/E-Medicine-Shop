@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { useGetAllSpecialtiesQuery } from "@/redux/api/specialtiesApi";
+import {useGetAllSpecialtiesQuery} from "@/redux/api/specialtiesApi";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 
-const ScrollCategory = ({ specialties }: { specialties: string }) => {
-  const { data } = useGetAllSpecialtiesQuery(undefined);
+const ScrollCategory = ({specialties}: {specialties: string}) => {
+  const {data} = useGetAllSpecialtiesQuery(undefined);
   const [value, setValue] = React.useState(specialties || "");
   const router = useRouter();
 
@@ -18,7 +18,7 @@ const ScrollCategory = ({ specialties }: { specialties: string }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", mx: "auto" }}>
+    <Box sx={{maxWidth: "100%", bgcolor: "background.paper", mx: "auto"}}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -31,7 +31,7 @@ const ScrollCategory = ({ specialties }: { specialties: string }) => {
             key={specialty.id}
             label={specialty.title}
             value={specialty.title}
-            sx={{ fontWeight: 600 }}
+            sx={{fontWeight: 600}}
           />
         ))}
       </Tabs>

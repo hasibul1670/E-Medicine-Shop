@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import {useState} from "react";
+import {FaSearch, FaShoppingCart, FaUser} from "react-icons/fa";
 import logo from "../../../public/asset/home/logo.png";
 import DownNavbar from "./DownNavbar";
 
@@ -16,7 +16,7 @@ const NavBar = () => {
     setIsOpenCart(!isOpenCart);
   };
 
-  const items = Array.from({ length: 40 });
+  const items = Array.from({length: 40});
   return (
     <div className="flex flex-col">
       <div className="  bg-white fixed  w-full h-20  flex justify-between items-center px-5">
@@ -49,10 +49,7 @@ const NavBar = () => {
             <p>Hasibul Islam</p>
           </section>
 
-          <div
-            onClick={toggleDrawer}
-            className="flex cursor-pointer rounded-lg px-2 py-1"
-          >
+          <div onClick={toggleDrawer} className="flex cursor-pointer rounded-lg px-2 py-1">
             <span>
               <FaShoppingCart className="text-2xl" />
             </span>
@@ -60,10 +57,10 @@ const NavBar = () => {
               <AnimatePresence>
                 <motion.span
                   key={count}
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 20, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
+                  initial={{y: -20, opacity: 0}}
+                  animate={{y: 0, opacity: 1}}
+                  exit={{y: 20, opacity: 0}}
+                  transition={{duration: 0.5}}
                   className="absolute"
                 >
                   {count}
@@ -75,10 +72,10 @@ const NavBar = () => {
         <AnimatePresence>
           {isOpenCart && (
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              initial={{x: "100%"}}
+              animate={{x: 0}}
+              exit={{x: "100%"}}
+              transition={{type: "spring", stiffness: 300, damping: 30}}
               className="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 overflow-y-auto"
             >
               <div className="p-4 ">

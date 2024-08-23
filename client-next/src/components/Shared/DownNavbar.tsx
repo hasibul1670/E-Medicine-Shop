@@ -2,18 +2,18 @@ import Link from "next/link";
 
 const DownNavbar = () => {
   const navbarData = [
-    { title: "Home", link: "/" },
-    { title: "Medicine", link: "/" },
-    { title: "Beauty", link: "/" },
-    { title: "Supplement", link: "/" },
-    { title: "Food and Nutrition", link: "/" },
-    { title: "Baby Care", link: "/" },
-    { title: "Healthcare", link: "/" },
-    { title: "Pet Care", link: "/" },
-    { title: "Veterinary", link: "/" },
-    { title: "Lab Test", link: "/" },
-    { title: "Blogs", link: "/" },
-    { title: "Upload Prescription", link: "/" },
+    {title: "Home", link: "/"},
+    {title: "Medicine", link: "/"},
+    {title: "Beauty", link: "/"},
+    {title: "Supplement", link: "/"},
+    {title: "Food and Nutrition", link: "/"},
+    {title: "Baby Care", link: "/"},
+    {title: "Healthcare", link: "/"},
+    {title: "Pet Care", link: "/"},
+    {title: "Veterinary", link: "/"},
+    {title: "Lab Test", link: "/"},
+    {title: "Blogs", link: "/"},
+    {title: "Upload Prescription", link: "/"},
   ];
 
   return (

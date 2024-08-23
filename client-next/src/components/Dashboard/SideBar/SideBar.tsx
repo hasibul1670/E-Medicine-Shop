@@ -1,10 +1,10 @@
-import { Box, List, Stack, Typography } from "@mui/material";
+import {Box, List, Stack, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { drawerItems } from "@/utils/drawerItems";
-import { UserRole } from "@/types";
+import {drawerItems} from "@/utils/drawerItems";
+import {UserRole} from "@/types";
 import SidebarItem from "./SidebarItem";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 const SideBar = () => {
   const [userRole, setUserRole] = useState("");

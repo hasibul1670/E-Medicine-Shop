@@ -7,17 +7,14 @@ import {
   AiOutlinePlusSquare,
 } from "react-icons/ai";
 
-const ShoppingCart: React.FC<any> = ({ onClose }) => {
+const ShoppingCart: React.FC<any> = ({onClose}) => {
   const handleClose = () => {
     onClose();
   };
 
   return (
     <div className="p-2 shadow-xl cursor-pointer	">
-      <button
-        onClick={handleClose}
-        className="text-xl btn-outline  bg-cyan-500 p-2 rounded-lg"
-      >
+      <button onClick={handleClose} className="text-xl btn-outline  bg-cyan-500 p-2 rounded-lg">
         <AiOutlineClose />
       </button>
       <h2 className="text-red-500 text-sm">Total Items: 44</h2>

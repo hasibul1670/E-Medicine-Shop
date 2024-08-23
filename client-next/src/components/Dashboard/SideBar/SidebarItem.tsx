@@ -1,22 +1,17 @@
 import Link from "next/link";
-import {
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { DrawerItem } from "@/types";
-import { usePathname } from "next/navigation";
+import {ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {DrawerItem} from "@/types";
+import {usePathname} from "next/navigation";
 
 type IProps = {
   item: DrawerItem;
 };
 
-const SidebarItem = ({ item }: IProps) => {
+const SidebarItem = ({item}: IProps) => {
   const linkPath = `/dashboard/${item.path}`;
   const pathname = usePathname();
 
-  console.log({ pathname, linkPath });
+  console.log({pathname, linkPath});
   return (
     <Link href={linkPath}>
       <ListItem
