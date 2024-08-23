@@ -34,19 +34,22 @@ const AutoFileUploader = ({
       >
         {label || "Upload file"}
         <Input
-          type="file"
-          inputProps={{ accept: accept }}
-          style={{ display: "none" }}
+          type=" file"
+          inputProps={{ accept:  accept }}
+          style={{ display: " none" }}
           onChange={(e) => {
             const fileInput = e.target as HTMLInputElement;
             const file = fileInput.files?.[0];
             if (file) {
-              onFileUpload(file);
+               onFileUpload(file);
             }
           }}
         />
       </Button>
-      <p>hello</p>
+      <p>     
+        
+        
+        hello</p>
     </Box>
   );
 };
