@@ -32,11 +32,11 @@ const AutoFileUploader = ({
         startIcon={icon ? icon : <CloudUploadIcon />}
         sx={{ ...sx }}
       >
-        {label || "Upload file"}
+        {label || "Upload file 45 "}
         <Input
           type=" file"
-          inputProps={{ accept:  accept }}
-          style={{ display: "    none" }}
+          inputProps={{ accept  :    accept }}
+          style={{ display: "     none" }}
           onChange={(e) => {
             const fileInput = e.target as HTMLInputElement;
             const file =   fileInput.files?.[0];
